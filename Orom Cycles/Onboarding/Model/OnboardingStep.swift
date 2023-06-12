@@ -45,7 +45,7 @@ enum OnboardingStep: CaseIterable {
         case .one: return "Open the app and find all the Orom cycles around you."
         case .two: return "Scan the QR code in the bike to unlock it and begin your trip."
         case .three: return "Enjoy the ride to your destination"
-        case .four: return "Park the bike in the respective hubs. Then lock the cycle manually to end the trip."
+        case .four: return "Park the cycle in the respective hubs. Then lock the cycle manually to end the trip."
         }
     }
 }
