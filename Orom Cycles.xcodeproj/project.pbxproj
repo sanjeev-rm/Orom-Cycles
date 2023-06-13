@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		C70163532A377A7C001C119C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70163522A377A7C001C119C /* OnboardingView.swift */; };
 		C70163582A37ACD5001C119C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70163572A37ACD5001C119C /* LoginView.swift */; };
+		C770D4442A38C701002406CB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D4432A38C701002406CB /* SignUpView.swift */; };
+		C770D4472A38C842002406CB /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D4462A38C842002406CB /* ForgotPasswordView.swift */; };
+		C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D44B2A38D1F1002406CB /* DashboardView.swift */; };
 		C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */; };
 		C7ED52592A36692A00F88DC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED52582A36692A00F88DC3 /* ContentView.swift */; };
 		C7ED525B2A36692B00F88DC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7ED525A2A36692B00F88DC3 /* Assets.xcassets */; };
@@ -21,6 +24,9 @@
 /* Begin PBXFileReference section */
 		C70163522A377A7C001C119C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C70163572A37ACD5001C119C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C770D4432A38C701002406CB /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		C770D4462A38C842002406CB /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		C770D44B2A38D1F1002406CB /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C7ED52532A36692A00F88DC3 /* Orom Cycles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orom Cycles.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orom_CyclesApp.swift; sourceTree = "<group>"; };
 		C7ED52582A36692A00F88DC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -68,6 +74,29 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		C770D4422A38C6DB002406CB /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C770D4432A38C701002406CB /* SignUpView.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		C770D4452A38C825002406CB /* Forgot Password */ = {
+			isa = PBXGroup;
+			children = (
+				C770D4462A38C842002406CB /* ForgotPasswordView.swift */,
+			);
+			path = "Forgot Password";
+			sourceTree = "<group>";
+		};
+		C770D4482A38CEE4002406CB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		C7ED524A2A36692A00F88DC3 = {
 			isa = PBXGroup;
 			children = (
@@ -89,8 +118,12 @@
 			children = (
 				C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */,
 				C7ED52582A36692A00F88DC3 /* ContentView.swift */,
+				C770D44B2A38D1F1002406CB /* DashboardView.swift */,
 				C7ED52642A36741900F88DC3 /* Onboarding */,
 				C70163562A37ACBD001C119C /* Login */,
+				C770D4422A38C6DB002406CB /* SignUp */,
+				C770D4452A38C825002406CB /* Forgot Password */,
+				C770D4482A38CEE4002406CB /* Utilities */,
 				C7ED525A2A36692B00F88DC3 /* Assets.xcassets */,
 				C7ED525C2A36692B00F88DC3 /* Preview Content */,
 			);
@@ -188,8 +221,11 @@
 				C70163582A37ACD5001C119C /* LoginView.swift in Sources */,
 				C7ED526C2A367A7100F88DC3 /* OnboardingProgressView.swift in Sources */,
 				C7ED526A2A3679CF00F88DC3 /* OnboardingStepView.swift in Sources */,
+				C770D4442A38C701002406CB /* SignUpView.swift in Sources */,
+				C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */,
 				C70163532A377A7C001C119C /* OnboardingView.swift in Sources */,
 				C7ED52662A36746E00F88DC3 /* OnboardingStep.swift in Sources */,
+				C770D4472A38C842002406CB /* ForgotPasswordView.swift in Sources */,
 				C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,7 +363,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -357,7 +393,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

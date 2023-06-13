@@ -9,9 +9,17 @@ import SwiftUI
 
 @main
 struct Orom_CyclesApp: App {
+    
+    @State var isLoggedIn: Bool = false
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            if isLoggedIn {
+                DashboardView()
+            }
+            else {
+                LoginView(isLoggedIn: $isLoggedIn)
+            }
         }
     }
 }
