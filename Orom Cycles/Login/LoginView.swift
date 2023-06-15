@@ -26,18 +26,19 @@ struct LoginView: View {
     /// Variable once true takes the user to the dashboard.
     @Binding var isLoggedIn: Bool
     
+    /// Variable that shows whether the given data is valid or not.
+    @State var isDataValid: Bool = true
+    
     /// Different fields in this view.
     private enum FocusField {
         case email
         case password
     }
     
-    /// Variable that shows whether the given data is valid or not.
-    @State var isDataValid: Bool = true
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             titleAndSubtitle
+                .padding(.top, 8)
             
             Spacer()
             
@@ -47,12 +48,8 @@ struct LoginView: View {
             
             seperatorLine
             
-            HStack {
-                Spacer()
-                forgotPasswordAndSignUpButtons
-                    .padding(.top, 16)
-                Spacer()
-            }
+            forgotPasswordAndSignUpButtons
+                .padding(.top, 16)
             
             Spacer()
             Spacer()
@@ -86,7 +83,19 @@ struct LoginView_Previews: PreviewProvider {
 
 extension LoginView {
     
-    /// Email and Password TextFields.
+    /// The Title & Subtitle View
+    private var titleAndSubtitle: some View {
+        VStack(alignment: .leading) {
+            Text("Hello Again!")
+                .font(.system(size: 40, weight: .bold, design: .default))
+                .foregroundColor(.accentColor)
+            Text("Welcome Back")
+                .font(.system(size: 24, weight: .bold, design: .default))
+                .foregroundColor(.gray)
+        }
+    }
+    
+    /// Email & Password TextFields
     private var emailAndPasswordFields: some View {
         VStack {
             VStack(spacing: 0) {
@@ -107,6 +116,7 @@ extension LoginView {
                     }
                 
                 SecureField("Password", text: $password)
+                    .textContentType(.password)
                     .textInputAutocapitalization(.never)
                     .privacySensitive()
                     .padding(16)
@@ -135,7 +145,7 @@ extension LoginView {
         }
     }
     
-    /// Login Button.
+    /// Login Button
     private var loginButton: some View {
         HStack {
             Text("Login")
@@ -155,48 +165,40 @@ extension LoginView {
         }
     }
     
-    /// Seperator Line.
+    /// Seperator Line
     private var seperatorLine: some View {
         Rectangle()
             .frame(height: 1)
             .foregroundColor(Color.gray.opacity(0.5))
     }
     
-    /// Forgot Password & Sign Up buttons.
+    /// Forgot Password & Sign Up buttons
     private var forgotPasswordAndSignUpButtons: some View {
-        VStack(spacing: 16) {
-            Button {
-                showForgotPasswordView.toggle()
-            } label: {
-                Text("Forgot Password ?")
-                    .foregroundColor(.accentColor)
-                    .underline()
-            }
-            
-            Button {
-                showSignupView.toggle()
-            } label: {
-                HStack {
-                    Text("First time? ")
-                        .foregroundColor(.primary)
-                    Text("Sign Up")
+        HStack {
+            Spacer()
+            VStack(spacing: 16) {
+                Button {
+                    showForgotPasswordView.toggle()
+                } label: {
+                    Text("Forgot Password ?")
                         .foregroundColor(.accentColor)
                         .underline()
                 }
+                
+                Button {
+                    showSignupView.toggle()
+                } label: {
+                    HStack {
+                        Text("First time? ")
+                            .foregroundColor(.primary)
+                        Text("Sign Up")
+                            .foregroundColor(.accentColor)
+                            .underline()
+                    }
+                }
             }
-        }
-        .font(.system(size: 14))
-    }
-    
-    /// The title And Subtitle View.
-    private var titleAndSubtitle: some View {
-        VStack(alignment: .leading) {
-            Text("Hello Again!")
-                .font(.system(size: 40, weight: .bold, design: .default))
-                .foregroundColor(.accentColor)
-            Text("Welcome Back")
-                .font(.system(size: 24, weight: .bold, design: .default))
-                .foregroundColor(.gray)
+            .font(.system(size: 14))
+            Spacer()
         }
     }
 }
@@ -205,7 +207,7 @@ extension LoginView {
 
 extension LoginView {
     
-    /// Function verifys the email and password entered by the user.
+    /// Function verifies the email and password entered by the user.
     private func verifyData() {
         if email.isEmpty || password.isEmpty {
             isDataValid = false
