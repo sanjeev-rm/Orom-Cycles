@@ -13,6 +13,9 @@
 		C770D4472A38C842002406CB /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D4462A38C842002406CB /* ForgotPasswordView.swift */; };
 		C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D44B2A38D1F1002406CB /* DashboardView.swift */; };
 		C7DEFD8F2A3A4CF3005F3BBE /* VerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD8E2A3A4CF3005F3BBE /* VerifyOTPView.swift */; };
+		C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */; };
+		C7DEFD932A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD922A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift */; };
+		C7DEFD952A3B7740005F3BBE /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */; };
 		C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */; };
 		C7ED52592A36692A00F88DC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED52582A36692A00F88DC3 /* ContentView.swift */; };
 		C7ED525B2A36692B00F88DC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7ED525A2A36692B00F88DC3 /* Assets.xcassets */; };
@@ -29,6 +32,9 @@
 		C770D4462A38C842002406CB /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		C770D44B2A38D1F1002406CB /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C7DEFD8E2A3A4CF3005F3BBE /* VerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyOTPView.swift; sourceTree = "<group>"; };
+		C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressView.swift; sourceTree = "<group>"; };
+		C7DEFD922A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVerifyOTPView.swift; sourceTree = "<group>"; };
+		C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
 		C7ED52532A36692A00F88DC3 /* Orom Cycles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orom Cycles.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orom_CyclesApp.swift; sourceTree = "<group>"; };
 		C7ED52582A36692A00F88DC3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -88,6 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				C770D4462A38C842002406CB /* ForgotPasswordView.swift */,
+				C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */,
+				C7DEFD922A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift */,
+				C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */,
 			);
 			path = "Forgot Password";
 			sourceTree = "<group>";
@@ -230,10 +239,13 @@
 			files = (
 				C7ED52592A36692A00F88DC3 /* ContentView.swift in Sources */,
 				C70163582A37ACD5001C119C /* LoginView.swift in Sources */,
+				C7DEFD952A3B7740005F3BBE /* UpdatePasswordView.swift in Sources */,
+				C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */,
 				C7ED526C2A367A7100F88DC3 /* OnboardingProgressView.swift in Sources */,
 				C7ED526A2A3679CF00F88DC3 /* OnboardingStepView.swift in Sources */,
 				C770D4442A38C701002406CB /* SignUpView.swift in Sources */,
 				C7DEFD8F2A3A4CF3005F3BBE /* VerifyOTPView.swift in Sources */,
+				C7DEFD932A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift in Sources */,
 				C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */,
 				C70163532A377A7C001C119C /* OnboardingView.swift in Sources */,
 				C7ED52662A36746E00F88DC3 /* OnboardingStep.swift in Sources */,

@@ -11,12 +11,7 @@ struct ForgotPasswordView: View {
     @Binding var isPresenting: Bool
     var body: some View {
         NavigationView {
-            Button {
-                isPresenting.toggle()
-            } label: {
-                Text("Login")
-            }
-            .navigationTitle("Forgot Pssword")
+            EmailAddressView(isPresenting: $isPresenting)
         }
     }
 }

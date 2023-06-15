@@ -91,7 +91,7 @@ extension LoginView {
                 .foregroundColor(.accentColor)
             Text("Welcome Back")
                 .font(.system(size: 24, weight: .bold, design: .default))
-                .foregroundColor(.gray)
+                .foregroundColor(Color(.secondaryLabel))
         }
     }
     
@@ -102,8 +102,10 @@ extension LoginView {
                 TextField("Vit Email Address", text: $email)
                     .textContentType(.emailAddress)
                     .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .keyboardType(.emailAddress)
                     .padding(16)
-                    .frame(width: UIScreen.main.bounds.width - 64, height: 50)
+                    .frame(height: 50)
                     .background(
                         Rectangle()
                             .stroke()
@@ -120,7 +122,7 @@ extension LoginView {
                     .textInputAutocapitalization(.never)
                     .privacySensitive()
                     .padding(16)
-                    .frame(width: UIScreen.main.bounds.width - 64, height: 50)
+                    .frame(height: 50)
                     .focused($focusField, equals: .password)
                     .submitLabel(.done)
                     .onSubmit {
@@ -128,11 +130,11 @@ extension LoginView {
                         verifyData()
                     }
             }
-            .background(Color.secondary.opacity(0.2))
+            .background(.secondary.opacity(0.1))
             .cornerRadius(16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(lineWidth: 2)
+                    .stroke()
                     .foregroundColor(isDataValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
@@ -162,6 +164,7 @@ extension LoginView {
                     .font(.system(size: 36))
                     .foregroundColor(.accentColor)
             }
+            .disabled(isLoginButtonDisabled())
         }
     }
     
@@ -212,6 +215,7 @@ extension LoginView {
         if email.isEmpty || password.isEmpty {
             isDataValid = false
         } else {
+            // Send to API and verify user.
             isDataValid = true
         }
     }
@@ -221,5 +225,9 @@ extension LoginView {
         isDataValid = true
         email = ""
         password = ""
+    }
+    
+    private func isLoginButtonDisabled() -> Bool {
+        return email.isEmpty || password.isEmpty
     }
 }
