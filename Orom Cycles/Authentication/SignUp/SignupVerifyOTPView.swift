@@ -38,6 +38,8 @@ struct VerifyOTPView_Previews: PreviewProvider {
 
 
 
+// MARK: - View Components
+
 extension SignupVerifyOTPView {
     
     /// Verify Title

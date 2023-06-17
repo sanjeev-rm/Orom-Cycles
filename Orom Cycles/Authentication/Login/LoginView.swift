@@ -11,15 +11,11 @@ struct LoginView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @ObservedObject var loginViewModel: ViewModel = ViewModel()
     
     /// Variable that sets which field is in focus.
     /// Helps with functionalities of the keyboard.
     @FocusState private var focusField: FocusField?
-    
-    /// Variable that shows whether the given data is valid or not.
-    @State var isDataValid: Bool = true
     
     /// Different fields in this view.
     private enum FocusField {
@@ -48,17 +44,17 @@ struct LoginView: View {
         }
         .padding(32)
         .fullScreenCover(isPresented: $authenticationViewModel.showOnboardingView, onDismiss: {
-            onDismissFullScreenCover()
+            loginViewModel.onDismissFullScreenCover()
         }, content: {
             OnboardingView()
         })
         .fullScreenCover(isPresented: $authenticationViewModel.showForgotPasswordView, onDismiss: {
-            onDismissFullScreenCover()
+            loginViewModel.onDismissFullScreenCover()
         }, content: {
             ForgotPasswordView()
         })
         .fullScreenCover(isPresented: $authenticationViewModel.showSignupView, onDismiss: {
-            onDismissFullScreenCover()
+            loginViewModel.onDismissFullScreenCover()
         }, content: {
             SignUpView()
         })
@@ -72,6 +68,8 @@ struct LoginView_Previews: PreviewProvider {
 }
 
 
+
+// MARK: - View Components
 
 extension LoginView {
     
@@ -91,7 +89,7 @@ extension LoginView {
     private var emailAndPasswordFields: some View {
         VStack {
             VStack(spacing: 0) {
-                TextField("Vit Email Address", text: $email)
+                TextField("Vit Email Address", text: $loginViewModel.email)
                     .textContentType(.emailAddress)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
@@ -109,7 +107,7 @@ extension LoginView {
                         focusField = .password
                     }
                 
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $loginViewModel.password)
                     .textContentType(.password)
                     .textInputAutocapitalization(.never)
                     .privacySensitive()
@@ -119,7 +117,7 @@ extension LoginView {
                     .submitLabel(.done)
                     .onSubmit {
                         focusField = nil
-                        verifyData()
+                        loginViewModel.verifyUser()
                     }
             }
             .background(.secondary.opacity(0.1))
@@ -127,12 +125,12 @@ extension LoginView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(isDataValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(loginViewModel.isUserValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
-            // If the Given data is invalid then invalid message is shown.
-            if !isDataValid {
-                Text("Invalid Username / Password")
+            // If the user is invalid then invalid message is shown.
+            if !loginViewModel.isUserValid {
+                Text(loginViewModel.errorMessage.rawValue)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(UIColor.systemRed))
             }
@@ -147,8 +145,8 @@ extension LoginView {
             Spacer()
             
             Button {
-                verifyData()
-                if isDataValid {
+                loginViewModel.verifyUser()
+                if loginViewModel.isUserValid {
                     authenticationViewModel.isLoggedIn.toggle()
                 }
             } label: {
@@ -156,7 +154,7 @@ extension LoginView {
                     .font(.system(size: 36))
                     .foregroundColor(.accentColor)
             }
-            .disabled(isLoginButtonDisabled())
+            .disabled(loginViewModel.isLoginButtonDisabled())
         }
     }
     
@@ -195,31 +193,5 @@ extension LoginView {
             .font(.system(size: 14))
             Spacer()
         }
-    }
-}
-
-
-
-extension LoginView {
-    
-    /// Function verifies the email and password entered by the user.
-    private func verifyData() {
-        if email.isEmpty || password.isEmpty {
-            isDataValid = false
-        } else {
-            // Send to API and verify user.
-            isDataValid = true
-        }
-    }
-    
-    /// Function that does everything that needs to be done when the fullScreen cover dismisses.
-    private func onDismissFullScreenCover() {
-        isDataValid = true
-        email = ""
-        password = ""
-    }
-    
-    private func isLoginButtonDisabled() -> Bool {
-        return email.isEmpty || password.isEmpty
     }
 }

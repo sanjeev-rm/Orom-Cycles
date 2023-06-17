@@ -11,22 +11,11 @@ struct SignUpView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
-    @State var name: String = ""
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var confirmPassword: String = ""
+    @ObservedObject var signupViewModel = ViewModel()
     
     /// Variable that sets which field is in focus
     /// Helps with functionalities of the keyboard
     @FocusState private var focusField: FocusField?
-    
-    /// Variable that shows whether the Name & Email is valid or not
-    @State private var isNameEmailValid: Bool = true
-    
-    /// Variable that shows whether the Password & Confirm Password is valid or not
-    @State private var isPasswordConfirmPasswordValid: Bool = true
-    /// Variable that shows whether the Password & Confirm Password match
-    @State private var passwordConfirmPasswordMatch: Bool = true
     
     /// Different fields in this view
     private enum FocusField {
@@ -34,13 +23,6 @@ struct SignUpView: View {
         case email
         case password
         case confirmPassword
-    }
-    
-    /// Error Messages
-    private enum ErrorMessage: String {
-        case nameEmailInvalid = "Invalid Name / Email"
-        case passwordConfirmPasswordInvalid = "Invalid Password / Confirm Password"
-        case passwordConfirmPasswordDontMatch = "Password & Confirm Password don't match"
     }
     
     var body: some View {
@@ -106,6 +88,8 @@ struct SignUpView_Previews: PreviewProvider {
 
 
 
+// MARK: - View Components
+
 extension SignUpView {
     
     /// The title And Subtitle View
@@ -124,7 +108,7 @@ extension SignUpView {
     private var nameAndEmailFields: some View {
         VStack {
             VStack(spacing: 0) {
-                TextField("Name", text: $name)
+                TextField("Name", text: $signupViewModel.name)
                     .textContentType(.name)
                     .textInputAutocapitalization(.words)
                     .autocorrectionDisabled()
@@ -141,7 +125,7 @@ extension SignUpView {
                         focusField = .email
                     }
                 
-                TextField("Vit Email Address", text: $email)
+                TextField("Vit Email Address", text: $signupViewModel.email)
                     .textContentType(.emailAddress)
                     .textInputAutocapitalization(.never)
                     .autocorrectionDisabled()
@@ -151,7 +135,7 @@ extension SignUpView {
                     .focused($focusField, equals: .email)
                     .submitLabel(.next)
                     .onSubmit {
-                        verifyNameAndEmail()
+                        signupViewModel.verifyNameAndEmail()
                         focusField = .password
                     }
             }
@@ -160,11 +144,11 @@ extension SignUpView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(isNameEmailValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(signupViewModel.isNameEmailValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
-            if !isNameEmailValid {
-                Text(ErrorMessage.nameEmailInvalid.rawValue)
+            if !signupViewModel.isNameEmailValid {
+                Text(signupViewModel.nameEmailErrorMessage.rawValue)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(uiColor: .systemRed))
             }
@@ -175,10 +159,9 @@ extension SignUpView {
     private var passwordAndConfirmPasswordFields: some View {
         VStack {
             VStack(spacing: 0) {
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $signupViewModel.password)
                     .textContentType(.newPassword)
                     .textInputAutocapitalization(.never)
-                    .privacySensitive()
                     .padding(16)
                     .frame(height: 50)
                     .background(
@@ -192,16 +175,15 @@ extension SignUpView {
                         focusField = .confirmPassword
                     }
                 
-                SecureField("Confirm Password", text: $confirmPassword)
+                SecureField("Confirm Password", text: $signupViewModel.confirmPassword)
                     .textContentType(.newPassword)
                     .textInputAutocapitalization(.never)
-                    .privacySensitive()
                     .padding(16)
                     .frame(height: 50)
                     .focused($focusField, equals: .confirmPassword)
                     .submitLabel(.done)
                     .onSubmit {
-                        verifyData()
+                        signupViewModel.verifyUserData()
                         focusField = nil
                     }
             }
@@ -210,19 +192,13 @@ extension SignUpView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(isPasswordConfirmPasswordValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(signupViewModel.isPasswordConfirmPasswordValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
-            if !isPasswordConfirmPasswordValid {
-                if passwordConfirmPasswordMatch {
-                    Text(ErrorMessage.passwordConfirmPasswordInvalid.rawValue)
-                        .font(.system(size: 12, weight: .medium, design: .monospaced))
-                        .foregroundColor(Color(uiColor: .systemRed))
-                } else {
-                    Text(ErrorMessage.passwordConfirmPasswordDontMatch.rawValue)
-                        .font(.system(size: 12, weight: .medium, design: .monospaced))
-                        .foregroundColor(Color(uiColor: .systemRed))
-                }
+            if !signupViewModel.isPasswordConfirmPasswordValid {
+                Text(signupViewModel.passwordErrorMessage.rawValue)
+                    .font(.system(size: 12, weight: .medium, design: .monospaced))
+                    .foregroundColor(Color(uiColor: .systemRed))
             }
         }
     }
@@ -241,7 +217,7 @@ extension SignUpView {
                     .font(.system(size: 36))
                     .foregroundColor(.accentColor)
             }
-            .disabled(isVerifyButtonDisabled())
+            .disabled(signupViewModel.isVerifyButtonDisabled())
         }
     }
     
@@ -270,48 +246,5 @@ extension SignUpView {
             Spacer()
         }
         .font(.system(size: 14))
-    }
-}
-
-extension SignUpView {
-    
-    /// Function verifies data entered by the user
-    private func verifyData() {
-        verifyNameAndEmail()
-        verifyPasswordAndConfirmPassword()
-    }
-    
-    /// Function verifies Name & Email
-    private func verifyNameAndEmail() {
-        if name.isEmpty || email.isEmpty {
-            isNameEmailValid = false
-        } else {
-            isNameEmailValid = true
-        }
-    }
-    
-    /// Function verifies Password & Confirm Password
-    private func verifyPasswordAndConfirmPassword() {
-        if password.isEmpty || confirmPassword.isEmpty {
-            isPasswordConfirmPasswordValid = false
-        } else if password != confirmPassword {
-            passwordConfirmPasswordMatch = false
-            isPasswordConfirmPasswordValid = false
-        } else {
-            isPasswordConfirmPasswordValid = true
-            passwordConfirmPasswordMatch = true
-        }
-    }
-    
-    /// Function returns whether the Verify button is disabled or not.
-    private func isVerifyButtonDisabled() -> Bool {
-        if name.isEmpty ||
-           email.isEmpty ||
-           password.isEmpty ||
-           confirmPassword.isEmpty ||
-           password != confirmPassword {
-            return true
-        }
-        return false
     }
 }

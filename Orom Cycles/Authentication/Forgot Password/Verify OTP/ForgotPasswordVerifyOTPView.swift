@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ForgotPasswordVerifyOTPView: View {
     
-    @State private var otp: String = ""
+    @ObservedObject var forgotPasswordVerifyOTPViewModel = ViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
@@ -40,6 +40,8 @@ struct ForgotPasswordVerifyOTPView_Previews: PreviewProvider {
 
 
 
+// MARK: - View Components
+
 extension ForgotPasswordVerifyOTPView {
     
     /// Verify Title
@@ -52,7 +54,7 @@ extension ForgotPasswordVerifyOTPView {
     /// OTP field with footer message
     private var otpFieldWithFooter: some View {
         VStack(alignment: .leading) {
-            TextField("Enter OTP", text: $otp)
+            TextField("Enter OTP", text: $forgotPasswordVerifyOTPViewModel.otp)
                 .textContentType(.oneTimeCode)
                 .keyboardType(.numberPad)
                 .padding(16)
@@ -89,7 +91,7 @@ extension ForgotPasswordVerifyOTPView {
                     .font(.system(size: 36))
                     .foregroundColor(.accentColor)
             }
-            .disabled(isNewPasswordButtonDisabled())
+            .disabled(forgotPasswordVerifyOTPViewModel.isNewPasswordButtonDisabled)
         }
     }
     
@@ -114,14 +116,5 @@ extension ForgotPasswordVerifyOTPView {
             }
             Spacer()
         }
-    }
-}
-
-
-
-extension ForgotPasswordVerifyOTPView {
-    
-    private func isNewPasswordButtonDisabled() -> Bool {
-        return otp.isEmpty
     }
 }

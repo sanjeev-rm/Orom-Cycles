@@ -10,23 +10,13 @@ import SwiftUI
 struct UpdatePasswordView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    
-    @State private var password: String = ""
-    @State private var confirmPassword: String = ""
+    @ObservedObject var updatePasswordViewModel = ViewModel()
     
     @FocusState private var focusField: FocusField?
-    
-    @State private var isPasswordConfirmPasswordValid: Bool = true
-    @State private var passwordConfirmPasswordMatch: Bool = true
     
     private enum FocusField {
         case password
         case confirmPassword
-    }
-    
-    private enum ErrorMessage: String {
-        case passwordConfirmPasswordInvalid = "Invalid Password / Confirm Password"
-        case passwordConfirmPasswordDontMatch = "Password & Confirm Password don't match"
     }
     
     var body: some View {
@@ -51,6 +41,8 @@ struct UpdatePasswordView_Previews: PreviewProvider {
 
 
 
+// MARK: - View Components
+
 extension UpdatePasswordView {
     
     /// New Password Title
@@ -64,7 +56,7 @@ extension UpdatePasswordView {
     private var passwordConfirmPasswordFields: some View {
         VStack(spacing: 3) {
             VStack(spacing: 0) {
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $updatePasswordViewModel.password)
                     .textContentType(.newPassword)
                     .textInputAutocapitalization(.never)
                     .privacySensitive()
@@ -81,7 +73,7 @@ extension UpdatePasswordView {
                         focusField = .confirmPassword
                     }
                 
-                SecureField("Confirm Password", text: $confirmPassword)
+                SecureField("Confirm Password", text: $updatePasswordViewModel.confirmPassword)
                     .textContentType(.newPassword)
                     .textInputAutocapitalization(.never)
                     .privacySensitive()
@@ -90,7 +82,7 @@ extension UpdatePasswordView {
                     .focused($focusField, equals: .confirmPassword)
                     .submitLabel(.done)
                     .onSubmit {
-                        verifyData()
+                        updatePasswordViewModel.verifyPasswords()
                         focusField = nil
                     }
             }
@@ -99,19 +91,13 @@ extension UpdatePasswordView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(isPasswordConfirmPasswordValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(updatePasswordViewModel.isPasswordConfirmPasswordValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
-            if !isPasswordConfirmPasswordValid {
-                if passwordConfirmPasswordMatch {
-                    Text(ErrorMessage.passwordConfirmPasswordInvalid.rawValue)
-                        .font(.system(size: 12, weight: .medium, design: .monospaced))
-                        .foregroundColor(Color(uiColor: .systemRed))
-                } else {
-                    Text(ErrorMessage.passwordConfirmPasswordDontMatch.rawValue)
-                        .font(.system(size: 12, weight: .medium, design: .monospaced))
-                        .foregroundColor(Color(uiColor: .systemRed))
-                }
+            if !updatePasswordViewModel.isPasswordConfirmPasswordValid {
+                Text(updatePasswordViewModel.passwordErrorMessage.rawValue)
+                    .font(.system(size: 12, weight: .medium, design: .monospaced))
+                    .foregroundColor(Color(uiColor: .systemRed))
             }
         }
     }
@@ -131,35 +117,6 @@ extension UpdatePasswordView {
             }
         }
         .buttonStyle(.borderedProminent)
-        .disabled(isUpdateButtonDisabled())
-    }
-}
-
-
-
-extension UpdatePasswordView {
-    
-    /// Verifies the given password and confirm password.
-    private func verifyData() {
-        if password.isEmpty || confirmPassword.isEmpty {
-            isPasswordConfirmPasswordValid = false
-        } else if password != confirmPassword {
-            passwordConfirmPasswordMatch = false
-            isPasswordConfirmPasswordValid = false
-        } else {
-            passwordConfirmPasswordMatch = true
-            isPasswordConfirmPasswordValid = true
-        }
-    }
-    
-    /// Let's us know if the Update Button is disabled or not.
-    /// Returns true if the update button is disabled.
-    private func isUpdateButtonDisabled() -> Bool {
-        if password.isEmpty ||
-           confirmPassword.isEmpty ||
-           password != confirmPassword {
-            return true
-        }
-        return false
+        .disabled(updatePasswordViewModel.isUpdateButtonDisabled())
     }
 }

@@ -10,8 +10,7 @@ import SwiftUI
 struct EmailAddressView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    
-    @State private var email: String = ""
+    @ObservedObject var emailAddressViewModel = ViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
@@ -41,6 +40,8 @@ struct EmailAddressView_Previews: PreviewProvider {
 
 
 
+// MARK: - View Components
+
 extension EmailAddressView {
     
     /// Email Address Title
@@ -53,7 +54,7 @@ extension EmailAddressView {
     /// Email field with footer
     private var emailFieldWithFooter: some View {
         VStack(alignment: .leading, spacing: 3) {
-            TextField("Vit Email Address", text: $email)
+            TextField("Vit Email Address", text: $emailAddressViewModel.email)
                 .textContentType(.emailAddress)
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
@@ -90,7 +91,7 @@ extension EmailAddressView {
                     .font(.system(size: 36))
                     .foregroundColor(.accentColor)
             }
-            .disabled(isVerifyButtonDisabled())
+            .disabled(emailAddressViewModel.isVerifyButtonDisabled)
         }
     }
     
@@ -117,13 +118,5 @@ extension EmailAddressView {
                 .font(.system(size: 14))
             }
         }
-    }
-}
-
-
-
-extension EmailAddressView {
-    private func isVerifyButtonDisabled() -> Bool {
-        return email.isEmpty
     }
 }
