@@ -9,8 +9,9 @@ import SwiftUI
 
 struct OnboardingView: View {
     
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
     @State var currentStep = OnboardingStep.one
-    @Binding var isPresenting: Bool
     
     var body: some View {
         VStack {
@@ -18,7 +19,7 @@ struct OnboardingView: View {
             HStack {
                 Spacer()
                 Button {
-                    isPresenting.toggle()
+                    authenticationViewModel.showOnboardingView.toggle()
                 } label: {
                     Text("Skip")
                         .font(.system(size: 17, weight: .medium))
@@ -39,7 +40,7 @@ struct OnboardingView: View {
             // Progress View or the button.
             if currentStep == .four {
                 Button {
-                    isPresenting.toggle()
+                    authenticationViewModel.showOnboardingView.toggle()
                 } label: {
                     Text("Find me a cycle")
                         .font(.system(size: 22, weight: .medium))
@@ -57,6 +58,6 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(isPresenting: .constant(true))
+        OnboardingView()
     }
 }

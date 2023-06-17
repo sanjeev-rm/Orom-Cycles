@@ -9,12 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    /// Variable responsible for showing the Onboarding Screen.
-    @State var showOnboardingView: Bool = true
-    /// Variable responsible for showing Sign Up page.
-    @State var showSignupView: Bool = false
-    /// Variable rerponsible for showing Forgot Password Screen.
-    @State var showForgotPasswordView: Bool = false
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
     @State private var email: String = ""
     @State private var password: String = ""
@@ -22,9 +17,6 @@ struct LoginView: View {
     /// Variable that sets which field is in focus.
     /// Helps with functionalities of the keyboard.
     @FocusState private var focusField: FocusField?
-    
-    /// Variable once true takes the user to the dashboard.
-    @Binding var isLoggedIn: Bool
     
     /// Variable that shows whether the given data is valid or not.
     @State var isDataValid: Bool = true
@@ -55,27 +47,27 @@ struct LoginView: View {
             Spacer()
         }
         .padding(32)
-        .fullScreenCover(isPresented: $showOnboardingView, onDismiss: {
+        .fullScreenCover(isPresented: $authenticationViewModel.showOnboardingView, onDismiss: {
             onDismissFullScreenCover()
         }, content: {
-            OnboardingView(isPresenting: $showOnboardingView)
+            OnboardingView()
         })
-        .fullScreenCover(isPresented: $showForgotPasswordView, onDismiss: {
+        .fullScreenCover(isPresented: $authenticationViewModel.showForgotPasswordView, onDismiss: {
             onDismissFullScreenCover()
         }, content: {
-            ForgotPasswordView(isPresenting: $showForgotPasswordView)
+            ForgotPasswordView()
         })
-        .fullScreenCover(isPresented: $showSignupView, onDismiss: {
+        .fullScreenCover(isPresented: $authenticationViewModel.showSignupView, onDismiss: {
             onDismissFullScreenCover()
         }, content: {
-            SignUpView(isPresenting: $showSignupView)
+            SignUpView()
         })
     }
 }
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(isLoggedIn: .constant(false))
+        LoginView()
     }
 }
 
@@ -157,7 +149,7 @@ extension LoginView {
             Button {
                 verifyData()
                 if isDataValid {
-                    isLoggedIn.toggle()
+                    authenticationViewModel.isLoggedIn.toggle()
                 }
             } label: {
                 Image(systemName: "arrow.forward.circle")
@@ -181,7 +173,7 @@ extension LoginView {
             Spacer()
             VStack(spacing: 16) {
                 Button {
-                    showForgotPasswordView.toggle()
+                    authenticationViewModel.showForgotPasswordView.toggle()
                 } label: {
                     Text("Forgot Password ?")
                         .foregroundColor(.accentColor)
@@ -189,7 +181,7 @@ extension LoginView {
                 }
                 
                 Button {
-                    showSignupView.toggle()
+                    authenticationViewModel.showSignupView.toggle()
                 } label: {
                     HStack {
                         Text("First time? ")

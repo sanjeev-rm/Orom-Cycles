@@ -10,15 +10,16 @@ import SwiftUI
 @main
 struct Orom_CyclesApp: App {
     
-    @State var isLoggedIn: Bool = false
+    @ObservedObject var authenticationViewModel = AuthenticationViewModel()
     
     var body: some Scene {
         WindowGroup {
-            if isLoggedIn {
+            if authenticationViewModel.isLoggedIn {
                 DashboardView()
             }
             else {
-                LoginView(isLoggedIn: $isLoggedIn)
+                AuthenticationView()
+                    .environmentObject(authenticationViewModel)
             }
         }
     }

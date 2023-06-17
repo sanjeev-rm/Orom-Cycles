@@ -5,6 +5,8 @@
 //  Created by Sanjeev RM on 12/06/23.
 //
 
+// MARK: KEEPING FOR TESTING NOT INCLUDED IN APP
+
 import SwiftUI
 
 struct ContentView: View {
@@ -15,7 +17,7 @@ struct ContentView: View {
             DashboardView()
         }
         else {
-            LoginView(isLoggedIn: $isLoggedIn)
+            LoginView()
         }
     }
 }

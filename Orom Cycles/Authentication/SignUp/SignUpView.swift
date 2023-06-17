@@ -5,17 +5,16 @@
 //  Created by Sanjeev RM on 13/06/23.
 //
 
-// MARK: - PROBLEM --> Verification of data before going to Verify OTP page.
-
 import SwiftUI
 
 struct SignUpView: View {
+    
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
     @State var name: String = ""
     @State var email: String = ""
     @State var password: String = ""
     @State var confirmPassword: String = ""
-    
-    @Binding var isPresenting: Bool
     
     /// Variable that sets which field is in focus
     /// Helps with functionalities of the keyboard
@@ -101,7 +100,7 @@ struct SignUpView: View {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(isPresenting: .constant(true))
+        SignUpView()
     }
 }
 
@@ -236,7 +235,7 @@ extension SignUpView {
             Spacer()
             
             NavigationLink {
-                VerifyOTPView()
+                SignupVerifyOTPView()
             } label: {
                 Image(systemName: "arrow.forward.circle")
                     .font(.system(size: 36))
@@ -258,7 +257,7 @@ extension SignUpView {
         HStack {
             Spacer()
             Button {
-                isPresenting.toggle()
+                authenticationViewModel.showSignupView.toggle()
             } label: {
                 HStack {
                     Text("First time?")
