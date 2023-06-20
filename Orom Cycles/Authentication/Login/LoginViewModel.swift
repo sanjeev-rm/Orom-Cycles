@@ -25,6 +25,8 @@ extension LoginView {
         }
         @Published var errorMessage: ErrorMessage = .invalidEmailPassword
         
+        @Published var isLoggingIn: Bool = false
+        
         /// Function verifies the email and password entered by the user.
         func verifyUser() {
             // Check if the email or password is empty

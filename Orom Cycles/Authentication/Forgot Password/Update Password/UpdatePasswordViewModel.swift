@@ -14,6 +14,8 @@ extension UpdatePasswordView {
         
         @Published var isPasswordConfirmPasswordValid: Bool = true
         
+        @Published var isPasswordUpdating: Bool = false
+        
         enum ErrorMessage: String {
             case passwordConfirmPasswordEmpty = "Password & Confirm Password can't be empty"
             case passwordConfirmPasswordInvalid = "Invalid Password / Confirm Password"
@@ -43,6 +45,9 @@ extension UpdatePasswordView {
                 return true
             }
             return false
+        }
+        
+        func updatePassword() {
         }
     }
 }

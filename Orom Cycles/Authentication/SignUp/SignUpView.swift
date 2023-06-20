@@ -211,7 +211,7 @@ extension SignUpView {
             Spacer()
             
             NavigationLink {
-                SignupVerifyOTPView()
+                SignUpVerifyOTPView()
             } label: {
                 Image(systemName: "arrow.forward.circle")
                     .font(.system(size: 36))
@@ -233,7 +233,7 @@ extension SignUpView {
         HStack {
             Spacer()
             Button {
-                authenticationViewModel.showSignupView.toggle()
+                authenticationViewModel.setShowSignUpView(to: false)
             } label: {
                 HStack {
                     Text("First time?")

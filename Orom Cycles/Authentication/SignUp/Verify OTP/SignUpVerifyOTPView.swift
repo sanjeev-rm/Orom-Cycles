@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct SignupVerifyOTPView: View {
+struct SignUpVerifyOTPView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
-    @State var otp: String = ""
+    @ObservedObject var signUpVerifyOtpViewModel = ViewModel()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
@@ -32,7 +32,7 @@ struct SignupVerifyOTPView: View {
 
 struct VerifyOTPView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupVerifyOTPView()
+        SignUpVerifyOTPView()
     }
 }
 
@@ -40,7 +40,7 @@ struct VerifyOTPView_Previews: PreviewProvider {
 
 // MARK: - View Components
 
-extension SignupVerifyOTPView {
+extension SignUpVerifyOTPView {
     
     /// Verify Title
     private var title: some View {
@@ -52,7 +52,7 @@ extension SignupVerifyOTPView {
     /// OTP field with footer
     private var otpFieldWithFooter: some View {
         VStack(alignment: .leading) {
-            TextField("Enter OTP", text: $otp)
+            TextField("Enter OTP", text: $signUpVerifyOtpViewModel.otp)
                 .textContentType(.oneTimeCode)
                 .keyboardType(.numberPad)
                 .padding(16)
@@ -62,8 +62,21 @@ extension SignupVerifyOTPView {
                 .background(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke()
-                        .foregroundColor(.secondary.opacity(0.3))
+                        .foregroundColor(signUpVerifyOtpViewModel.isOtpValid ? .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
                 )
+                .onSubmit {
+                    signUpVerifyOtpViewModel.verifyOtp()
+                }
+            
+            if !signUpVerifyOtpViewModel.isOtpValid {
+                HStack(alignment: .center) {
+                    Spacer()
+                    Text(signUpVerifyOtpViewModel.otpErrorMessage.rawValue)
+                        .font(.system(size: 12, weight: .medium, design: .monospaced))
+                    .foregroundColor(Color(UIColor.systemRed))
+                    Spacer()
+                }
+            }
             
             VStack(alignment: .leading, spacing: 3) {
                 Text("Enter the OTP sent to your email")
@@ -77,22 +90,30 @@ extension SignupVerifyOTPView {
     
     /// Signup button
     private var signupButton: some View {
+        
         Button {
             // Verify OTP
             // Let user know OTP is valid or not.
             // Then if valid signup the user to backend.
             // Then take to dashboard.
-            authenticationViewModel.isLoggedIn.toggle()
+            signUpVerifyOtpViewModel.verifyOtp()
+            if signUpVerifyOtpViewModel.isOtpValid {
+                signUpVerifyOtpViewModel.isSigningUp.toggle()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    authenticationViewModel.setIsLoggedIn(to: true)
+                }
+            }
         } label: {
             HStack {
                 Spacer()
-                Text("Sign Up")
+                Text(signUpVerifyOtpViewModel.isSigningUp ? "Signing up ..." : "Sign Up")
                     .font(.system(size: 24, weight: .medium))
                     .frame(height: 44)
                 Spacer()
             }
         }
         .buttonStyle(.borderedProminent)
+        .disabled(signUpVerifyOtpViewModel.isSignUpButtonDisabled || signUpVerifyOtpViewModel.isSigningUp)
     }
     
     /// Resend OTP button

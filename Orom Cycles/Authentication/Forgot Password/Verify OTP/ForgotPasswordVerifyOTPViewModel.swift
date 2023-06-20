@@ -11,7 +11,7 @@ extension ForgotPasswordVerifyOTPView {
     @MainActor class ViewModel: ObservableObject {
         @Published var otp: String = "" {
             didSet {
-                isNewPasswordButtonDisabled = otp.isEmpty
+                isNewPasswordButtonDisabled = otp.isEmpty || (otp.count != 6)
             }
         }
         @Published var isNewPasswordButtonDisabled: Bool = true

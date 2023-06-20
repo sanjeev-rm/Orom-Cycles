@@ -106,17 +106,21 @@ extension UpdatePasswordView {
     private var updatePasswordButton: some View {
         Button {
             // VerifyData()
-            authenticationViewModel.showForgotPasswordView.toggle()
+            updatePasswordViewModel.isPasswordUpdating = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                authenticationViewModel.setShowForgotPasswordView(to: false)
+                authenticationViewModel.presentUpdatedPasswordAlert()
+            }
         } label: {
             HStack {
                 Spacer()
-                Text("Update Password")
+                Text(updatePasswordViewModel.isPasswordUpdating ? "Updating Password ..." : "Update Password")
                     .font(.system(size: 24, weight: .medium))
                     .frame(height: 44)
                 Spacer()
             }
         }
         .buttonStyle(.borderedProminent)
-        .disabled(updatePasswordViewModel.isUpdateButtonDisabled())
+        .disabled(updatePasswordViewModel.isUpdateButtonDisabled() || updatePasswordViewModel.isPasswordUpdating)
     }
 }

@@ -144,17 +144,26 @@ extension LoginView {
                 .font(.system(size: 24, weight: .semibold))
             Spacer()
             
-            Button {
-                loginViewModel.verifyUser()
-                if loginViewModel.isUserValid {
-                    authenticationViewModel.isLoggedIn.toggle()
+            if loginViewModel.isLoggingIn {
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(.accentColor)
+            } else {
+                Button {
+                    loginViewModel.verifyUser()
+                    if loginViewModel.isUserValid {
+                        loginViewModel.isLoggingIn.toggle()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                            authenticationViewModel.setIsLoggedIn(to: true)
+                        }
+                    }
+                } label: {
+                    Image(systemName: "arrow.forward.circle")
+                        .font(.system(size: 36))
+                        .foregroundColor(.accentColor)
                 }
-            } label: {
-                Image(systemName: "arrow.forward.circle")
-                    .font(.system(size: 36))
-                    .foregroundColor(.accentColor)
+                .disabled(loginViewModel.isLoginButtonDisabled())
             }
-            .disabled(loginViewModel.isLoginButtonDisabled())
         }
     }
     
@@ -171,7 +180,7 @@ extension LoginView {
             Spacer()
             VStack(spacing: 16) {
                 Button {
-                    authenticationViewModel.showForgotPasswordView.toggle()
+                    authenticationViewModel.setShowForgotPasswordView(to: true)
                 } label: {
                     Text("Forgot Password ?")
                         .foregroundColor(.accentColor)
@@ -179,7 +188,7 @@ extension LoginView {
                 }
                 
                 Button {
-                    authenticationViewModel.showSignupView.toggle()
+                    authenticationViewModel.setShowSignUpView(to: true)
                 } label: {
                     HStack {
                         Text("First time? ")

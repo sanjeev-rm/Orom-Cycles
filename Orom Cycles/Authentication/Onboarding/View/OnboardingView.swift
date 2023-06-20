@@ -15,17 +15,8 @@ struct OnboardingView: View {
     
     var body: some View {
         VStack {
-            // Skip button.
-            HStack {
-                Spacer()
-                Button {
-                    authenticationViewModel.showOnboardingView.toggle()
-                } label: {
-                    Text("Skip")
-                        .font(.system(size: 17, weight: .medium))
-                }
-            }
-            .padding([.top, .trailing], 24)
+            
+            skipButton
             
             Spacer()
             
@@ -39,14 +30,7 @@ struct OnboardingView: View {
             
             // Progress View or the button.
             if currentStep == .four {
-                Button {
-                    authenticationViewModel.showOnboardingView.toggle()
-                } label: {
-                    Text("Find me a cycle")
-                        .font(.system(size: 22, weight: .medium))
-                        .frame(width: UIScreen.main.bounds.width - 100, height: 40)
-                }
-                .buttonStyle(.borderedProminent)
+                findMeACycleButton
             } else {
                 OnboardingProgressView(currentOnboardingStep: currentStep)
                     .frame(width: UIScreen.main.bounds.width - 100, height: 40)
@@ -59,5 +43,36 @@ struct OnboardingView: View {
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         OnboardingView()
+    }
+}
+
+
+
+extension OnboardingView {
+    
+    /// The skip button
+    private var skipButton: some View {
+        HStack {
+            Spacer()
+            Button {
+                authenticationViewModel.setShowOnboardingView(to: false)
+            } label: {
+                Text("Skip")
+                    .font(.system(size: 17, weight: .medium))
+            }
+        }
+        .padding([.top, .trailing], 24)
+    }
+    
+    /// The find me a cycle button
+    private var findMeACycleButton: some View {
+        Button {
+            authenticationViewModel.setShowOnboardingView(to: false)
+        } label: {
+            Text("Find me a cycle")
+                .font(.system(size: 22, weight: .medium))
+                .frame(width: UIScreen.main.bounds.width - 100, height: 40)
+        }
+        .buttonStyle(.borderedProminent)
     }
 }

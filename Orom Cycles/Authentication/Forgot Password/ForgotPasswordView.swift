@@ -12,6 +12,7 @@ struct ForgotPasswordView: View {
     var body: some View {
         NavigationView {
             EmailAddressView()
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

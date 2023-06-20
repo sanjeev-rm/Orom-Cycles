@@ -106,7 +106,7 @@ extension EmailAddressView {
     private var loginButton: some View {
         HStack {
             Button {
-                authenticationViewModel.showForgotPasswordView.toggle()
+                authenticationViewModel.setShowForgotPasswordView(to: false)
             } label: {
                 HStack {
                     Text("Never mind")
