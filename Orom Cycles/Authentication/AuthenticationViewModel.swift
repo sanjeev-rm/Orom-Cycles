@@ -33,4 +33,12 @@ class AuthenticationViewModel: ObservableObject {
     func presentUpdatedPasswordAlert() {
         showUpdatedPasswordAlert = true
     }
+    
+    func updateLoggedInStatus(_ status: Bool) {
+        withAnimation {
+            DispatchQueue.main.async {
+                self.isLoggedIn = status
+            }
+        }
+    }
 }

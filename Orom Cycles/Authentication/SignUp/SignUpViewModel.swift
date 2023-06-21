@@ -14,64 +14,76 @@ extension SignUpView {
         @Published var password: String = ""
         @Published var confirmPassword: String = ""
         
-        /// Variable that shows whether the Name & Email is valid or not
-        @Published var isNameEmailValid: Bool = true
+        @Published var showProgressView: Bool = false
         
-        /// Variable that shows whether the Password & Confirm Password is valid or not
+        @Published var showAlert: Bool = false
+        @Published var alertMessage: String = ""
+        @Published var alertType: AlertType = .basic
+        
+        @Published var isNameEmailValid: Bool = true
         @Published var isPasswordConfirmPasswordValid: Bool = true
         
-        /// Conatins the error message for the name & email fields
-        @Published var nameEmailErrorMessage: ErrorMessage = .nameEmailInvalid
-        /// Contains the error message for the password & confirm password fields
-        @Published var passwordErrorMessage: ErrorMessage = .passwordConfirmPasswordInvalid
+        @Published var nameEmailError: SignUpError = .nameEmailInvalid
+        @Published var passwordConfirmPasswordError: SignUpError = .passwordConfirmPasswordInvalid
         
-        /// Error Messages
-        enum ErrorMessage: String {
-            case nameEmailEmpty = "Name & Email can't be empty"
-            case nameEmailInvalid = "Invalid Name / Email"
-            case passwordConfirmPasswordInvalid = "Invalid Password / Confirm Password"
-            case passwordConfirmPasswordEmpty = "Password & Confirm Password can't be empty"
-            case passwordConfirmPasswordDontMatch = "Password & Confirm Password don't match"
-            case custom
+        enum SignUpError: Error {
+            case nameEmailEmpty
+            case nameEmailInvalid
+            case passwordConfirmPasswordInvalid
+            case passwordConfirmPasswordEmpty
+            case passwordConfirmPasswordDontMatch
+            case userAlreadyExists
+            case emailOrServer
+            case unknown
+            
+            var message: String {
+                switch self {
+                case .nameEmailEmpty: return "Name & Email can't be empty"
+                case .nameEmailInvalid: return "Invalid Name / Email"
+                case .passwordConfirmPasswordEmpty: return "Password & Confirm Password can't be empty"
+                case .passwordConfirmPasswordInvalid: return "Invalid Password / Confirm Password"
+                case .passwordConfirmPasswordDontMatch: return "Password & Confirm Password don't match"
+                case .userAlreadyExists: return "User already exists, please Login"
+                case .emailOrServer: return "Make sure the email is an vit email ID.\nIf error persists, try again later."
+                case .unknown: return "Unknown Error"
+                }
+            }
         }
         
-        @Published var isSigningUp: Bool = false
-        @Published var showSignUpAlert: Bool = false
-        @Published var signUpErrorMessage: String = ""
+        enum AlertType {
+            case basic
+            case success
+            case failure
+        }
         
         
         
         // MARK: - UI Functions
         
         /// Function verifies data entered by the user
-        func verifyUserData() {
-            verifyNameAndEmail()
-            verifyPasswordAndConfirmPassword()
+        func checkUserData() {
+            checkNameEmail()
+            checkPasswordConfirmPassword()
         }
         
         /// Function verifies Name & Email
-        func verifyNameAndEmail() {
-            // Check if the name and email are empty
-            // Check for the name and email constraints
+        func checkNameEmail() {
             if name.isEmpty || email.isEmpty {
                 isNameEmailValid = false
-                nameEmailErrorMessage = .nameEmailEmpty
+                nameEmailError = .nameEmailEmpty
             } else {
                 isNameEmailValid = true
             }
         }
         
         /// Function verifies Password & Confirm Password
-        func verifyPasswordAndConfirmPassword() {
-            // Check if any is empty
-            // Check if they validate the constraints
-            // Check if they match
+        func checkPasswordConfirmPassword() {
             if password.isEmpty || confirmPassword.isEmpty {
                 isPasswordConfirmPasswordValid = false
-                passwordErrorMessage = .passwordConfirmPasswordEmpty
+                passwordConfirmPasswordError = .passwordConfirmPasswordEmpty
             } else if password != confirmPassword {
                 isPasswordConfirmPasswordValid = false
-                passwordErrorMessage = .passwordConfirmPasswordDontMatch
+                passwordConfirmPasswordError = .passwordConfirmPasswordDontMatch
             } else {
                 isPasswordConfirmPasswordValid = true
             }
@@ -92,35 +104,35 @@ extension SignUpView {
         // MARK: - API functions
         
         func signUp() {
-            WebService().signUp(name: name, email: email, password: password, passwordConfirm: confirmPassword) { result in
+            checkUserData()
+            guard isNameEmailValid && isPasswordConfirmPasswordValid else { return }
+            
+            showProgressView = true
+            APIService().signUp(name: name, email: email, password: password, passwordConfirm: confirmPassword) { [unowned self] result in
+                DispatchQueue.main.async {
+                    self.showProgressView = false
+                }
                 switch result {
                 case .success(let message):
-                    self.showSignUpErrorAlert(errorMessage: message)
+                    self.showSignUpAlert(message: message, alertType: .success)
                 case .failure(let error):
                     switch error {
                     case .userAlreadyExists:
-                        self.showSignUpErrorAlert(errorMessage: "User already exists, please Login")
+                        self.showSignUpAlert(message: SignUpError.userAlreadyExists.message, alertType: .failure)
                     case .emailOrServerError:
-                        self.showSignUpErrorAlert(errorMessage: "Make sure the email is an vit email ID.\nIf error persists, try again later.")
+                        self.showSignUpAlert(message: SignUpError.emailOrServer.message, alertType: .failure)
                     default:
-                        self.showSignUpErrorAlert(errorMessage: "Unknown Error")
+                        self.showSignUpAlert(message: SignUpError.unknown.message, alertType: .failure)
                     }
                 }
             }
         }
         
-        func startSigningUp() {
-            isSigningUp = true
-        }
-        
-        func stopSigningUp() {
-            isSigningUp = false
-        }
-        
-        func showSignUpErrorAlert(errorMessage: String) {
+        func showSignUpAlert(message: String, alertType: AlertType) {
             DispatchQueue.main.async {
-                self.signUpErrorMessage = errorMessage
-                self.showSignUpAlert = true
+                self.alertMessage = message
+                self.alertType = alertType
+                self.showAlert = true
             }
         }
     }

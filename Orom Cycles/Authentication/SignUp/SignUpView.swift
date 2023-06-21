@@ -77,10 +77,17 @@ struct SignUpView: View {
                 .navigationBarHidden(true)
             }
         }
-        .toast(isPresenting: $signupViewModel.showSignUpAlert, duration: 10.0, tapToDismiss: true) {
-            AlertToast(displayMode: .hud, type: .error(Color(uiColor: .systemRed)), subTitle: signupViewModel.signUpErrorMessage)
+        .toast(isPresenting: $signupViewModel.showAlert, duration: 10.0, tapToDismiss: true) {
+            let alertType: AlertToast.AlertType
+            switch signupViewModel.alertType {
+            case .basic: alertType = .regular
+            case .success: alertType = .complete(Color(uiColor: .systemGreen))
+            case .failure: alertType = .error(Color(uiColor: .systemRed))
+            }
+            return AlertToast(displayMode: .hud,
+                              type: alertType,
+                              subTitle: signupViewModel.alertMessage)
         }
-
     }
 }
     
@@ -140,7 +147,7 @@ extension SignUpView {
                     .focused($focusField, equals: .email)
                     .submitLabel(.next)
                     .onSubmit {
-                        signupViewModel.verifyNameAndEmail()
+                        signupViewModel.checkNameEmail()
                         focusField = .password
                     }
             }
@@ -153,7 +160,7 @@ extension SignUpView {
             )
             
             if !signupViewModel.isNameEmailValid {
-                Text(signupViewModel.nameEmailErrorMessage.rawValue)
+                Text(signupViewModel.nameEmailError.message)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(uiColor: .systemRed))
             }
@@ -188,7 +195,7 @@ extension SignUpView {
                     .focused($focusField, equals: .confirmPassword)
                     .submitLabel(.done)
                     .onSubmit {
-                        signupViewModel.verifyUserData()
+                        signupViewModel.checkUserData()
                         focusField = nil
                     }
             }
@@ -201,7 +208,7 @@ extension SignUpView {
             )
             
             if !signupViewModel.isPasswordConfirmPasswordValid {
-                Text(signupViewModel.passwordErrorMessage.rawValue)
+                Text(signupViewModel.passwordConfirmPasswordError.message)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(uiColor: .systemRed))
             }
@@ -241,7 +248,7 @@ extension SignUpView {
                 .font(.system(size: 24, weight: .semibold))
             Spacer()
             
-            if signupViewModel.isSigningUp {
+            if signupViewModel.showProgressView {
                 ProgressView()
                     .controlSize(.large)
                     .tint(.accentColor)

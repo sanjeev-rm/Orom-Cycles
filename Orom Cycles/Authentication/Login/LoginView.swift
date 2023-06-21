@@ -120,7 +120,7 @@ extension LoginView {
                     .submitLabel(.done)
                     .onSubmit {
                         focusField = nil
-                        loginViewModel.verifyUser()
+                        loginViewModel.checkEmailPassword()
                     }
             }
             .background(.secondary.opacity(0.1))
@@ -133,7 +133,7 @@ extension LoginView {
             
             // If the user is invalid then invalid message is shown.
             if !loginViewModel.isEmailPasswordValid {
-                Text(loginViewModel.errorMessage.rawValue)
+                Text(loginViewModel.error.message)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(UIColor.systemRed))
             }
@@ -147,25 +147,21 @@ extension LoginView {
                 .font(.system(size: 24, weight: .semibold))
             Spacer()
             
-            if loginViewModel.isLoggingIn {
+            if loginViewModel.showProgressView {
                 ProgressView()
                     .controlSize(.large)
                     .tint(.accentColor)
             } else {
                 Button {
-                    loginViewModel.verifyUser()
-                    if loginViewModel.isEmailPasswordValid {
-                        loginViewModel.isLoggingIn.toggle()
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                            authenticationViewModel.isLoggedIn = true
-                        }
+                    loginViewModel.login { isLoggedIn in
+                        authenticationViewModel.updateLoggedInStatus(isLoggedIn)
                     }
                 } label: {
                     Image(systemName: "arrow.forward.circle")
                         .font(.system(size: 36))
                         .foregroundColor(.accentColor)
                 }
-                .disabled(loginViewModel.isLoginButtonDisabled())
+                .disabled(loginViewModel.isLoginButtonDisabled)
             }
         }
     }
