@@ -55,7 +55,7 @@ extension OnboardingView {
         HStack {
             Spacer()
             Button {
-                authenticationViewModel.setShowOnboardingView(to: false)
+                authenticationViewModel.showOnboardingView = false
             } label: {
                 Text("Skip")
                     .font(.system(size: 17, weight: .medium))
@@ -67,7 +67,7 @@ extension OnboardingView {
     /// The find me a cycle button
     private var findMeACycleButton: some View {
         Button {
-            authenticationViewModel.setShowOnboardingView(to: false)
+            authenticationViewModel.showOnboardingView = false
         } label: {
             Text("Find me a cycle")
                 .font(.system(size: 22, weight: .medium))

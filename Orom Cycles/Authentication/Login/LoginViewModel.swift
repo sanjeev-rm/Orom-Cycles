@@ -14,8 +14,8 @@ extension LoginView {
         @Published var email: String = ""
         @Published var password: String = ""
         
-        /// Variable that shows whether the user is valid or not.
-        @Published var isUserValid: Bool = true
+        /// Variable that shows whether the email & password is valid or not.
+        @Published var isEmailPasswordValid: Bool = true
         
         /// Error message to show below the fields.
         enum ErrorMessage: String {
@@ -33,21 +33,22 @@ extension LoginView {
             // Check if the entered email and passwrd is in the format of an email and password.
             // Send to backend and check if the user is valid.
             if email.isEmpty || password.isEmpty {
-                isUserValid = false
+                isEmailPasswordValid = false
                 errorMessage = .emptyEmailPassword
             } else {
                 // Send to API and verify user.
-                isUserValid = true
+                isEmailPasswordValid = true
             }
         }
         
         /// Function that does everything that needs to be done when the fullScreen cover dismisses.
         func onDismissFullScreenCover() {
-            isUserValid = true
+            isEmailPasswordValid = true
             email = ""
             password = ""
         }
         
+        /// Function returns if the login button is disabled or not.
         func isLoginButtonDisabled() -> Bool {
             return email.isEmpty || password.isEmpty
         }

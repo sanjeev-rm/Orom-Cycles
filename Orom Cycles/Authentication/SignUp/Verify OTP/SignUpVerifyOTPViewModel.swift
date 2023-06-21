@@ -27,7 +27,7 @@ extension SignUpVerifyOTPView {
         }
         @Published var otpErrorMessage: ErrorMessage = .wrongOtp
         
-        @Published var isSigningUp: Bool = false
+        @Published var isVerifying: Bool = false
         
         func verifyOtp() {
             if otp.isEmpty {

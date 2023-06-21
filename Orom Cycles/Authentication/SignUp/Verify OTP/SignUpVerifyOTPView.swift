@@ -19,7 +19,7 @@ struct SignUpVerifyOTPView: View {
             
             otpFieldWithFooter
             
-            signupButton
+            verifyButton
             
             resendOtpButton
             
@@ -88,8 +88,8 @@ extension SignUpVerifyOTPView {
         }
     }
     
-    /// Signup button
-    private var signupButton: some View {
+    /// Verify button
+    private var verifyButton: some View {
         
         Button {
             // Verify OTP
@@ -98,22 +98,22 @@ extension SignUpVerifyOTPView {
             // Then take to dashboard.
             signUpVerifyOtpViewModel.verifyOtp()
             if signUpVerifyOtpViewModel.isOtpValid {
-                signUpVerifyOtpViewModel.isSigningUp.toggle()
+                signUpVerifyOtpViewModel.isVerifying.toggle()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    authenticationViewModel.setIsLoggedIn(to: true)
+                    authenticationViewModel.isLoggedIn = true
                 }
             }
         } label: {
             HStack {
                 Spacer()
-                Text(signUpVerifyOtpViewModel.isSigningUp ? "Signing up ..." : "Sign Up")
+                Text(signUpVerifyOtpViewModel.isVerifying ? "Verifying ..." : "Verify")
                     .font(.system(size: 24, weight: .medium))
                     .frame(height: 44)
                 Spacer()
             }
         }
         .buttonStyle(.borderedProminent)
-        .disabled(signUpVerifyOtpViewModel.isSignUpButtonDisabled || signUpVerifyOtpViewModel.isSigningUp)
+        .disabled(signUpVerifyOtpViewModel.isSignUpButtonDisabled || signUpVerifyOtpViewModel.isVerifying)
     }
     
     /// Resend OTP button

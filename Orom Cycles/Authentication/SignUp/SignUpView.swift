@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct SignUpView: View {
     
@@ -37,7 +38,7 @@ struct SignUpView: View {
                             
                             passwordAndConfirmPasswordFields
                             
-                            verifyButton
+                            signUpButton
                             
                             seperatorLine
                             
@@ -61,7 +62,7 @@ struct SignUpView: View {
                             
                             passwordAndConfirmPasswordFields
                             
-                            verifyButton
+                            signUpButton
                             
                             seperatorLine
                             
@@ -76,6 +77,10 @@ struct SignUpView: View {
                 .navigationBarHidden(true)
             }
         }
+        .toast(isPresenting: $signupViewModel.showSignUpAlert, duration: 10.0, tapToDismiss: true) {
+            AlertToast(displayMode: .hud, type: .error(Color(uiColor: .systemRed)), subTitle: signupViewModel.signUpErrorMessage)
+        }
+
     }
 }
     
@@ -203,21 +208,53 @@ extension SignUpView {
         }
     }
     
-    /// Verify Button
-    private var verifyButton: some View {
+//    /// SignUp Button
+//    private var signUpButton: some View {
+//        HStack {
+//            Text("Sign Up")
+//                .font(.system(size: 24, weight: .semibold))
+//            Spacer()
+//
+//            if signupViewModel.isSigningUp {
+//                ProgressView()
+//                    .controlSize(.large)
+//                    .tint(.accentColor)
+//            } else {
+//                NavigationLink {
+//                    if signupViewModel.signUp() {
+//                        SignUpVerifyOTPView()
+//                    }
+//                } label: {
+//                    Image(systemName: "arrow.forward.circle")
+//                        .font(.system(size: 36))
+//                        .foregroundColor(.accentColor)
+//                }
+//                .disabled(signupViewModel.isVerifyButtonDisabled())
+//            }
+//        }
+//    }
+    
+    /// SignUp Button
+    private var signUpButton: some View {
         HStack {
-            Text("Verify")
+            Text("Sign Up")
                 .font(.system(size: 24, weight: .semibold))
             Spacer()
             
-            NavigationLink {
-                SignUpVerifyOTPView()
-            } label: {
-                Image(systemName: "arrow.forward.circle")
-                    .font(.system(size: 36))
-                    .foregroundColor(.accentColor)
+            if signupViewModel.isSigningUp {
+                ProgressView()
+                    .controlSize(.large)
+                    .tint(.accentColor)
+            } else {
+                Button {
+                    signupViewModel.signUp()
+                } label: {
+                    Image(systemName: "arrow.forward.circle")
+                        .font(.system(size: 36))
+                        .foregroundColor(.accentColor)
+                }
+                .disabled(signupViewModel.isVerifyButtonDisabled())
             }
-            .disabled(signupViewModel.isVerifyButtonDisabled())
         }
     }
     
@@ -233,7 +270,7 @@ extension SignUpView {
         HStack {
             Spacer()
             Button {
-                authenticationViewModel.setShowSignUpView(to: false)
+                authenticationViewModel.showSignupView = false
             } label: {
                 HStack {
                     Text("First time?")

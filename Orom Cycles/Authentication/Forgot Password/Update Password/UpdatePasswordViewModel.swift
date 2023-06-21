@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension UpdatePasswordView {
     @MainActor class ViewModel: ObservableObject {
@@ -24,7 +25,7 @@ extension UpdatePasswordView {
         @Published var passwordErrorMessage: ErrorMessage = .passwordConfirmPasswordInvalid
         
         /// Verifies the given password and confirm password.
-        func verifyPasswords() {
+        func verifyPasswordConfirmPassword() {
             if password.isEmpty || confirmPassword.isEmpty {
                 isPasswordConfirmPasswordValid = false
                 passwordErrorMessage = .passwordConfirmPasswordEmpty
@@ -47,7 +48,18 @@ extension UpdatePasswordView {
             return false
         }
         
-        func updatePassword() {
+        // MARK: - Functions to alter boolean values.
+        
+        func setIsPasswordConfirmPasswordValid(to booleanValue: Bool) {
+            withAnimation {
+                isPasswordConfirmPasswordValid = booleanValue
+            }
+        }
+        
+        func setIsPasswordUpdating(to booleanValue: Bool) {
+            withAnimation {
+                isPasswordUpdating = booleanValue
+            }
         }
     }
 }

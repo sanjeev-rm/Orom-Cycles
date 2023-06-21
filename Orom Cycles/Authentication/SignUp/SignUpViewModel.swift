@@ -32,11 +32,16 @@ extension SignUpView {
             case passwordConfirmPasswordInvalid = "Invalid Password / Confirm Password"
             case passwordConfirmPasswordEmpty = "Password & Confirm Password can't be empty"
             case passwordConfirmPasswordDontMatch = "Password & Confirm Password don't match"
+            case custom
         }
         
+        @Published var isSigningUp: Bool = false
+        @Published var showSignUpAlert: Bool = false
+        @Published var signUpErrorMessage: String = ""
         
         
-        // MARK: - Functions
+        
+        // MARK: - UI Functions
         
         /// Function verifies data entered by the user
         func verifyUserData() {
@@ -76,12 +81,47 @@ extension SignUpView {
         func isVerifyButtonDisabled() -> Bool {
             if name.isEmpty ||
                email.isEmpty ||
-               password.isEmpty ||
-               confirmPassword.isEmpty ||
+               password.count < 8 ||
+               confirmPassword.count < 8 ||
                password != confirmPassword {
                 return true
             }
             return false
+        }
+        
+        // MARK: - API functions
+        
+        func signUp() {
+            WebService().signUp(name: name, email: email, password: password, passwordConfirm: confirmPassword) { result in
+                switch result {
+                case .success(let message):
+                    self.showSignUpErrorAlert(errorMessage: message)
+                case .failure(let error):
+                    switch error {
+                    case .userAlreadyExists:
+                        self.showSignUpErrorAlert(errorMessage: "User already exists, please Login")
+                    case .emailOrServerError:
+                        self.showSignUpErrorAlert(errorMessage: "Make sure the email is an vit email ID.\nIf error persists, try again later.")
+                    default:
+                        self.showSignUpErrorAlert(errorMessage: "Unknown Error")
+                    }
+                }
+            }
+        }
+        
+        func startSigningUp() {
+            isSigningUp = true
+        }
+        
+        func stopSigningUp() {
+            isSigningUp = false
+        }
+        
+        func showSignUpErrorAlert(errorMessage: String) {
+            DispatchQueue.main.async {
+                self.signUpErrorMessage = errorMessage
+                self.showSignUpAlert = true
+            }
         }
     }
 }

@@ -82,7 +82,7 @@ extension UpdatePasswordView {
                     .focused($focusField, equals: .confirmPassword)
                     .submitLabel(.done)
                     .onSubmit {
-                        updatePasswordViewModel.verifyPasswords()
+                        updatePasswordViewModel.verifyPasswordConfirmPassword()
                         focusField = nil
                     }
             }
@@ -108,7 +108,7 @@ extension UpdatePasswordView {
             // VerifyData()
             updatePasswordViewModel.isPasswordUpdating = true
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                authenticationViewModel.setShowForgotPasswordView(to: false)
+                authenticationViewModel.showForgotPasswordView = false
                 authenticationViewModel.presentUpdatedPasswordAlert()
             }
         } label: {

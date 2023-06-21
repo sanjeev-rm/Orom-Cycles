@@ -30,30 +30,6 @@ class AuthenticationViewModel: ObservableObject {
     
     // MARK: Functions
     
-    func setIsLoggedIn(to booleanValue: Bool) {
-        withAnimation {
-            isLoggedIn = booleanValue
-        }
-    }
-    
-    func setShowOnboardingView(to booleanValue: Bool) {
-        withAnimation {
-            showOnboardingView = booleanValue
-        }
-    }
-    
-    func setShowSignUpView(to booleanVlue: Bool) {
-        withAnimation {
-            showSignupView = booleanVlue
-        }
-    }
-    
-    func setShowForgotPasswordView(to booleanValue: Bool) {
-        withAnimation {
-            showForgotPasswordView = booleanValue
-        }
-    }
-    
     func presentUpdatedPasswordAlert() {
         showUpdatedPasswordAlert = true
     }

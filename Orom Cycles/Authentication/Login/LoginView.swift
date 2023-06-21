@@ -45,16 +45,19 @@ struct LoginView: View {
         .padding(32)
         .fullScreenCover(isPresented: $authenticationViewModel.showOnboardingView, onDismiss: {
             loginViewModel.onDismissFullScreenCover()
+            focusField = nil
         }, content: {
             OnboardingView()
         })
         .fullScreenCover(isPresented: $authenticationViewModel.showForgotPasswordView, onDismiss: {
             loginViewModel.onDismissFullScreenCover()
+            focusField = nil
         }, content: {
             ForgotPasswordView()
         })
         .fullScreenCover(isPresented: $authenticationViewModel.showSignupView, onDismiss: {
             loginViewModel.onDismissFullScreenCover()
+            focusField = nil
         }, content: {
             SignUpView()
         })
@@ -125,11 +128,11 @@ extension LoginView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(loginViewModel.isUserValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(loginViewModel.isEmailPasswordValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
             // If the user is invalid then invalid message is shown.
-            if !loginViewModel.isUserValid {
+            if !loginViewModel.isEmailPasswordValid {
                 Text(loginViewModel.errorMessage.rawValue)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(UIColor.systemRed))
@@ -151,10 +154,10 @@ extension LoginView {
             } else {
                 Button {
                     loginViewModel.verifyUser()
-                    if loginViewModel.isUserValid {
+                    if loginViewModel.isEmailPasswordValid {
                         loginViewModel.isLoggingIn.toggle()
                         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                            authenticationViewModel.setIsLoggedIn(to: true)
+                            authenticationViewModel.isLoggedIn = true
                         }
                     }
                 } label: {
@@ -180,7 +183,7 @@ extension LoginView {
             Spacer()
             VStack(spacing: 16) {
                 Button {
-                    authenticationViewModel.setShowForgotPasswordView(to: true)
+                    authenticationViewModel.showForgotPasswordView = true
                 } label: {
                     Text("Forgot Password ?")
                         .foregroundColor(.accentColor)
@@ -188,7 +191,7 @@ extension LoginView {
                 }
                 
                 Button {
-                    authenticationViewModel.setShowSignUpView(to: true)
+                    authenticationViewModel.showSignupView = true
                 } label: {
                     HStack {
                         Text("First time? ")
