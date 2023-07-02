@@ -54,6 +54,7 @@ extension SignUpView {
             case basic
             case success
             case failure
+            case warning
         }
         
         
@@ -118,7 +119,7 @@ extension SignUpView {
                 case .failure(let error):
                     switch error {
                     case .userAlreadyExists:
-                        self.showSignUpAlert(message: SignUpError.userAlreadyExists.message, alertType: .failure)
+                        self.showSignUpAlert(message: SignUpError.userAlreadyExists.message, alertType: .warning)
                     case .emailOrServerError:
                         self.showSignUpAlert(message: SignUpError.emailOrServer.message, alertType: .failure)
                     default:

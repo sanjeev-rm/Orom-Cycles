@@ -83,6 +83,7 @@ struct SignUpView: View {
             case .basic: alertType = .regular
             case .success: alertType = .complete(Color(uiColor: .systemGreen))
             case .failure: alertType = .error(Color(uiColor: .systemRed))
+            case .warning: alertType = .systemImage("exclamationmark.triangle.fill", Color(uiColor: .systemYellow))
             }
             return AlertToast(displayMode: .hud,
                               type: alertType,
@@ -240,6 +241,8 @@ extension SignUpView {
 //            }
 //        }
 //    }
+    
+    // MARK: USE isActive parameter of NavigationLink
     
     /// SignUp Button
     private var signUpButton: some View {
