@@ -283,7 +283,7 @@ extension SignUpView {
                 authenticationViewModel.showSignupView = false
             } label: {
                 HStack {
-                    Text("First time?")
+                    Text("Visiting Again?")
                         .foregroundColor(.primary)
                     Text("Login")
                         .foregroundColor(.accentColor)
