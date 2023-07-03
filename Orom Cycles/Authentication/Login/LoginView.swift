@@ -201,5 +201,6 @@ extension LoginView {
             .font(.system(size: 14))
             Spacer()
         }
+        .disabled(loginViewModel.showProgressView)
     }
 }

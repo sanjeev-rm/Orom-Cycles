@@ -129,8 +129,8 @@
 				C770D4462A38C842002406CB /* ForgotPasswordView.swift */,
 				C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */,
 				C79383C12A3E530700341CAB /* Email Address */,
-				C79383C22A3E53AE00341CAB /* Verify OTP */,
 				C79383C32A3E53C500341CAB /* Update Password */,
+				C79383C22A3E53AE00341CAB /* Verify OTP */,
 			);
 			path = "Forgot Password";
 			sourceTree = "<group>";

@@ -85,7 +85,7 @@ extension EmailAddressView {
             Spacer()
             
             NavigationLink {
-                ForgotPasswordVerifyOTPView()
+                UpdatePasswordView()
             } label: {
                 Image(systemName: "arrow.forward.circle")
                     .font(.system(size: 36))

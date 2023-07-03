@@ -15,15 +15,25 @@ struct UpdatePasswordView: View {
     @FocusState private var focusField: FocusField?
     
     private enum FocusField {
+        case otp
         case password
         case confirmPassword
     }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
-            title
             
-            passwordConfirmPasswordFields
+            VStack(alignment: .leading, spacing: 8) {
+                otpTitle
+                
+                otpField
+            }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                newPasswordTitle
+                
+                passwordConfirmPasswordFields
+            }
             
             updatePasswordButton
             
@@ -45,8 +55,50 @@ struct UpdatePasswordView_Previews: PreviewProvider {
 
 extension UpdatePasswordView {
     
+    /// Verify Title
+    private var otpTitle: some View {
+        VStack(alignment: .leading, spacing: 3) {
+            Text("Verify")
+                .font(.system(size: 24, weight: .bold, design: .default))
+                .foregroundColor(Color(.secondaryLabel))
+            
+            Text("Enter the OTP sent to your email, Valid for 5 mins")
+            .font(.system(size: 12, weight: .medium))
+            .foregroundColor(Color(.tertiaryLabel))
+        }
+    }
+    
+    /// OTP field
+    private var otpField: some View {
+        VStack(alignment: .leading) {
+            VStack(spacing: 3) {
+                TextField("Enter OTP", text: $updatePasswordViewModel.otp)
+                    .textContentType(.oneTimeCode)
+                    .keyboardType(.numberPad)
+                    .padding(16)
+                    .frame(height: 50)
+                    .background(.secondary.opacity(0.2))
+                    .cornerRadius(16)
+                    .background(
+                        RoundedRectangle(cornerRadius: 16)
+                            .stroke()
+                            .foregroundColor(updatePasswordViewModel.otpValidity.isValid ? .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
+                    )
+                    .onChange(of: updatePasswordViewModel.otp) { _ in
+                        updatePasswordViewModel.checkOtp()
+                    }
+                
+                if !updatePasswordViewModel.otpValidity.isValid {
+                    Text(updatePasswordViewModel.otpValidity.errorMessage.rawValue)
+                        .font(.system(size: 12, weight: .medium, design: .monospaced))
+                        .foregroundColor(Color(uiColor: .systemRed))
+                }
+            }
+        }
+    }
+    
     /// New Password Title
-    private var title: some View {
+    private var newPasswordTitle: some View {
         Text("New Password")
             .font(.system(size: 24, weight: .bold, design: .default))
             .foregroundColor(Color(.secondaryLabel))
@@ -82,7 +134,7 @@ extension UpdatePasswordView {
                     .focused($focusField, equals: .confirmPassword)
                     .submitLabel(.done)
                     .onSubmit {
-                        updatePasswordViewModel.verifyPasswordConfirmPassword()
+                        updatePasswordViewModel.checkPasswordConfirmPassword()
                         focusField = nil
                     }
             }
@@ -91,11 +143,11 @@ extension UpdatePasswordView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(updatePasswordViewModel.isPasswordConfirmPasswordValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(updatePasswordViewModel.passwordConfirmPasswordValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
-            if !updatePasswordViewModel.isPasswordConfirmPasswordValid {
-                Text(updatePasswordViewModel.passwordErrorMessage.rawValue)
+            if !updatePasswordViewModel.passwordConfirmPasswordValidity.isValid {
+                Text(updatePasswordViewModel.passwordConfirmPasswordValidity.errorMessage.rawValue)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(uiColor: .systemRed))
             }
