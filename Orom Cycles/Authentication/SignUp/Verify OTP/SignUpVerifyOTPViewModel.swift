@@ -18,28 +18,25 @@ extension SignUpVerifyOTPView {
         
         @Published var isSignUpButtonDisabled: Bool = true
         
-        @Published var isOtpValid: Bool = true
+        @Published var otpValidity: ValidityAndError<ErrorMessage> = .init(isValid: true, error: .wrongOtp)
+        
+        @Published var isVerifying: Bool = false
         
         enum ErrorMessage: String {
             case emptyOtp = "OTP can't be empty"
             case incompleteOtp = "OTP contains 6 digits"
             case wrongOtp = "Wrong OTP"
         }
-        @Published var otpErrorMessage: ErrorMessage = .wrongOtp
-        
-        @Published var isVerifying: Bool = false
         
         func verifyOtp() {
             if otp.isEmpty {
-                isOtpValid = false
-                otpErrorMessage = .emptyOtp
+                otpValidity.setInvalid(withError: .emptyOtp)
             } else if otp.count != 6 {
-                isOtpValid = false
-                otpErrorMessage = .incompleteOtp
+                otpValidity.setInvalid(withError: .incompleteOtp)
             } else {
                 // VerifyOTP with backend.
                 // set to true if valid.
-                isOtpValid = true
+                otpValidity.setValid()
             }
         }
     }

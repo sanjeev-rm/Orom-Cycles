@@ -62,16 +62,16 @@ extension SignUpVerifyOTPView {
                 .background(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke()
-                        .foregroundColor(signUpVerifyOtpViewModel.isOtpValid ? .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
+                        .foregroundColor(signUpVerifyOtpViewModel.otpValidity.isValid ? .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
                 )
                 .onSubmit {
                     signUpVerifyOtpViewModel.verifyOtp()
                 }
             
-            if !signUpVerifyOtpViewModel.isOtpValid {
+            if !signUpVerifyOtpViewModel.otpValidity.isValid {
                 HStack(alignment: .center) {
                     Spacer()
-                    Text(signUpVerifyOtpViewModel.otpErrorMessage.rawValue)
+                    Text(signUpVerifyOtpViewModel.otpValidity.error.rawValue)
                         .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(UIColor.systemRed))
                     Spacer()
@@ -97,7 +97,7 @@ extension SignUpVerifyOTPView {
             // Then if valid signup the user to backend.
             // Then take to dashboard.
             signUpVerifyOtpViewModel.verifyOtp()
-            if signUpVerifyOtpViewModel.isOtpValid {
+            if signUpVerifyOtpViewModel.otpValidity.isValid {
                 signUpVerifyOtpViewModel.isVerifying.toggle()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
                     authenticationViewModel.isLoggedIn = true
