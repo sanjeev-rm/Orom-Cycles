@@ -89,7 +89,7 @@ extension UpdatePasswordView {
                     }
                 
                 if !updatePasswordViewModel.otpValidity.isValid {
-                    Text(updatePasswordViewModel.otpValidity.errorMessage.rawValue)
+                    Text(updatePasswordViewModel.otpValidity.error.rawValue)
                         .font(.system(size: 12, weight: .medium, design: .monospaced))
                         .foregroundColor(Color(uiColor: .systemRed))
                 }
@@ -147,7 +147,7 @@ extension UpdatePasswordView {
             )
             
             if !updatePasswordViewModel.passwordConfirmPasswordValidity.isValid {
-                Text(updatePasswordViewModel.passwordConfirmPasswordValidity.errorMessage.rawValue)
+                Text(updatePasswordViewModel.passwordConfirmPasswordValidity.error.rawValue)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(uiColor: .systemRed))
             }

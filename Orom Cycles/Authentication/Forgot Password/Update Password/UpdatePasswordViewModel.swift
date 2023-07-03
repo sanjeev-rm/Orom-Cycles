@@ -14,8 +14,8 @@ extension UpdatePasswordView {
         @Published var password: String = ""
         @Published var confirmPassword: String = ""
         
-        @Published var otpValidity: ValidityAndError = .init(isValid: true)
-        @Published var passwordConfirmPasswordValidity: ValidityAndError = .init(isValid: true)
+        @Published var otpValidity: ValidityAndError<ErrorMessage> = .init(isValid: true, error: .error)
+        @Published var passwordConfirmPasswordValidity: ValidityAndError<ErrorMessage> = .init(isValid: true, error: .error)
         
         @Published var isPasswordUpdating: Bool = false
         
@@ -28,31 +28,23 @@ extension UpdatePasswordView {
             case passwordConfirmPasswordDontMatch = "Password & Confirm Password don't match"
         }
         
-        /// Structure to represent wether something is valid or not
-        /// - isValid --> true if valid and false otherwise
-        /// - errorMessage--> The error message that can be used when the isValid is false
-        struct ValidityAndError {
-            var isValid: Bool
-            var errorMessage: ErrorMessage = .error
-        }
-        
         /// Checks the given otp.
         func checkOtp() {
             if otp.isEmpty || otp.count != 6 {
-                otpValidity = .init(isValid: false, errorMessage: .otpMustHave6Digits)
+                otpValidity.setInvalid(withError: .otpMustHave6Digits)
             } else {
-                otpValidity = .init(isValid: true)
+                otpValidity.setValid()
             }
         }
         
         /// Checks the given password and confirm password.
         func checkPasswordConfirmPassword() {
             if password.isEmpty || confirmPassword.isEmpty {
-                passwordConfirmPasswordValidity = .init(isValid: false, errorMessage: .passwordConfirmPasswordEmpty)
+                passwordConfirmPasswordValidity.setInvalid(withError: .passwordConfirmPasswordEmpty)
             } else if password != confirmPassword {
-                passwordConfirmPasswordValidity = .init(isValid: false, errorMessage: .passwordConfirmPasswordDontMatch)
+                passwordConfirmPasswordValidity.setInvalid(withError: .passwordConfirmPasswordDontMatch)
             } else {
-                passwordConfirmPasswordValidity = .init(isValid: true)
+                passwordConfirmPasswordValidity.setValid()
             }
         }
         

@@ -20,11 +20,8 @@ extension SignUpView {
         @Published var alertMessage: String = ""
         @Published var alertType: AlertType = .basic
         
-        @Published var isNameEmailValid: Bool = true
-        @Published var isPasswordConfirmPasswordValid: Bool = true
-        
-        @Published var nameEmailError: SignUpError = .nameEmailInvalid
-        @Published var passwordConfirmPasswordError: SignUpError = .passwordConfirmPasswordInvalid
+        @Published var nameEmailValidity: ValidityAndError<SignUpError> = .init(isValid: true, error: .nameEmailInvalid)
+        @Published var passwordConfirmPasswordErrorValidity: ValidityAndError<SignUpError> = .init(isValid: true, error: .passwordConfirmPasswordInvalid)
         
         enum SignUpError: Error {
             case nameEmailEmpty
@@ -70,23 +67,20 @@ extension SignUpView {
         /// Function verifies Name & Email
         func checkNameEmail() {
             if name.isEmpty || email.isEmpty {
-                isNameEmailValid = false
-                nameEmailError = .nameEmailEmpty
+                nameEmailValidity.setInvalid(withError: .nameEmailEmpty)
             } else {
-                isNameEmailValid = true
+                nameEmailValidity.setValid()
             }
         }
         
         /// Function verifies Password & Confirm Password
         func checkPasswordConfirmPassword() {
             if password.isEmpty || confirmPassword.isEmpty {
-                isPasswordConfirmPasswordValid = false
-                passwordConfirmPasswordError = .passwordConfirmPasswordEmpty
+                passwordConfirmPasswordErrorValidity.setInvalid(withError: .passwordConfirmPasswordEmpty)
             } else if password != confirmPassword {
-                isPasswordConfirmPasswordValid = false
-                passwordConfirmPasswordError = .passwordConfirmPasswordDontMatch
+                passwordConfirmPasswordErrorValidity.setInvalid(withError: .passwordConfirmPasswordDontMatch)
             } else {
-                isPasswordConfirmPasswordValid = true
+                passwordConfirmPasswordErrorValidity.setValid()
             }
         }
         
@@ -106,7 +100,7 @@ extension SignUpView {
         
         func signUp() {
             checkUserData()
-            guard isNameEmailValid && isPasswordConfirmPasswordValid else { return }
+            guard nameEmailValidity.isValid && passwordConfirmPasswordErrorValidity.isValid else { return }
             
             showProgressView = true
             APIService().signUp(name: name, email: email, password: password, passwordConfirm: confirmPassword) { [unowned self] result in

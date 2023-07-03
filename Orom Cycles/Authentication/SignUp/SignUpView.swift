@@ -157,11 +157,11 @@ extension SignUpView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(signupViewModel.isNameEmailValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(signupViewModel.nameEmailValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
-            if !signupViewModel.isNameEmailValid {
-                Text(signupViewModel.nameEmailError.message)
+            if !signupViewModel.nameEmailValidity.isValid {
+                Text(signupViewModel.nameEmailValidity.error.message)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(uiColor: .systemRed))
             }
@@ -173,7 +173,7 @@ extension SignUpView {
         VStack {
             VStack(spacing: 0) {
                 SecureField("Password", text: $signupViewModel.password)
-                    .textContentType(.newPassword)
+                    .textContentType(.password)
                     .textInputAutocapitalization(.never)
                     .padding(16)
                     .frame(height: 50)
@@ -189,7 +189,7 @@ extension SignUpView {
                     }
                 
                 SecureField("Confirm Password", text: $signupViewModel.confirmPassword)
-                    .textContentType(.newPassword)
+                    .textContentType(.password)
                     .textInputAutocapitalization(.never)
                     .padding(16)
                     .frame(height: 50)
@@ -205,11 +205,11 @@ extension SignUpView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(signupViewModel.isPasswordConfirmPasswordValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(signupViewModel.passwordConfirmPasswordErrorValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
-            if !signupViewModel.isPasswordConfirmPasswordValid {
-                Text(signupViewModel.passwordConfirmPasswordError.message)
+            if !signupViewModel.passwordConfirmPasswordErrorValidity.isValid {
+                Text(signupViewModel.passwordConfirmPasswordErrorValidity.error.message)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(uiColor: .systemRed))
             }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C70163532A377A7C001C119C /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70163522A377A7C001C119C /* OnboardingView.swift */; };
 		C70163582A37ACD5001C119C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70163572A37ACD5001C119C /* LoginView.swift */; };
+		C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A26ED2A52B9800013DB02 /* ValidityAndError.swift */; };
 		C7344CF02A3FA4A100E9B08E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344CEF2A3FA4A100E9B08E /* APIService.swift */; };
 		C76432B02A4166EC00750976 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = C76432AF2A4166EC00750976 /* AlertToast */; };
 		C770D4442A38C701002406CB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D4432A38C701002406CB /* SignUpView.swift */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		C70163522A377A7C001C119C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C70163572A37ACD5001C119C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C72A26ED2A52B9800013DB02 /* ValidityAndError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidityAndError.swift; sourceTree = "<group>"; };
 		C7344CEF2A3FA4A100E9B08E /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		C770D4432A38C701002406CB /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C770D4462A38C842002406CB /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
@@ -103,6 +105,14 @@
 				C7A2A5632A3CDD2C00756EFA /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		C72A26EC2A52B9620013DB02 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C72A26ED2A52B9800013DB02 /* ValidityAndError.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C7344CEE2A3FA48900E9B08E /* Services */ = {
@@ -214,6 +224,7 @@
 			children = (
 				C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */,
 				C7ED52582A36692A00F88DC3 /* ContentView.swift */,
+				C72A26EC2A52B9620013DB02 /* Models */,
 				C7A2A56C2A3DC5E600756EFA /* Dashboard */,
 				C7A2A5672A3D9B3200756EFA /* Authentication */,
 				C7ED525A2A36692B00F88DC3 /* Assets.xcassets */,
@@ -322,6 +333,7 @@
 				C79383C02A3E515800341CAB /* UpdatePasswordViewModel.swift in Sources */,
 				C7EA523F2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift in Sources */,
 				C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */,
+				C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */,
 				C7ED526C2A367A7100F88DC3 /* OnboardingProgressView.swift in Sources */,
 				C79383BE2A3E510000341CAB /* ForgotPasswordVerifyOTPViewModel.swift in Sources */,
 				C7A2A56B2A3D9D3E00756EFA /* AuthenticationViewModel.swift in Sources */,

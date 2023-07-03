@@ -128,12 +128,12 @@ extension LoginView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(loginViewModel.isEmailPasswordValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(loginViewModel.emailPasswordValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
             
             // If the user is invalid then invalid message is shown.
-            if !loginViewModel.isEmailPasswordValid {
-                Text(loginViewModel.error.message)
+            if !loginViewModel.emailPasswordValidity.isValid {
+                Text(loginViewModel.emailPasswordValidity.error.message)
                     .font(.system(size: 12, weight: .medium, design: .monospaced))
                     .foregroundColor(Color(UIColor.systemRed))
             }
