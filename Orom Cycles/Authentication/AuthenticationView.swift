@@ -20,7 +20,6 @@ struct AuthenticationView: View {
                            title: "Updated Password",
                            subTitle: "Login with new credentials")
             }
-
     }
 }
 
