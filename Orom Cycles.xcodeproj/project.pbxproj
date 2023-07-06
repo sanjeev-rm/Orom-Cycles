@@ -152,11 +152,19 @@
 			path = "Sign Up";
 			sourceTree = "<group>";
 		};
-		C770D4422A38C6DB002406CB /* SignUp */ = {
+		C739FC2B2A56A37400290236 /* SignUp Info */ = {
 			isa = PBXGroup;
 			children = (
 				C770D4432A38C701002406CB /* SignUpView.swift */,
 				C7A2A5652A3CDF6900756EFA /* SignUpViewModel.swift */,
+			);
+			path = "SignUp Info";
+			sourceTree = "<group>";
+		};
+		C770D4422A38C6DB002406CB /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C739FC2B2A56A37400290236 /* SignUp Info */,
 				C7EA52402A3F29B0000870DD /* Verify OTP */,
 			);
 			path = SignUp;
