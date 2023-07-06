@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension SignUpView {
     @MainActor class ViewModel: ObservableObject {
@@ -22,6 +23,11 @@ extension SignUpView {
         
         @Published var nameEmailValidity: ValidityAndError<SignUpError> = .init(isValid: true, error: .nameEmailInvalid)
         @Published var passwordConfirmPasswordErrorValidity: ValidityAndError<SignUpError> = .init(isValid: true, error: .passwordConfirmPasswordInvalid)
+        
+        @Published var navigateToVerification: Bool = false
+        
+        /// The stored email
+        @AppStorage(StorageKey.signUpEmail.rawValue) var savedEmail: String?
         
         enum SignUpError: Error {
             case nameEmailEmpty
@@ -110,6 +116,12 @@ extension SignUpView {
                 switch result {
                 case .success(let message):
                     self.showSignUpAlert(message: message, alertType: .success)
+                    DispatchQueue.main.async {
+                        // Saving email to storage
+                        self.savedEmail = self.email
+                        // Navigating to Verification
+                        self.navigateToVerification = true
+                    }
                 case .failure(let error):
                     switch error {
                     case .userAlreadyExists:

@@ -65,7 +65,9 @@ extension SignUpVerifyOTPView {
                         .foregroundColor(signUpVerifyOtpViewModel.otpValidity.isValid ? .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
                 )
                 .onSubmit {
-                    signUpVerifyOtpViewModel.verifyOtp()
+                    signUpVerifyOtpViewModel.verifyOtp { success in
+                        authenticationViewModel.isLoggedIn = success
+                    }
                 }
             
             if !signUpVerifyOtpViewModel.otpValidity.isValid {
@@ -93,15 +95,8 @@ extension SignUpVerifyOTPView {
         
         Button {
             // Verify OTP
-            // Let user know OTP is valid or not.
-            // Then if valid signup the user to backend.
-            // Then take to dashboard.
-            signUpVerifyOtpViewModel.verifyOtp()
-            if signUpVerifyOtpViewModel.otpValidity.isValid {
-                signUpVerifyOtpViewModel.isVerifying.toggle()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                    authenticationViewModel.isLoggedIn = true
-                }
+            signUpVerifyOtpViewModel.verifyOtp { success in
+                authenticationViewModel.updateLoggedInStatus(success)
             }
         } label: {
             HStack {

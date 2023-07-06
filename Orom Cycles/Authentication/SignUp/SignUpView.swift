@@ -27,54 +27,67 @@ struct SignUpView: View {
     }
     
     var body: some View {
-        NavigationView {
+        VStack {
             // .scrollIndicators(), .scrollDisabled(), etc is only onwoards iOS 16.0.
             if #available(iOS 16.0, *) {
-                VStack(alignment: .leading, spacing: 32) {
-                    titleAndSubtitle
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: 16) {
-                            nameAndEmailFields
-                            
-                            passwordAndConfirmPasswordFields
-                            
-                            signUpButton
-                            
-                            seperatorLine
-                            
-                            loginButton
+                NavigationStack {
+                    VStack(alignment: .leading, spacing: 32) {
+                        titleAndSubtitle
+                        ScrollView(showsIndicators: false) {
+                            VStack(spacing: 16) {
+                                nameAndEmailFields
+                                
+                                passwordAndConfirmPasswordFields
+                                
+                                signUpButton
+                                
+                                seperatorLine
+                                
+                                loginButton
+                            }
+                            .padding(8)
                         }
-                        .padding(8)
+                        .scrollIndicators(.hidden)
+                        .scrollDisabled(focusField == nil)
+                        .scrollDismissesKeyboard(.interactively)
                     }
-                    .scrollIndicators(.hidden)
-                    .scrollDisabled(focusField == nil)
-                    .scrollDismissesKeyboard(.interactively)
+                    .padding(24)
+                    .navigationDestination(isPresented: $signupViewModel.navigateToVerification) {
+                        SignUpVerifyOTPView()
+                    }
                 }
-                .padding(24)
             } else {
                 // Fallback on earlier versions
-                VStack(alignment: .leading, spacing: 16) {
-                    titleAndSubtitle
-                    
-                    ScrollView(focusField == nil ? [] : .vertical, showsIndicators: false) {
-                        VStack(spacing: 16) {
-                            nameAndEmailFields
-                            
-                            passwordAndConfirmPasswordFields
-                            
-                            signUpButton
-                            
-                            seperatorLine
-                            
-                            loginButton
+                NavigationView {
+                    VStack(alignment: .leading, spacing: 16) {
+                        titleAndSubtitle
+                        
+                        ScrollView(focusField == nil ? [] : .vertical, showsIndicators: false) {
+                            VStack(spacing: 16) {
+                                nameAndEmailFields
+                                
+                                passwordAndConfirmPasswordFields
+                                
+                                signUpButton
+                                
+                                seperatorLine
+                                
+                                loginButton
+                            }
+                            .padding(8)
                         }
-                        .padding(8)
                     }
-                    
-                    Spacer()
+                    .padding(24)
+                    .navigationBarHidden(true)
+                    .background(
+                        Group {
+                            NavigationLink(destination: SignUpVerifyOTPView(),
+                                           isActive: $signupViewModel.navigateToVerification) {
+                                EmptyView()
+                            }
+                        }
+                    )
                 }
-                .padding(24)
-                .navigationBarHidden(true)
             }
         }
         .toast(isPresenting: $signupViewModel.showAlert, duration: 10.0, tapToDismiss: true) {
@@ -215,34 +228,6 @@ extension SignUpView {
             }
         }
     }
-    
-//    /// SignUp Button
-//    private var signUpButton: some View {
-//        HStack {
-//            Text("Sign Up")
-//                .font(.system(size: 24, weight: .semibold))
-//            Spacer()
-//
-//            if signupViewModel.isSigningUp {
-//                ProgressView()
-//                    .controlSize(.large)
-//                    .tint(.accentColor)
-//            } else {
-//                NavigationLink {
-//                    if signupViewModel.signUp() {
-//                        SignUpVerifyOTPView()
-//                    }
-//                } label: {
-//                    Image(systemName: "arrow.forward.circle")
-//                        .font(.system(size: 36))
-//                        .foregroundColor(.accentColor)
-//                }
-//                .disabled(signupViewModel.isVerifyButtonDisabled())
-//            }
-//        }
-//    }
-    
-    // MARK: USE isActive parameter of NavigationLink
     
     /// SignUp Button
     private var signUpButton: some View {

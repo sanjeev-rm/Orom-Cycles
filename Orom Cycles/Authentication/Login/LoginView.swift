@@ -153,8 +153,8 @@ extension LoginView {
                     .tint(.accentColor)
             } else {
                 Button {
-                    loginViewModel.login { isLoggedIn in
-                        authenticationViewModel.updateLoggedInStatus(isLoggedIn)
+                    loginViewModel.login { success in
+                        authenticationViewModel.updateLoggedInStatus(success)
                     }
                 } label: {
                     Image(systemName: "arrow.forward.circle")
