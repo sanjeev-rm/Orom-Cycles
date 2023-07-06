@@ -61,6 +61,7 @@ extension SignUpVerifyOTPView {
                     completion(true)
                 case .failure(let failure):
                     print(failure.localizedDescription)
+                    otpValidity.setInvalid(withError: .wrongOtp)
                     completion(false)
                 }
             }
