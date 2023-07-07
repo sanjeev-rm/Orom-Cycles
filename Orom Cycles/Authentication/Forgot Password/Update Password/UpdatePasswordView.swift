@@ -157,11 +157,12 @@ extension UpdatePasswordView {
     /// Update Password Button
     private var updatePasswordButton: some View {
         Button {
-            // VerifyData()
-            updatePasswordViewModel.isPasswordUpdating = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                authenticationViewModel.showForgotPasswordView = false
-                authenticationViewModel.presentUpdatedPasswordAlert()
+            // Calling function to update password
+            updatePasswordViewModel.updatePassword { hasUpdated in
+                if hasUpdated {
+                    authenticationViewModel.showForgotPasswordView = false
+                    authenticationViewModel.presentUpdatedPasswordAlert()
+                }
             }
         } label: {
             HStack {

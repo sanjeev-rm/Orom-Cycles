@@ -23,7 +23,6 @@
 		C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D44B2A38D1F1002406CB /* DashboardView.swift */; };
 		C79383BA2A3E430800341CAB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */; };
 		C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */; };
-		C79383BE2A3E510000341CAB /* ForgotPasswordVerifyOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383BD2A3E510000341CAB /* ForgotPasswordVerifyOTPViewModel.swift */; };
 		C79383C02A3E515800341CAB /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383BF2A3E515800341CAB /* UpdatePasswordViewModel.swift */; };
 		C7A2A5642A3CDD2C00756EFA /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2A5632A3CDD2C00756EFA /* LoginViewModel.swift */; };
 		C7A2A5662A3CDF6900756EFA /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2A5652A3CDF6900756EFA /* SignUpViewModel.swift */; };
@@ -31,7 +30,6 @@
 		C7A2A56B2A3D9D3E00756EFA /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */; };
 		C7DEFD8F2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD8E2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift */; };
 		C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */; };
-		C7DEFD932A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD922A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift */; };
 		C7DEFD952A3B7740005F3BBE /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */; };
 		C7EA523F2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EA523E2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift */; };
 		C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */; };
@@ -60,7 +58,6 @@
 		C770D44B2A38D1F1002406CB /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressViewModel.swift; sourceTree = "<group>"; };
-		C79383BD2A3E510000341CAB /* ForgotPasswordVerifyOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVerifyOTPViewModel.swift; sourceTree = "<group>"; };
 		C79383BF2A3E515800341CAB /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		C7A2A5632A3CDD2C00756EFA /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		C7A2A5652A3CDF6900756EFA /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -68,7 +65,6 @@
 		C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		C7DEFD8E2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVerifyOTPView.swift; sourceTree = "<group>"; };
 		C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressView.swift; sourceTree = "<group>"; };
-		C7DEFD922A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVerifyOTPView.swift; sourceTree = "<group>"; };
 		C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
 		C7EA523E2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVerifyOTPViewModel.swift; sourceTree = "<group>"; };
 		C7ED52532A36692A00F88DC3 /* Orom Cycles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orom Cycles.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,7 +187,6 @@
 				C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */,
 				C79383C12A3E530700341CAB /* Email Address */,
 				C79383C32A3E53C500341CAB /* Update Password */,
-				C79383C22A3E53AE00341CAB /* Verify OTP */,
 			);
 			path = "Forgot Password";
 			sourceTree = "<group>";
@@ -203,15 +198,6 @@
 				C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */,
 			);
 			path = "Email Address";
-			sourceTree = "<group>";
-		};
-		C79383C22A3E53AE00341CAB /* Verify OTP */ = {
-			isa = PBXGroup;
-			children = (
-				C7DEFD922A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift */,
-				C79383BD2A3E510000341CAB /* ForgotPasswordVerifyOTPViewModel.swift */,
-			);
-			path = "Verify OTP";
 			sourceTree = "<group>";
 		};
 		C79383C32A3E53C500341CAB /* Update Password */ = {
@@ -389,7 +375,6 @@
 				C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */,
 				C739FC212A5611D300290236 /* SignUpVerifyService.swift in Sources */,
 				C7ED526C2A367A7100F88DC3 /* OnboardingProgressView.swift in Sources */,
-				C79383BE2A3E510000341CAB /* ForgotPasswordVerifyOTPViewModel.swift in Sources */,
 				C7A2A56B2A3D9D3E00756EFA /* AuthenticationViewModel.swift in Sources */,
 				C739FC1D2A5610A700290236 /* LogInService.swift in Sources */,
 				C7ED526A2A3679CF00F88DC3 /* OnboardingStepView.swift in Sources */,
@@ -398,7 +383,6 @@
 				C770D4442A38C701002406CB /* SignUpView.swift in Sources */,
 				C7DEFD8F2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift in Sources */,
 				C739FC1F2A56115500290236 /* SignUpService.swift in Sources */,
-				C7DEFD932A3B6E31005F3BBE /* ForgotPasswordVerifyOTPView.swift in Sources */,
 				C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */,
 				C7A2A5642A3CDD2C00756EFA /* LoginViewModel.swift in Sources */,
 				C70163532A377A7C001C119C /* OnboardingView.swift in Sources */,

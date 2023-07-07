@@ -67,7 +67,32 @@ extension UpdatePasswordView {
         
         // MARK: - aPI functions
         
-        func updatePassword() {
+        func updatePassword(completion: @escaping(Bool) -> Void) {
+            isPasswordUpdating = true
+            
+            guard let email = email else { return }
+            
+            APIService().resetPassword(email: email, password: password, passwordConfirm: confirmPassword, otp: otp) { [unowned self] result in
+                DispatchQueue.main.async {
+                    self.isPasswordUpdating = false
+                    
+                    switch result {
+                    case .success(_):
+                        completion(true)
+                        print("Updated Password")
+                    case .failure(let error):
+                        completion(false)
+                        switch error {
+                        case .incorrectOtp:
+                            self.otpValidity.setInvalid(withError: .otpInvalid)
+                        case .passwordsDontMatch:
+                            self.passwordConfirmPasswordValidity.setInvalid(withError: .passwordConfirmPasswordDontMatch)
+                        default:
+                            print("Unidentified Error")
+                        }
+                    }
+                }
+            }
         }
     }
 }
