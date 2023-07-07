@@ -13,6 +13,41 @@ struct EmailAddressView: View {
     @ObservedObject var emailAddressViewModel = ViewModel()
     
     var body: some View {
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                baseView
+                    .navigationDestination(isPresented: $emailAddressViewModel.navigateToUpdatePasswordView) {
+                        UpdatePasswordView()
+                    }
+            }
+        } else {
+            NavigationView {
+                baseView
+                    .background(
+                        Group {
+                            NavigationLink(destination: UpdatePasswordView(), isActive: $emailAddressViewModel.navigateToUpdatePasswordView) {
+                                EmptyView()
+                            }
+                        }
+                    )
+            }
+        }
+    }
+}
+
+struct EmailAddressView_Previews: PreviewProvider {
+    static var previews: some View {
+        EmailAddressView()
+    }
+}
+
+
+
+// MARK: - View Components
+
+extension EmailAddressView {
+    
+    private var baseView: some View {
         VStack(alignment: .leading, spacing: 32) {
             title
             
@@ -30,19 +65,6 @@ struct EmailAddressView: View {
         }
         .padding(32)
     }
-}
-
-struct EmailAddressView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmailAddressView()
-    }
-}
-
-
-
-// MARK: - View Components
-
-extension EmailAddressView {
     
     /// Email Address Title
     private var title: some View {
@@ -66,8 +88,19 @@ extension EmailAddressView {
                 .background(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke()
-                        .foregroundColor(.secondary.opacity(0.3))
+                        .foregroundColor(emailAddressViewModel.emailValidity.isValid ?
+                            .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
                 )
+            
+            if !emailAddressViewModel.emailValidity.isValid {
+                HStack {
+                    Spacer()
+                    Text(emailAddressViewModel.emailValidity.error.message)
+                        .font(.system(size: 12, weight: .medium, design: .monospaced))
+                        .foregroundColor(Color(uiColor: .systemRed))
+                    Spacer()
+                }
+            }
             
             Text("Enter registered email")
             .font(.system(size: 12, weight: .medium))
@@ -84,14 +117,20 @@ extension EmailAddressView {
             
             Spacer()
             
-            NavigationLink {
-                UpdatePasswordView()
-            } label: {
-                Image(systemName: "arrow.forward.circle")
-                    .font(.system(size: 36))
-                    .foregroundColor(.accentColor)
+            if emailAddressViewModel.showProgressView {
+                ProgressView()
+                    .tint(.accentColor)
+                    .controlSize(.large)
+            } else {
+                Button {
+                    emailAddressViewModel.sendEmail()
+                } label: {
+                    Image(systemName: "arrow.forward.circle")
+                        .font(.system(size: 36))
+                        .foregroundColor(.accentColor)
+                }
+                .disabled(emailAddressViewModel.isVerifyButtonDisabled)
             }
-            .disabled(emailAddressViewModel.isVerifyButtonDisabled)
         }
     }
     
@@ -117,6 +156,7 @@ extension EmailAddressView {
                 }
                 .font(.system(size: 14))
             }
+            .disabled(emailAddressViewModel.showProgressView)
         }
     }
 }

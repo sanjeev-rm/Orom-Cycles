@@ -34,18 +34,7 @@ struct SignUpView: View {
                     VStack(alignment: .leading, spacing: 32) {
                         titleAndSubtitle
                         ScrollView(showsIndicators: false) {
-                            VStack(spacing: 16) {
-                                nameAndEmailFields
-                                
-                                passwordAndConfirmPasswordFields
-                                
-                                signUpButton
-                                
-                                seperatorLine
-                                
-                                loginButton
-                            }
-                            .padding(8)
+                            scrollableBaseView
                         }
                         .scrollIndicators(.hidden)
                         .scrollDisabled(focusField == nil)
@@ -63,18 +52,7 @@ struct SignUpView: View {
                         titleAndSubtitle
                         
                         ScrollView(focusField == nil ? [] : .vertical, showsIndicators: false) {
-                            VStack(spacing: 16) {
-                                nameAndEmailFields
-                                
-                                passwordAndConfirmPasswordFields
-                                
-                                signUpButton
-                                
-                                seperatorLine
-                                
-                                loginButton
-                            }
-                            .padding(8)
+                            scrollableBaseView
                         }
                     }
                     .padding(24)
@@ -128,6 +106,23 @@ extension SignUpView {
                 .font(.system(size: 24, weight: .bold, design: .default))
                 .foregroundColor(Color(.secondaryLabel))
         }
+    }
+    
+    /// The view that needs to be scrollable
+    /// Other components of the view except title and subtitle
+    private var scrollableBaseView: some View {
+        VStack(spacing: 16) {
+            nameAndEmailFields
+            
+            passwordAndConfirmPasswordFields
+            
+            signUpButton
+            
+            seperatorLine
+            
+            loginButton
+        }
+        .padding(8)
     }
     
     /// Name & Email TextFields

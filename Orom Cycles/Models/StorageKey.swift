@@ -9,5 +9,6 @@ import Foundation
 
 /// Keys for storing in UserDefaults / AppStorage
 enum StorageKey: String {
-    case signUpEmail = "SignUpEmail"
+    case signUpEmail = "signUpEmail"
+    case forgotPasswordEmail = "forgotPasswordEmail"
 }

@@ -9,7 +9,8 @@ import Foundation
 
 extension APIService {
     
-    /// SignUp Error type. Contains errors related to SignUp
+    /// SignUp Error type.
+    /// Contains errors related to SignUp
     enum SignUpError: Error {
         case userAlreadyExists
         case emailOrServerError

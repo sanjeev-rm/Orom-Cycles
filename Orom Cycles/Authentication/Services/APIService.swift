@@ -21,4 +21,11 @@ class APIService {
     
     /// The SignUp verify URL
     final var SIGN_UP_VERIFY_URL = "https://geoapi-production-8c7a.up.railway.app/api/v1/users/signup-verify"
+    
+    /// The Fogot password URL
+    final var FORGOT_PASSWORD_URL = "https://geoapi-production-8c7a.up.railway.app/api/v1/users/forgotPassword"
+    
+    /// The Reset password URL
+    final var RESET_PASSWORD_URL = "https://geoapi-production-8c7a.up.railway.app/api/v1/users/resetPassword"
+    
 }

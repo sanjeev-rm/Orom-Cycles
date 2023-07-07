@@ -19,6 +19,8 @@ extension UpdatePasswordView {
         
         @Published var isPasswordUpdating: Bool = false
         
+        @AppStorage(StorageKey.forgotPasswordEmail.rawValue) var email: String?
+        
         enum ErrorMessage: String {
             case error = "Error"
             case otpInvalid = "Incorrect Otp"
@@ -27,6 +29,8 @@ extension UpdatePasswordView {
             case passwordConfirmPasswordInvalid = "Invalid Password / Confirm Password"
             case passwordConfirmPasswordDontMatch = "Password & Confirm Password don't match"
         }
+        
+        // MARK: - Functions
         
         /// Checks the given otp.
         func checkOtp() {
@@ -59,6 +63,11 @@ extension UpdatePasswordView {
                 return true
             }
             return false
+        }
+        
+        // MARK: - aPI functions
+        
+        func updatePassword() {
         }
     }
 }
