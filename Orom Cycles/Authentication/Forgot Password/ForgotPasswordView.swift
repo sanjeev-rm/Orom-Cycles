@@ -10,9 +10,16 @@ import SwiftUI
 struct ForgotPasswordView: View {
     
     var body: some View {
-        NavigationView {
-            EmailAddressView()
-                .navigationBarTitleDisplayMode(.inline)
+        if #available(iOS 16.0, *) {
+            NavigationStack {
+                EmailAddressView()
+                    .navigationBarTitleDisplayMode(.inline)
+            }
+        } else {
+            NavigationView {
+                EmailAddressView()
+                    .navigationBarTitleDisplayMode(.inline)
+            }
         }
     }
 }

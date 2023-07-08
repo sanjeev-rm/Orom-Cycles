@@ -270,6 +270,7 @@ extension SignUpView {
                         .underline()
                 }
             }
+            .disabled(signupViewModel.showProgressView)
             Spacer()
         }
         .font(.system(size: 14))
