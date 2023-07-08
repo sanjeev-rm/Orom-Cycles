@@ -12,6 +12,12 @@ struct EmailAddressView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @ObservedObject var emailAddressViewModel = ViewModel()
     
+    @FocusState private var focusField: FocusField?
+    
+    private enum FocusField {
+        case email
+    }
+    
     var body: some View {
         if #available(iOS 16.0, *) {
             baseView
@@ -79,14 +85,16 @@ extension EmailAddressView {
                 .keyboardType(.emailAddress)
                 .padding(16)
                 .frame(height: 50)
-                .background(.secondary.opacity(0.1))
+                .background(Color(oromColor: .textFieldBackground))
                 .cornerRadius(16)
+                .focused($focusField, equals: .email)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke()
                         .foregroundColor(emailAddressViewModel.emailValidity.isValid ?
-                            .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
+                            .clear : Color(uiColor: .systemRed))
                 )
+                .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .email) ? 3 : 0)
             
             if !emailAddressViewModel.emailValidity.isValid {
                 HStack {
@@ -110,6 +118,7 @@ extension EmailAddressView {
         HStack {
             Text("Verify")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundColor(Color(oromColor: .labelPrimary))
             
             Spacer()
             

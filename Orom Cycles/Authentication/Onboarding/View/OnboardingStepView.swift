@@ -22,10 +22,12 @@ struct OnboardingStepView: View {
                 HStack {
                     Text(onboardingStep.title)
                         .font(.system(size: 32, weight: .semibold))
+                        .foregroundColor(Color(oromColor: .labelPrimary))
                     Spacer()
                 }
                 Text(onboardingStep.description)
                     .font(.system(size: 17, weight: .light))
+                    .foregroundColor(Color(oromColor: .labelSecondary))
             }
             .padding()
         }

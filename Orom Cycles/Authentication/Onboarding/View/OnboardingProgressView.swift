@@ -15,11 +15,11 @@ struct OnboardingProgressView: View {
     var body: some View {
         HStack {
             ForEach(OnboardingStep.allCases, id: \.self) { onboardingStep in
-                let isPresenting = onboardingStep == currentOnboardingStep
+                let isPresenting = (onboardingStep == currentOnboardingStep)
                 RoundedRectangle(cornerRadius: 32)
                     .frame(width: isPresenting ? 20 : 10,
                            height: 10)
-                    .foregroundColor(isPresenting ? .primary : .secondary)
+                    .foregroundColor(isPresenting ? .primary.opacity(0.7) : .secondary)
             }
         }
     }

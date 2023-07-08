@@ -99,16 +99,13 @@ extension LoginView {
                     .keyboardType(.emailAddress)
                     .padding(16)
                     .frame(height: 50)
-                    .background(
-                        Rectangle()
-                            .stroke()
-                            .foregroundColor(.secondary.opacity(0.3))
-                    )
                     .focused($focusField, equals: .email)
                     .submitLabel(.next)
                     .onSubmit {
                         focusField = .password
                     }
+                
+                Divider().padding([.leading, .trailing], 8)
                 
                 SecureField("Password", text: $loginViewModel.password)
                     .textContentType(.password)
@@ -123,13 +120,15 @@ extension LoginView {
                         loginViewModel.checkEmailPassword()
                     }
             }
-            .background(.secondary.opacity(0.1))
+            .foregroundColor(Color(uiColor: .darkGray))
+            .background(Color(oromColor: .textFieldBackground))
             .cornerRadius(16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(loginViewModel.emailPasswordValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(loginViewModel.emailPasswordValidity.isValid ? Color.clear : Color(UIColor.systemRed))
             )
+            .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == nil) ? 0 : 3)
             
             // If the user is invalid then invalid message is shown.
             if !loginViewModel.emailPasswordValidity.isValid {
@@ -145,6 +144,7 @@ extension LoginView {
         HStack {
             Text("Login")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundColor(Color(oromColor: .labelPrimary))
             Spacer()
             
             if loginViewModel.showProgressView {
@@ -191,7 +191,7 @@ extension LoginView {
                 } label: {
                     HStack {
                         Text("First time? ")
-                            .foregroundColor(.primary)
+                            .foregroundColor(Color(oromColor: .labelPrimary))
                         Text("Sign Up")
                             .foregroundColor(.accentColor)
                             .underline()

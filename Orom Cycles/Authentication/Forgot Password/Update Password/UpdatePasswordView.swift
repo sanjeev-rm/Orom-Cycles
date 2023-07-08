@@ -82,11 +82,12 @@ extension UpdatePasswordView {
                     .background(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke()
-                            .foregroundColor(updatePasswordViewModel.otpValidity.isValid ? .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
+                            .foregroundColor(updatePasswordViewModel.otpValidity.isValid ? .clear : Color(uiColor: .systemRed))
                     )
                     .onChange(of: updatePasswordViewModel.otp) { _ in
                         updatePasswordViewModel.checkOtp()
                     }
+                    .shadow(color: Color(.tertiaryLabel), radius: (focusField == .otp) ? 3 : 0)
                 
                 if !updatePasswordViewModel.otpValidity.isValid {
                     Text(updatePasswordViewModel.otpValidity.error.rawValue)
@@ -114,16 +115,13 @@ extension UpdatePasswordView {
                     .privacySensitive()
                     .padding(16)
                     .frame(height: 50)
-                    .background(
-                        Rectangle()
-                            .stroke()
-                            .foregroundColor(.secondary.opacity(0.3))
-                    )
                     .focused($focusField, equals: .password)
                     .submitLabel(.next)
                     .onSubmit {
                         focusField = .confirmPassword
                     }
+                
+                Divider().padding([.leading, .trailing], 8)
                 
                 SecureField("Confirm Password", text: $updatePasswordViewModel.confirmPassword)
                     .textContentType(.newPassword)
@@ -138,13 +136,14 @@ extension UpdatePasswordView {
                         focusField = nil
                     }
             }
-            .background(.secondary.opacity(0.1))
+            .background(Color(oromColor: .textFieldBackground))
             .cornerRadius(16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
                     .foregroundColor(updatePasswordViewModel.passwordConfirmPasswordValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
             )
+            .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .password || focusField == .confirmPassword) ? 3 : 0)
             
             if !updatePasswordViewModel.passwordConfirmPasswordValidity.isValid {
                 Text(updatePasswordViewModel.passwordConfirmPasswordValidity.error.rawValue)

@@ -13,6 +13,12 @@ struct SignUpVerifyOTPView: View {
     
     @ObservedObject var signUpVerifyOtpViewModel = ViewModel()
     
+    @FocusState private var focusField: FocusField?
+    
+    private enum FocusField {
+        case otp
+    }
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
             title
@@ -57,18 +63,21 @@ extension SignUpVerifyOTPView {
                 .keyboardType(.numberPad)
                 .padding(16)
                 .frame(height: 50)
-                .background(.secondary.opacity(0.2))
+                .background(Color(oromColor: .textFieldBackground))
                 .cornerRadius(16)
                 .background(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke()
-                        .foregroundColor(signUpVerifyOtpViewModel.otpValidity.isValid ? .secondary.opacity(0.3) : Color(uiColor: .systemRed).opacity(0.3))
+                        .foregroundColor(signUpVerifyOtpViewModel.otpValidity.isValid ? .clear : Color(uiColor: .systemRed))
                 )
+                .focused($focusField, equals: .otp)
                 .onSubmit {
                     signUpVerifyOtpViewModel.verifyOtp { success in
                         authenticationViewModel.isLoggedIn = success
                     }
+                    focusField = nil
                 }
+                .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .otp) ? 3 : 0)
             
             if !signUpVerifyOtpViewModel.otpValidity.isValid {
                 HStack(alignment: .center) {

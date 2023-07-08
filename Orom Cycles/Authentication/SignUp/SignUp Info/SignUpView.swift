@@ -135,16 +135,13 @@ extension SignUpView {
                     .autocorrectionDisabled()
                     .padding(16)
                     .frame(height: 50)
-                    .background(
-                        Rectangle()
-                            .stroke()
-                            .foregroundColor(.secondary.opacity(0.3))
-                    )
                     .focused($focusField, equals: .name)
                     .submitLabel(.next)
                     .onSubmit {
                         focusField = .email
                     }
+                
+                Divider().padding([.leading, .trailing], 8)
                 
                 TextField("Vit Email Address", text: $signupViewModel.email)
                     .textContentType(.emailAddress)
@@ -160,13 +157,14 @@ extension SignUpView {
                         focusField = .password
                     }
             }
-            .background(.secondary.opacity(0.1))
+            .background(Color(oromColor: .textFieldBackground))
             .cornerRadius(16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(signupViewModel.nameEmailValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(signupViewModel.nameEmailValidity.isValid ? Color.clear : Color(UIColor.systemRed))
             )
+            .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .name || focusField == .email) ? 3 : 0)
             
             if !signupViewModel.nameEmailValidity.isValid {
                 Text(signupViewModel.nameEmailValidity.error.message)
@@ -185,16 +183,13 @@ extension SignUpView {
                     .textInputAutocapitalization(.never)
                     .padding(16)
                     .frame(height: 50)
-                    .background(
-                        Rectangle()
-                            .stroke()
-                            .foregroundColor(.secondary.opacity(0.3))
-                    )
                     .focused($focusField, equals: .password)
                     .submitLabel(.next)
                     .onSubmit {
                         focusField = .confirmPassword
                     }
+                
+                Divider().padding([.leading, .trailing], 8)
                 
                 SecureField("Confirm Password", text: $signupViewModel.confirmPassword)
                     .textContentType(.password)
@@ -208,13 +203,14 @@ extension SignUpView {
                         focusField = nil
                     }
             }
-            .background(.secondary.opacity(0.1))
+            .background(Color(oromColor: .textFieldBackground))
             .cornerRadius(16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(signupViewModel.passwordConfirmPasswordErrorValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(signupViewModel.passwordConfirmPasswordErrorValidity.isValid ? Color.clear : Color(UIColor.systemRed))
             )
+            .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .password || focusField == .confirmPassword) ? 3 : 0)
             
             if !signupViewModel.passwordConfirmPasswordErrorValidity.isValid {
                 Text(signupViewModel.passwordConfirmPasswordErrorValidity.error.message)
@@ -229,6 +225,7 @@ extension SignUpView {
         HStack {
             Text("Sign Up")
                 .font(.system(size: 24, weight: .semibold))
+                .foregroundColor(Color(oromColor: .labelPrimary))
             Spacer()
             
             if signupViewModel.showProgressView {
@@ -264,7 +261,7 @@ extension SignUpView {
             } label: {
                 HStack {
                     Text("Visiting Again?")
-                        .foregroundColor(.primary)
+                        .foregroundColor(Color(oromColor: .labelPrimary))
                     Text("Login")
                         .foregroundColor(.accentColor)
                         .underline()

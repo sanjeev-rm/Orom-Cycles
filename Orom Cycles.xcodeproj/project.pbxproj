@@ -28,6 +28,8 @@
 		C7A2A5662A3CDF6900756EFA /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2A5652A3CDF6900756EFA /* SignUpViewModel.swift */; };
 		C7A2A5692A3D9C3600756EFA /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2A5682A3D9C3600756EFA /* AuthenticationView.swift */; };
 		C7A2A56B2A3D9D3E00756EFA /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */; };
+		C7C7C2242A59056300DE2185 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C7C2232A59056300DE2185 /* LaunchScreen.storyboard */; };
+		C7C7C2272A591C4A00DE2185 /* OromColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C7C2262A591C4A00DE2185 /* OromColor.swift */; };
 		C7DEFD8F2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD8E2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift */; };
 		C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */; };
 		C7DEFD952A3B7740005F3BBE /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */; };
@@ -63,6 +65,8 @@
 		C7A2A5652A3CDF6900756EFA /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		C7A2A5682A3D9C3600756EFA /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		C7C7C2232A59056300DE2185 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C7C7C2262A591C4A00DE2185 /* OromColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OromColor.swift; sourceTree = "<group>"; };
 		C7DEFD8E2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVerifyOTPView.swift; sourceTree = "<group>"; };
 		C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressView.swift; sourceTree = "<group>"; };
 		C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
@@ -231,6 +235,22 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
+		C7C7C2222A59054A00DE2185 /* Launch Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C7C7C2232A59056300DE2185 /* LaunchScreen.storyboard */,
+			);
+			path = "Launch Screen";
+			sourceTree = "<group>";
+		};
+		C7C7C2252A591C3100DE2185 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C7C7C2262A591C4A00DE2185 /* OromColor.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		C7EA52402A3F29B0000870DD /* Verify OTP */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,9 +279,11 @@
 		C7ED52552A36692A00F88DC3 /* Orom Cycles */ = {
 			isa = PBXGroup;
 			children = (
+				C7C7C2222A59054A00DE2185 /* Launch Screen */,
 				C738E6242A5511AA00351206 /* Orom-Cycles-Info.plist */,
 				C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */,
 				C7ED52582A36692A00F88DC3 /* ContentView.swift */,
+				C7C7C2252A591C3100DE2185 /* Utilities */,
 				C72A26EC2A52B9620013DB02 /* Models */,
 				C7A2A56C2A3DC5E600756EFA /* Dashboard */,
 				C7A2A5672A3D9B3200756EFA /* Authentication */,
@@ -352,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7C7C2242A59056300DE2185 /* LaunchScreen.storyboard in Resources */,
 				C7ED525E2A36692B00F88DC3 /* Preview Assets.xcassets in Resources */,
 				C7ED525B2A36692B00F88DC3 /* Assets.xcassets in Resources */,
 			);
@@ -372,6 +395,7 @@
 				C79383C02A3E515800341CAB /* UpdatePasswordViewModel.swift in Sources */,
 				C7EA523F2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift in Sources */,
 				C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */,
+				C7C7C2272A591C4A00DE2185 /* OromColor.swift in Sources */,
 				C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */,
 				C739FC212A5611D300290236 /* SignUpVerifyService.swift in Sources */,
 				C7ED526C2A367A7100F88DC3 /* OnboardingProgressView.swift in Sources */,
@@ -527,7 +551,7 @@
 				INFOPLIST_FILE = "Orom-Cycles-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -559,7 +583,7 @@
 				INFOPLIST_FILE = "Orom-Cycles-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
