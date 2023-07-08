@@ -77,17 +77,22 @@ extension UpdatePasswordView {
                     .keyboardType(.numberPad)
                     .padding(16)
                     .frame(height: 50)
-                    .background(.secondary.opacity(0.2))
+                    .focused($focusField, equals: .otp)
+                    .submitLabel(.next)
+                    .onSubmit {
+                        focusField = .password
+                    }
+                    .onChange(of: updatePasswordViewModel.otp) { _ in
+                        updatePasswordViewModel.checkOtp()
+                    }
+                    .background(Color(oromColor: .textFieldBackground))
                     .cornerRadius(16)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke()
-                            .foregroundColor(updatePasswordViewModel.otpValidity.isValid ? .clear : Color(uiColor: .systemRed))
+                            .foregroundColor(updatePasswordViewModel.otpValidity.isValid ? .clear : Color(.systemRed))
                     )
-                    .onChange(of: updatePasswordViewModel.otp) { _ in
-                        updatePasswordViewModel.checkOtp()
-                    }
-                    .shadow(color: Color(.tertiaryLabel), radius: (focusField == .otp) ? 3 : 0)
+                    .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .otp) ? 3 : 0)
                 
                 if !updatePasswordViewModel.otpValidity.isValid {
                     Text(updatePasswordViewModel.otpValidity.error.rawValue)
@@ -141,7 +146,7 @@ extension UpdatePasswordView {
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke()
-                    .foregroundColor(updatePasswordViewModel.passwordConfirmPasswordValidity.isValid ? Color.secondary.opacity(0.3) : Color(UIColor.systemRed).opacity(0.3))
+                    .foregroundColor(updatePasswordViewModel.passwordConfirmPasswordValidity.isValid ? .clear : Color(.systemRed))
             )
             .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .password || focusField == .confirmPassword) ? 3 : 0)
             
