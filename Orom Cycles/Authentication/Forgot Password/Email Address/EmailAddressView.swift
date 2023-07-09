@@ -20,19 +20,23 @@ struct EmailAddressView: View {
     
     var body: some View {
         if #available(iOS 16.0, *) {
-            baseView
-                .navigationDestination(isPresented: $emailAddressViewModel.navigateToUpdatePasswordView) {
-                    UpdatePasswordView()
-                }
-        } else {
-            baseView
-                .background(
-                    Group {
-                        NavigationLink(destination: UpdatePasswordView(), isActive: $emailAddressViewModel.navigateToUpdatePasswordView) {
-                            EmptyView()
-                        }
+            NavigationStack {
+                baseView
+                    .navigationDestination(isPresented: $emailAddressViewModel.navigateToUpdatePasswordView) {
+                        UpdatePasswordView()
                     }
-                )
+            }
+        } else {
+            NavigationView {
+                baseView
+                    .background(
+                        Group {
+                            NavigationLink(destination: UpdatePasswordView(), isActive: $emailAddressViewModel.navigateToUpdatePasswordView) {
+                                EmptyView()
+                            }
+                        }
+                    )
+            }
         }
     }
 }
@@ -66,6 +70,7 @@ extension EmailAddressView {
             Spacer()
         }
         .padding(32)
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     /// Email Address Title
