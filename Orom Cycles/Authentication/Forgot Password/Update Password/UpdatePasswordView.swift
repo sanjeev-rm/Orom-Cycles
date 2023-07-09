@@ -10,7 +10,7 @@ import SwiftUI
 struct UpdatePasswordView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @ObservedObject var updatePasswordViewModel = ViewModel()
+    @StateObject var updatePasswordViewModel = ViewModel()
     
     @FocusState private var focusField: FocusField?
     
@@ -115,9 +115,8 @@ extension UpdatePasswordView {
         VStack(spacing: 3) {
             VStack(spacing: 0) {
                 SecureField("Password", text: $updatePasswordViewModel.password)
-                    .textContentType(.newPassword)
+                    .textContentType(.password)
                     .textInputAutocapitalization(.never)
-                    .privacySensitive()
                     .padding(16)
                     .frame(height: 50)
                     .focused($focusField, equals: .password)
@@ -129,9 +128,8 @@ extension UpdatePasswordView {
                 Divider().padding([.leading, .trailing], 8)
                 
                 SecureField("Confirm Password", text: $updatePasswordViewModel.confirmPassword)
-                    .textContentType(.newPassword)
+                    .textContentType(.password)
                     .textInputAutocapitalization(.never)
-                    .privacySensitive()
                     .padding(16)
                     .frame(height: 50)
                     .focused($focusField, equals: .confirmPassword)

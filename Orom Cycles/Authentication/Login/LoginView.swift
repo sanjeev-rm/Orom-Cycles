@@ -120,7 +120,6 @@ extension LoginView {
                         loginViewModel.checkEmailPassword()
                     }
             }
-            .foregroundColor(Color(uiColor: .darkGray))
             .background(Color(oromColor: .textFieldBackground))
             .cornerRadius(16)
             .background(

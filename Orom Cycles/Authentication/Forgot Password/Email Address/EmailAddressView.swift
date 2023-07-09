@@ -10,7 +10,7 @@ import SwiftUI
 struct EmailAddressView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @ObservedObject var emailAddressViewModel = ViewModel()
+    @StateObject var emailAddressViewModel = ViewModel()
     
     @FocusState private var focusField: FocusField?
     
