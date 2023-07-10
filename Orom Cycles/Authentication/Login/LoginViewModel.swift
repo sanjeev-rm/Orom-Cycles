@@ -97,6 +97,7 @@ extension LoginView {
         
         // MARK: - Login Alert function
         
+        /// Function shows alert to the user in Login page
         func showLogInAlert(message: String, alertType: OromAlert.AlertType) {
             DispatchQueue.main.async {
                 self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)

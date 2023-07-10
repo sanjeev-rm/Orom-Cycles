@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct UpdatePasswordView: View {
     
@@ -40,6 +41,9 @@ struct UpdatePasswordView: View {
             Spacer()
         }
         .padding(32)
+        .toast(isPresenting: $updatePasswordViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {
+            return OromAlert.getAlertToast(with: updatePasswordViewModel.alert.message, updatePasswordViewModel.alert.alertType)
+        }
     }
 }
 

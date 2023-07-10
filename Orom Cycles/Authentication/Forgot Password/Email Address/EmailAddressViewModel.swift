@@ -26,6 +26,8 @@ extension EmailAddressView {
         
         @Published var navigateToUpdatePasswordView: Bool = false
         
+        @Published var alert: OromAlert = OromAlert()
+        
         /// The email stored in systems memeory
         @AppStorage(StorageKey.forgotPasswordEmail.rawValue) var storedEmail: String?
         
@@ -55,6 +57,8 @@ extension EmailAddressView {
                 
                 switch result {
                 case .success(let success):
+                    // Showing OTP sent alert
+                    self.showEmailAlert(message: success, alertType: .success)
                     DispatchQueue.main.async {
                         print(success)
                         // Setting email as valid
@@ -65,12 +69,30 @@ extension EmailAddressView {
                         self.navigateToUpdatePasswordView = true
                     }
                 case .failure(let failure):
-                    DispatchQueue.main.async {
-                        // Setting email as invalid
-                        self.emailValidity.setInvalid(withError: .noSuchUser)
+                    switch failure {
+                    case .noInternetConnection:
+                        self.showEmailAlert(message: "No internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
+                    case .invalid:
+                        DispatchQueue.main.async {
+                            // Setting email as invalid
+                            self.emailValidity.setInvalid(withError: .noSuchUser)
+                        }
+                    case .custom(let message):
+                        self.showEmailAlert(message: message, alertType: .failure)
                     }
                     print("Invalid email : \(failure.localizedDescription)")
                 }
+            }
+        }
+        
+        
+        
+        // MARK: - Alert function
+        
+        /// Function to show alert in Forgot password Email
+        func showEmailAlert(message: String, alertType: OromAlert.AlertType) {
+            DispatchQueue.main.async {
+                self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)
             }
         }
     }

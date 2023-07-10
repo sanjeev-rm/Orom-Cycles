@@ -33,6 +33,9 @@ struct SignUpVerifyOTPView: View {
         }
         .padding(32)
         .navigationBarTitleDisplayMode(.inline)
+        .toast(isPresenting: $signUpVerifyOtpViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {
+            return OromAlert.getAlertToast(with: signUpVerifyOtpViewModel.alert.message, signUpVerifyOtpViewModel.alert.alertType)
+        }
     }
 }
 

@@ -119,6 +119,8 @@ extension SignUpView {
                     }
                 case .failure(let error):
                     switch error {
+                    case .noInternetConnection:
+                        self.showSignUpAlert(message: "Check internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
                     case .userAlreadyExists:
                         self.showSignUpAlert(message: SignUpError.userAlreadyExists.message, alertType: .warning)
                     case .emailOrServerError:
@@ -134,7 +136,7 @@ extension SignUpView {
         
         // MARK: - Alert Function
         
-        /// Function to show an signUp alert
+        /// Function to show an alert in signup
         func showSignUpAlert(message: String, alertType: OromAlert.AlertType) {
             DispatchQueue.main.async {
                 self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)

@@ -12,6 +12,7 @@ extension APIService {
     /// Forgot Password Error type.
     /// Contains errors related to Forgot Password
     enum ForgorPasswordError: Error {
+        case noInternetConnection
         case invalid
         case custom(message: String)
     }
@@ -48,7 +49,7 @@ extension APIService {
         DispatchQueue.global(qos: .background).async {
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 guard let data = data, error == nil else {
-                    completion(.failure(.custom(message: String(describing: error))))
+                    completion(.failure(.noInternetConnection))
                     return
                 }
                 

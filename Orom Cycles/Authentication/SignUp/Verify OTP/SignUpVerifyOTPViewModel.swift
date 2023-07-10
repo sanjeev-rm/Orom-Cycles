@@ -11,6 +11,7 @@ import SwiftUI
 extension SignUpVerifyOTPView {
     
     @MainActor class ViewModel: ObservableObject {
+        
         @Published var otp: String = "" {
             didSet {
                 isSignUpButtonDisabled = otp.count != 6
@@ -22,6 +23,8 @@ extension SignUpVerifyOTPView {
         @Published var otpValidity: ValidityAndError<ErrorMessage> = .init(isValid: true, error: .wrongOtp)
         
         @Published var isVerifying: Bool = false
+        
+        @Published var alert: OromAlert = OromAlert()
         
         @AppStorage(StorageKey.signUpEmail.rawValue) var email: String?
         
@@ -56,14 +59,31 @@ extension SignUpVerifyOTPView {
                 }
                 switch result {
                 case .success(let jwt):
-                    // Prints the Jason Web Token
+                    // Prints the JSON Web Token
                     print(jwt)
                     completion(true)
                 case .failure(let failure):
+                    switch failure {
+                    case .invalidOtp:
+                        otpValidity.setInvalid(withError: .wrongOtp)
+                    case .noInternetConnection:
+                        self.showSignUpVerifyAlert(message: "Check internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
+                    case .custom(let message):
+                        self.showSignUpVerifyAlert(message: message, alertType: .failure)
+                    }
                     print(failure.localizedDescription)
                     otpValidity.setInvalid(withError: .wrongOtp)
                     completion(false)
                 }
+            }
+        }
+        
+        // MARK: - Alert function
+        
+        /// Function to show alert in sign up
+        func showSignUpVerifyAlert(message: String, alertType: OromAlert.AlertType) {
+            DispatchQueue.main.async {
+                self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)
             }
         }
     }

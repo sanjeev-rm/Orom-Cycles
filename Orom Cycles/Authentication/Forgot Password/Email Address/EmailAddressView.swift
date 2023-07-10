@@ -19,24 +19,29 @@ struct EmailAddressView: View {
     }
     
     var body: some View {
-        if #available(iOS 16.0, *) {
-            NavigationStack {
-                baseView
-                    .navigationDestination(isPresented: $emailAddressViewModel.navigateToUpdatePasswordView) {
-                        UpdatePasswordView()
-                    }
-            }
-        } else {
-            NavigationView {
-                baseView
-                    .background(
-                        Group {
-                            NavigationLink(destination: UpdatePasswordView(), isActive: $emailAddressViewModel.navigateToUpdatePasswordView) {
-                                EmptyView()
-                            }
+        VStack {
+            if #available(iOS 16.0, *) {
+                NavigationStack {
+                    baseView
+                        .navigationDestination(isPresented: $emailAddressViewModel.navigateToUpdatePasswordView) {
+                            UpdatePasswordView()
                         }
-                    )
+                }
+            } else {
+                NavigationView {
+                    baseView
+                        .background(
+                            Group {
+                                NavigationLink(destination: UpdatePasswordView(), isActive: $emailAddressViewModel.navigateToUpdatePasswordView) {
+                                    EmptyView()
+                                }
+                            }
+                        )
+                }
             }
+        }
+        .toast(isPresenting: $emailAddressViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {
+            return OromAlert.getAlertToast(with: emailAddressViewModel.alert.message, emailAddressViewModel.alert.alertType)
         }
     }
 }

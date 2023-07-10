@@ -19,6 +19,8 @@ extension UpdatePasswordView {
         
         @Published var isPasswordUpdating: Bool = false
         
+        @Published var alert: OromAlert = OromAlert()
+        
         @AppStorage(StorageKey.forgotPasswordEmail.rawValue) var email: String?
         
         enum ErrorMessage: String {
@@ -65,7 +67,7 @@ extension UpdatePasswordView {
             return false
         }
         
-        // MARK: - aPI functions
+        // MARK: - API functions
         
         func updatePassword(completion: @escaping(Bool) -> Void) {
             isPasswordUpdating = true
@@ -83,6 +85,8 @@ extension UpdatePasswordView {
                     case .failure(let error):
                         completion(false)
                         switch error {
+                        case .noInternetConnection:
+                            self.showUpdatePasswordAlert(message: "No internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
                         case .incorrectOtp:
                             self.otpValidity.setInvalid(withError: .otpInvalid)
                         case .passwordsDontMatch:
@@ -92,6 +96,17 @@ extension UpdatePasswordView {
                         }
                     }
                 }
+            }
+        }
+        
+        
+        
+        // MARK: - Alert function
+        
+        /// Function to show update password alert
+        func showUpdatePasswordAlert(message: String, alertType: OromAlert.AlertType) {
+            DispatchQueue.main.async {
+                self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)
             }
         }
     }

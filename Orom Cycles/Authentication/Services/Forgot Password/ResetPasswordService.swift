@@ -10,6 +10,7 @@ import Foundation
 extension APIService {
     
     enum ResetPasswordError: Error {
+        case noInternetConnection
         case incorrectOtp
         case passwordsDontMatch
         case custom(_ message: String)
@@ -46,7 +47,7 @@ extension APIService {
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 
                 guard let data = data, error == nil else {
-                    completion(.failure(.custom(String(describing:error))))
+                    completion(.failure(.noInternetConnection))
                                return
                 }
                 

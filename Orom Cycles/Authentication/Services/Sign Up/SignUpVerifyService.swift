@@ -11,6 +11,7 @@ extension APIService {
     
     /// SignUp Verify Errors
     enum SignUpVerifyError: Error {
+        case noInternetConnection
         case invalidOtp
         case custom(errorMessage: String)
     }
@@ -51,7 +52,7 @@ extension APIService {
         DispatchQueue.global(qos: .background).async {
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 guard let data = data, error == nil else {
-                    completion(.failure(.custom(errorMessage: String(describing: error))))
+                    completion(.failure(.noInternetConnection))
                     return
                 }
                 

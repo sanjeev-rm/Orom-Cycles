@@ -12,6 +12,7 @@ extension APIService {
     /// SignUp Error type.
     /// Contains errors related to SignUp
     enum SignUpError: Error {
+        case noInternetConnection
         case userAlreadyExists
         case emailOrServerError
         case custom(errorMessage: String)
@@ -54,7 +55,7 @@ extension APIService {
         DispatchQueue.global(qos: .background).async {
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 guard let data = data, error == nil else {
-                    completion(.failure(.custom(errorMessage: String(describing: error))))
+                    completion(.failure(.noInternetConnection))
                     return
                 }
                 
