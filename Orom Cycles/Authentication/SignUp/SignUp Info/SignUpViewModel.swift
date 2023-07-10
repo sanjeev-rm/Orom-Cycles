@@ -17,7 +17,7 @@ extension SignUpView {
         
         @Published var showProgressView: Bool = false
         
-        @Published var alert: ToastAlert = ToastAlert()
+        @Published var alert: OromAlert = OromAlert()
         
         @Published var nameEmailValidity: ValidityAndError<SignUpError> = .init(isValid: true, error: .nameEmailInvalid)
         @Published var passwordConfirmPasswordErrorValidity: ValidityAndError<SignUpError> = .init(isValid: true, error: .passwordConfirmPasswordInvalid)
@@ -135,9 +135,9 @@ extension SignUpView {
         // MARK: - Alert Function
         
         /// Function to show an signUp alert
-        func showSignUpAlert(message: String, alertType: AlertType) {
+        func showSignUpAlert(message: String, alertType: OromAlert.AlertType) {
             DispatchQueue.main.async {
-                self.alert = ToastAlert(showAlert: true, alertType: alertType, message: message)
+                self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)
             }
         }
     }

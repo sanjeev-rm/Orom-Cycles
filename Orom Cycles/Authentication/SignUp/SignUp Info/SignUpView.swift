@@ -69,18 +69,7 @@ struct SignUpView: View {
             }
         }
         .toast(isPresenting: $signupViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {
-            let alertType: AlertToast.AlertType
-            switch signupViewModel.alert.alertType {
-            case .basic: alertType = .regular
-            case .success: alertType = .complete(Color(uiColor: .systemGreen))
-            case .failure: alertType = .error(Color(uiColor: .systemRed))
-            case .warning: alertType = .systemImage("exclamationmark.triangle.fill", Color(uiColor: .systemYellow))
-            case .customSystemImage(let systemImage, let color): alertType = .systemImage(systemImage, color)
-            case .customImage(let image, let color): alertType = .image(image, color)
-            }
-            return AlertToast(displayMode: .hud,
-                              type: alertType,
-                              subTitle: signupViewModel.alert.message)
+            return OromAlert.getAlertToast(with: signupViewModel.alert.message, signupViewModel.alert.alertType)
         }
     }
 }

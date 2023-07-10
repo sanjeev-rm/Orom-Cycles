@@ -18,7 +18,7 @@ extension LoginView {
         
         @Published var emailPasswordValidity: ValidityAndError<LoginError> = .init(isValid: true, error: .invalidEmailPassword)
         
-        @Published var alert: ToastAlert = ToastAlert()
+        @Published var alert: OromAlert = OromAlert()
         
         var isLoginButtonDisabled: Bool {
             email.isEmpty || password.count < 8
@@ -97,9 +97,9 @@ extension LoginView {
         
         // MARK: - Login Alert function
         
-        func showLogInAlert(message: String, alertType: AlertType) {
+        func showLogInAlert(message: String, alertType: OromAlert.AlertType) {
             DispatchQueue.main.async {
-                self.alert = ToastAlert(showAlert: true, alertType: alertType, message: message)
+                self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)
             }
         }
     }
