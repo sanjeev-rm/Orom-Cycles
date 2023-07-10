@@ -17,9 +17,7 @@ extension SignUpView {
         
         @Published var showProgressView: Bool = false
         
-        @Published var showAlert: Bool = false
-        @Published var alertMessage: String = ""
-        @Published var alertType: AlertType = .basic
+        @Published var alert: ToastAlert = ToastAlert()
         
         @Published var nameEmailValidity: ValidityAndError<SignUpError> = .init(isValid: true, error: .nameEmailInvalid)
         @Published var passwordConfirmPasswordErrorValidity: ValidityAndError<SignUpError> = .init(isValid: true, error: .passwordConfirmPasswordInvalid)
@@ -28,6 +26,8 @@ extension SignUpView {
         
         /// The stored email
         @AppStorage(StorageKey.signUpEmail.rawValue) var savedEmail: String?
+        
+        // MARK: - Sign Up Error Model
         
         enum SignUpError: Error {
             case nameEmailEmpty
@@ -51,13 +51,6 @@ extension SignUpView {
                 case .unknown: return "Unknown Error"
                 }
             }
-        }
-        
-        enum AlertType {
-            case basic
-            case success
-            case failure
-            case warning
         }
         
         
@@ -102,6 +95,8 @@ extension SignUpView {
             return false
         }
         
+        
+        
         // MARK: - API functions
         
         func signUp() {
@@ -135,11 +130,14 @@ extension SignUpView {
             }
         }
         
+        
+        
+        // MARK: - Alert Function
+        
+        /// Function to show an signUp alert
         func showSignUpAlert(message: String, alertType: AlertType) {
             DispatchQueue.main.async {
-                self.alertMessage = message
-                self.alertType = alertType
-                self.showAlert = true
+                self.alert = ToastAlert(showAlert: true, alertType: alertType, message: message)
             }
         }
     }

@@ -18,9 +18,13 @@ extension LoginView {
         
         @Published var emailPasswordValidity: ValidityAndError<LoginError> = .init(isValid: true, error: .invalidEmailPassword)
         
+        @Published var alert: ToastAlert = ToastAlert()
+        
         var isLoginButtonDisabled: Bool {
             email.isEmpty || password.count < 8
         }
+        
+        // MARK: - Login Error model
         
         enum LoginError: Error {
             case emptyEmailPassword
@@ -35,6 +39,10 @@ extension LoginView {
                 }
             }
         }
+        
+        
+        
+        // MARK: - UI functions
         
         /// Function verifies the email and password entered by the user.
         func checkEmailPassword() {
@@ -51,6 +59,8 @@ extension LoginView {
             email = ""
             password = ""
         }
+        
+        
         
         // MARK: - API functions
         
@@ -69,11 +79,27 @@ extension LoginView {
                     // Save the token in user defaults.
                     completion(true)
                 case .failure(let loginError):
-                    print(loginError.localizedDescription)
-                    DispatchQueue.main.async {
-                        self.emailPasswordValidity.setInvalid(withError: .incorrectEmailPassword)
+                    switch loginError {
+                    case .noInternetConnection:
+                        self.showLogInAlert(message: "Check internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
+                    case .invalidEmailPassword:
+                        DispatchQueue.main.async {
+                            self.emailPasswordValidity.setInvalid(withError: .incorrectEmailPassword)
+                        }
+                    case .custom(let errorMessage):
+                        self.showLogInAlert(message: errorMessage, alertType: .warning)
                     }
                 }
+            }
+        }
+        
+        
+        
+        // MARK: - Login Alert function
+        
+        func showLogInAlert(message: String, alertType: AlertType) {
+            DispatchQueue.main.async {
+                self.alert = ToastAlert(showAlert: true, alertType: alertType, message: message)
             }
         }
     }

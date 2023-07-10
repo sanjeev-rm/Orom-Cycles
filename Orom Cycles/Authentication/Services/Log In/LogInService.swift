@@ -10,6 +10,7 @@ import Foundation
 extension APIService {
     /// Login Errors
     enum LoginError: Error {
+        case noInternetConnection
         case invalidEmailPassword
         case custom(errorMessage: String)
     }
@@ -48,12 +49,14 @@ extension APIService {
         DispatchQueue.global(qos: .background).async {
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 guard let data = data, error == nil else {
-                    completion(.failure(.custom(errorMessage: String(describing: error))))
+                    completion(.failure(.noInternetConnection))
+                    print("NO INTERNET CONNECTION")
                     return
                 }
 
                 guard let httpUrlResponse = response as? HTTPURLResponse, httpUrlResponse.statusCode == 200 else {
                     completion(.failure(.invalidEmailPassword))
+                    print("INVALID EMAIL")
                     return
                 }
 
