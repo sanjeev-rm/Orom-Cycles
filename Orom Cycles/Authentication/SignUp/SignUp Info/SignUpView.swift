@@ -12,7 +12,7 @@ struct SignUpView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
-    @ObservedObject var signupViewModel = ViewModel()
+    @StateObject var signupViewModel = ViewModel()
     
     /// Variable that sets which field is in focus
     /// Helps with functionalities of the keyboard
