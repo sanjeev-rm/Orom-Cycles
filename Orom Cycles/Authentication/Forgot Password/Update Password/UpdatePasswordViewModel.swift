@@ -86,7 +86,7 @@ extension UpdatePasswordView {
                         completion(false)
                         switch error {
                         case .noInternetConnection:
-                            self.showUpdatePasswordAlert(message: "No internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
+                            self.showUpdatePasswordAlert(message: "Check internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
                         case .incorrectOtp:
                             self.otpValidity.setInvalid(withError: .otpInvalid)
                         case .passwordsDontMatch:
