@@ -71,7 +71,7 @@ extension EmailAddressView {
                 case .failure(let failure):
                     switch failure {
                     case .noInternetConnection:
-                        self.showEmailAlert(message: "No internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
+                        self.showEmailAlert(message: "Check internet connection", alertType: .customSystemImage(systemImage: "wifi.slash", color: Color(.tertiaryLabel)))
                     case .invalid:
                         DispatchQueue.main.async {
                             // Setting email as invalid
