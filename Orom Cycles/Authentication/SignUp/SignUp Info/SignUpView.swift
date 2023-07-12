@@ -189,6 +189,9 @@ extension SignUpView {
                     .frame(height: 50)
                     .focused($focusField, equals: .confirmPassword)
                     .submitLabel(.done)
+                    .onChange(of: signupViewModel.confirmPassword, perform: { _ in
+                        signupViewModel.checkUserData()
+                    })
                     .onSubmit {
                         signupViewModel.checkUserData()
                         focusField = nil
