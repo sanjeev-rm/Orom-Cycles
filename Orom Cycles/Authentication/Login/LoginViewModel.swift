@@ -21,7 +21,7 @@ extension LoginView {
         @Published var alert: OromAlert = OromAlert()
         
         var isLoginButtonDisabled: Bool {
-            email.isEmpty || password.count < 8
+            email.isEmpty || password.isEmpty
         }
         
         // MARK: - Login Error model
@@ -46,7 +46,7 @@ extension LoginView {
         
         /// Function verifies the email and password entered by the user.
         func checkEmailPassword() {
-            if email.isEmpty || password.count < 8 {
+            if email.isEmpty || password.isEmpty {
                 emailPasswordValidity.setInvalid(withError: .emptyEmailPassword)
             } else {
                 emailPasswordValidity.setValid()
