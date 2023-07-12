@@ -138,6 +138,9 @@ extension UpdatePasswordView {
                     .frame(height: 50)
                     .focused($focusField, equals: .confirmPassword)
                     .submitLabel(.done)
+                    .onChange(of: updatePasswordViewModel.confirmPassword, perform: { _ in
+                        updatePasswordViewModel.checkPasswordConfirmPassword()
+                    })
                     .onSubmit {
                         updatePasswordViewModel.checkPasswordConfirmPassword()
                         focusField = nil
