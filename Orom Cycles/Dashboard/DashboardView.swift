@@ -8,10 +8,53 @@
 import SwiftUI
 
 struct DashboardView: View {
-    @State var isLoggedIn: Bool = false
+    
+    @EnvironmentObject var dashboardViewModel: DashboardViewModel
+    
     var body: some View {
-        Text("Dashboard")
-            .font(.system(size: 32, weight: .ultraLight, design: .monospaced))
+        MapView()
+            .fullScreenCover(isPresented: $dashboardViewModel.showScanner) {
+                ScannerView()
+            }
+            .fullScreenCover(isPresented: $dashboardViewModel.showProfile) {
+                ProfileView()
+            }
+            .fullScreenCover(isPresented: $dashboardViewModel.showWallet) {
+                WalletView()
+            }
+            .fullScreenCover(isPresented: $dashboardViewModel.showSettings) {
+                SettingsView()
+            }
+            .sheet(isPresented: $dashboardViewModel.showStartRide) {
+                if #available(iOS 16.0, *) {
+                    StartRideView()
+                        .presentationDetents([.medium, .large])
+                        .interactiveDismissDisabled()
+                } else {
+                    StartRideView()
+                        .interactiveDismissDisabled()
+                }
+            }
+            .sheet(isPresented: $dashboardViewModel.showRiding) {
+                if #available(iOS 16.0, *) {
+                    RidingView()
+                        .presentationDetents([.medium, .large])
+                        .interactiveDismissDisabled()
+                } else {
+                    RidingView()
+                        .interactiveDismissDisabled()
+                }
+            }
+            .sheet(isPresented: $dashboardViewModel.showRideCompleted) {
+                if #available(iOS 16.0, *) {
+                    CompletedRideView()
+                        .presentationDetents([.medium, .large])
+                        .interactiveDismissDisabled()
+                } else {
+                    CompletedRideView()
+                        .interactiveDismissDisabled()
+                }
+            }
     }
 }
 
