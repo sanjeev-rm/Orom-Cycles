@@ -32,7 +32,6 @@ struct CompletedRideView: View {
                 Text("Done")
             }
             .buttonStyle(.borderedProminent)
-
         }
     }
 }
