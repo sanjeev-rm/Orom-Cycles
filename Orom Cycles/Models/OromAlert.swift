@@ -32,7 +32,7 @@ struct OromAlert {
     /// Function that returns an alert of type AlertToast
     /// - parameter message: The message to show with the alert
     /// - parameter alertType: An alert of type OromAlertType the type of alert to show
-    static func getAlertToast(with message: String, _ alertType: AlertType) -> AlertToast {
+    static func getAlertToast(with message: String, _ alertType: AlertType, displayMode: AlertToast.DisplayMode = .hud) -> AlertToast {
         let alertToastType: AlertToast.AlertType
         switch alertType {
         case .basic: alertToastType = .regular
@@ -42,7 +42,7 @@ struct OromAlert {
         case .customSystemImage(let systemImage, let color): alertToastType = .systemImage(systemImage, color)
         case .customImage(let image, let color): alertToastType = .image(image, color)
         }
-        return AlertToast(displayMode: .hud,
+        return AlertToast(displayMode: displayMode,
                           type: alertToastType,
                           subTitle: message)
     }

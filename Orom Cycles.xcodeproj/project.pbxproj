@@ -31,6 +31,17 @@
 		C7A2A56B2A3D9D3E00756EFA /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */; };
 		C7C7C2242A59056300DE2185 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7C7C2232A59056300DE2185 /* LaunchScreen.storyboard */; };
 		C7C7C2272A591C4A00DE2185 /* OromColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7C7C2262A591C4A00DE2185 /* OromColor.swift */; };
+		C7D39BFB2A616F6000903F57 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39BFA2A616F6000903F57 /* MapView.swift */; };
+		C7D39BFE2A616F8600903F57 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39BFD2A616F8600903F57 /* MapViewModel.swift */; };
+		C7D39C032A6180C700903F57 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C022A6180C700903F57 /* ProfileView.swift */; };
+		C7D39C052A6180F500903F57 /* WalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C042A6180F500903F57 /* WalletView.swift */; };
+		C7D39C072A6181CF00903F57 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C062A6181CF00903F57 /* DashboardViewModel.swift */; };
+		C7D39C0A2A61824F00903F57 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C092A61824F00903F57 /* ScannerView.swift */; };
+		C7D39C0D2A61853000903F57 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C0C2A61853000903F57 /* SettingsView.swift */; };
+		C7D39C102A61980500903F57 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = C7D39C0F2A61980500903F57 /* CodeScanner */; };
+		C7D39C152A61D20A00903F57 /* StartRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C142A61D20A00903F57 /* StartRideView.swift */; };
+		C7D39C172A61D64900903F57 /* RidingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C162A61D64900903F57 /* RidingView.swift */; };
+		C7D39C192A61DE3C00903F57 /* CompletedRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C182A61DE3C00903F57 /* CompletedRideView.swift */; };
 		C7DEFD8F2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD8E2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift */; };
 		C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */; };
 		C7DEFD952A3B7740005F3BBE /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */; };
@@ -69,6 +80,16 @@
 		C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		C7C7C2232A59056300DE2185 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7C7C2262A591C4A00DE2185 /* OromColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OromColor.swift; sourceTree = "<group>"; };
+		C7D39BFA2A616F6000903F57 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		C7D39BFD2A616F8600903F57 /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		C7D39C022A6180C700903F57 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		C7D39C042A6180F500903F57 /* WalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletView.swift; sourceTree = "<group>"; };
+		C7D39C062A6181CF00903F57 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		C7D39C092A61824F00903F57 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		C7D39C0C2A61853000903F57 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C7D39C142A61D20A00903F57 /* StartRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRideView.swift; sourceTree = "<group>"; };
+		C7D39C162A61D64900903F57 /* RidingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidingView.swift; sourceTree = "<group>"; };
+		C7D39C182A61DE3C00903F57 /* CompletedRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRideView.swift; sourceTree = "<group>"; };
 		C7DEFD8E2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVerifyOTPView.swift; sourceTree = "<group>"; };
 		C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressView.swift; sourceTree = "<group>"; };
 		C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
@@ -88,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7D39C102A61980500903F57 /* CodeScanner in Frameworks */,
 				C76432B02A4166EC00750976 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -234,6 +256,13 @@
 			isa = PBXGroup;
 			children = (
 				C770D44B2A38D1F1002406CB /* DashboardView.swift */,
+				C7D39C062A6181CF00903F57 /* DashboardViewModel.swift */,
+				C7D39C132A61D1D900903F57 /* Trip */,
+				C7D39BFC2A616F7400903F57 /* Map */,
+				C7D39C082A61823D00903F57 /* Scanner */,
+				C7D39BFF2A61805900903F57 /* Profile */,
+				C7D39C002A61806300903F57 /* Wallet */,
+				C7D39C0B2A61851C00903F57 /* Settings */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -252,6 +281,57 @@
 				C7C7C2262A591C4A00DE2185 /* OromColor.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C7D39BFC2A616F7400903F57 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				C7D39BFA2A616F6000903F57 /* MapView.swift */,
+				C7D39BFD2A616F8600903F57 /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		C7D39BFF2A61805900903F57 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C7D39C022A6180C700903F57 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C7D39C002A61806300903F57 /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				C7D39C042A6180F500903F57 /* WalletView.swift */,
+			);
+			path = Wallet;
+			sourceTree = "<group>";
+		};
+		C7D39C082A61823D00903F57 /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				C7D39C092A61824F00903F57 /* ScannerView.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		C7D39C0B2A61851C00903F57 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C7D39C0C2A61853000903F57 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C7D39C132A61D1D900903F57 /* Trip */ = {
+			isa = PBXGroup;
+			children = (
+				C7D39C142A61D20A00903F57 /* StartRideView.swift */,
+				C7D39C162A61D64900903F57 /* RidingView.swift */,
+				C7D39C182A61DE3C00903F57 /* CompletedRideView.swift */,
+			);
+			path = Trip;
 			sourceTree = "<group>";
 		};
 		C7EA52402A3F29B0000870DD /* Verify OTP */ = {
@@ -331,6 +411,7 @@
 			name = "Orom Cycles";
 			packageProductDependencies = (
 				C76432AF2A4166EC00750976 /* AlertToast */,
+				C7D39C0F2A61980500903F57 /* CodeScanner */,
 			);
 			productName = "Orom Cycles";
 			productReference = C7ED52532A36692A00F88DC3 /* Orom Cycles.app */;
@@ -362,6 +443,7 @@
 			mainGroup = C7ED524A2A36692A00F88DC3;
 			packageReferences = (
 				C76432AE2A4166EC00750976 /* XCRemoteSwiftPackageReference "AlertToast" */,
+				C7D39C0E2A61980400903F57 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = C7ED52542A36692A00F88DC3 /* Products */;
 			projectDirPath = "";
@@ -390,8 +472,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7D39C192A61DE3C00903F57 /* CompletedRideView.swift in Sources */,
 				C7ED52592A36692A00F88DC3 /* ContentView.swift in Sources */,
+				C7D39BFB2A616F6000903F57 /* MapView.swift in Sources */,
 				C739FC2A2A56973500290236 /* StorageKey.swift in Sources */,
+				C7D39C172A61D64900903F57 /* RidingView.swift in Sources */,
+				C7D39C152A61D20A00903F57 /* StartRideView.swift in Sources */,
+				C7D39C072A6181CF00903F57 /* DashboardViewModel.swift in Sources */,
 				C7A2A5662A3CDF6900756EFA /* SignUpViewModel.swift in Sources */,
 				C70163582A37ACD5001C119C /* LoginView.swift in Sources */,
 				C7DEFD952A3B7740005F3BBE /* UpdatePasswordView.swift in Sources */,
@@ -404,8 +491,10 @@
 				C739FC212A5611D300290236 /* SignUpVerifyService.swift in Sources */,
 				C7ED526C2A367A7100F88DC3 /* OnboardingProgressView.swift in Sources */,
 				C7A2A56B2A3D9D3E00756EFA /* AuthenticationViewModel.swift in Sources */,
+				C7D39C0A2A61824F00903F57 /* ScannerView.swift in Sources */,
 				C739FC1D2A5610A700290236 /* LogInService.swift in Sources */,
 				C7ED526A2A3679CF00F88DC3 /* OnboardingStepView.swift in Sources */,
+				C7D39BFE2A616F8600903F57 /* MapViewModel.swift in Sources */,
 				C76990442A57399F00DF8116 /* ForgotPasswordService.swift in Sources */,
 				C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */,
 				C770D4442A38C701002406CB /* SignUpView.swift in Sources */,
@@ -414,13 +503,16 @@
 				C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */,
 				C7A2A5642A3CDD2C00756EFA /* LoginViewModel.swift in Sources */,
 				C70163532A377A7C001C119C /* OnboardingView.swift in Sources */,
+				C7D39C032A6180C700903F57 /* ProfileView.swift in Sources */,
 				C76990462A573A4D00DF8116 /* ResetPasswordService.swift in Sources */,
 				C7344CF02A3FA4A100E9B08E /* APIService.swift in Sources */,
 				C7A2A5692A3D9C3600756EFA /* AuthenticationView.swift in Sources */,
 				C7ED52662A36746E00F88DC3 /* OnboardingStep.swift in Sources */,
+				C7D39C052A6180F500903F57 /* WalletView.swift in Sources */,
 				C770D4472A38C842002406CB /* ForgotPasswordView.swift in Sources */,
 				C79383BA2A3E430800341CAB /* ForgotPasswordViewModel.swift in Sources */,
 				C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */,
+				C7D39C0D2A61853000903F57 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -553,13 +645,15 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Orom-Cycles-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "You'll use the camera to scan the codes on the cycle to begin ride";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Orom Cycles will use your location to show you the nearest available cycles";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -585,13 +679,15 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Orom-Cycles-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "You'll use the camera to scan the codes on the cycle to begin ride";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Orom Cycles will use your location to show you the nearest available cycles";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -637,6 +733,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		C7D39C0E2A61980400903F57 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -644,6 +748,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C76432AE2A4166EC00750976 /* XCRemoteSwiftPackageReference "AlertToast" */;
 			productName = AlertToast;
+		};
+		C7D39C0F2A61980500903F57 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7D39C0E2A61980400903F57 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
