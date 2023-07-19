@@ -20,9 +20,8 @@ struct ProfileView: View {
                 .font(.system(size: 32, weight: .ultraLight, design: .monospaced))
                 .foregroundColor(.accentColor)
             
-            Spacer()
-            
             logoutButton
+                .padding(.top, 16)
             
             Spacer()
         }
@@ -55,7 +54,7 @@ extension ProfileView {
                 authenticationViewModel.updateLoggedInStatus(false)
             } label: {
                 Text("Log Out")
-                    .font(.system(size: 22, weight: .bold, design: .default))
+                    .font(.system(size: 17, weight: .bold, design: .default))
                     .foregroundColor(Color.white)
                     .padding(8)
                     .background(Color(.systemRed))

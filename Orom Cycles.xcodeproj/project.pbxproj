@@ -21,7 +21,7 @@
 		C770D4442A38C701002406CB /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D4432A38C701002406CB /* SignUpView.swift */; };
 		C770D4472A38C842002406CB /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D4462A38C842002406CB /* ForgotPasswordView.swift */; };
 		C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D44B2A38D1F1002406CB /* DashboardView.swift */; };
-		C78567602A66F94100A2B355 /* API Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785675F2A66F94100A2B355 /* API Service.swift */; };
+		C78567602A66F94100A2B355 /* Dashboard API Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785675F2A66F94100A2B355 /* Dashboard API Service.swift */; };
 		C78567632A66FBE300A2B355 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78567622A66FBE300A2B355 /* MapService.swift */; };
 		C79383BA2A3E430800341CAB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */; };
 		C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */; };
@@ -72,7 +72,7 @@
 		C770D4432A38C701002406CB /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		C770D4462A38C842002406CB /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		C770D44B2A38D1F1002406CB /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		C785675F2A66F94100A2B355 /* API Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Service.swift"; sourceTree = "<group>"; };
+		C785675F2A66F94100A2B355 /* Dashboard API Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard API Service.swift"; sourceTree = "<group>"; };
 		C78567622A66FBE300A2B355 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
 		C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressViewModel.swift; sourceTree = "<group>"; };
@@ -227,18 +227,36 @@
 		C785675E2A66F91500A2B355 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				C785675F2A66F94100A2B355 /* API Service.swift */,
-				C78567612A66FBC400A2B355 /* Map Service */,
+				C785675F2A66F94100A2B355 /* Dashboard API Service.swift */,
+				C78567612A66FBC400A2B355 /* Map */,
 			);
 			path = Service;
 			sourceTree = "<group>";
 		};
-		C78567612A66FBC400A2B355 /* Map Service */ = {
+		C78567612A66FBC400A2B355 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				C78567622A66FBE300A2B355 /* MapService.swift */,
 			);
-			path = "Map Service";
+			path = Map;
+			sourceTree = "<group>";
+		};
+		C78567642A67AC2800A2B355 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */,
+				C7D39C062A6181CF00903F57 /* DashboardViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		C78567652A67ACFA00A2B355 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C7A2A5672A3D9B3200756EFA /* Authentication */,
+				C7A2A56C2A3DC5E600756EFA /* Dashboard */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		C79383C12A3E530700341CAB /* Email Address */ = {
@@ -263,7 +281,6 @@
 			isa = PBXGroup;
 			children = (
 				C7A2A5682A3D9C3600756EFA /* AuthenticationView.swift */,
-				C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */,
 				C7344CEE2A3FA48900E9B08E /* Services */,
 				C7ED52642A36741900F88DC3 /* Onboarding */,
 				C70163562A37ACBD001C119C /* Login */,
@@ -277,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				C770D44B2A38D1F1002406CB /* DashboardView.swift */,
-				C7D39C062A6181CF00903F57 /* DashboardViewModel.swift */,
 				C785675E2A66F91500A2B355 /* Service */,
 				C7D39C132A61D1D900903F57 /* Trip */,
 				C7D39BFC2A616F7400903F57 /* Map */,
@@ -390,8 +406,8 @@
 				C7ED52582A36692A00F88DC3 /* ContentView.swift */,
 				C7C7C2252A591C3100DE2185 /* Utilities */,
 				C72A26EC2A52B9620013DB02 /* Models */,
-				C7A2A56C2A3DC5E600756EFA /* Dashboard */,
-				C7A2A5672A3D9B3200756EFA /* Authentication */,
+				C78567642A67AC2800A2B355 /* View Models */,
+				C78567652A67ACFA00A2B355 /* Core */,
 				C7ED525A2A36692B00F88DC3 /* Assets.xcassets */,
 				C7ED525C2A36692B00F88DC3 /* Preview Content */,
 			);
@@ -533,7 +549,7 @@
 				C7D39C052A6180F500903F57 /* WalletView.swift in Sources */,
 				C770D4472A38C842002406CB /* ForgotPasswordView.swift in Sources */,
 				C79383BA2A3E430800341CAB /* ForgotPasswordViewModel.swift in Sources */,
-				C78567602A66F94100A2B355 /* API Service.swift in Sources */,
+				C78567602A66F94100A2B355 /* Dashboard API Service.swift in Sources */,
 				C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */,
 				C7D39C0D2A61853000903F57 /* SettingsView.swift in Sources */,
 				C78567632A66FBE300A2B355 /* MapService.swift in Sources */,
