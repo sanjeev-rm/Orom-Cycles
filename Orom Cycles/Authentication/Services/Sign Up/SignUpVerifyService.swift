@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension APIService {
+extension AuthenticationAPIService {
     
     /// SignUp Verify Errors
     enum SignUpVerifyError: Error {

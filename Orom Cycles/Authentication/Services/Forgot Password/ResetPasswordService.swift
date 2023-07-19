@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension APIService {
+extension AuthenticationAPIService {
     
     enum ResetPasswordError: Error {
         case noInternetConnection

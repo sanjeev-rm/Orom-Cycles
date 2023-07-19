@@ -105,6 +105,7 @@ extension EmailAddressView {
                             .clear : Color(uiColor: .systemRed))
                 )
                 .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .email) ? 3 : 0)
+                .disabled(emailAddressViewModel.showProgressView)
             
             if !emailAddressViewModel.emailValidity.isValid {
                 HStack {

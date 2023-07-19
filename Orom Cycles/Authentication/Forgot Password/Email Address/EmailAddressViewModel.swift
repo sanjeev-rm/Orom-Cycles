@@ -28,9 +28,6 @@ extension EmailAddressView {
         
         @Published var alert: OromAlert = OromAlert()
         
-        /// The email stored in systems memeory
-        @AppStorage(StorageKey.forgotPasswordEmail.rawValue) var storedEmail: String?
-        
         /// Error for Forgot Password Email
         enum ForgotPasswordEmailError {
             case invalid
@@ -50,7 +47,7 @@ extension EmailAddressView {
         func sendEmail() {
             showProgressView = true
             
-            APIService().forgotPassword(email: email) { [unowned self] result in
+            AuthenticationAPIService().forgotPassword(email: email) { [unowned self] result in
                 DispatchQueue.main.async {
                     self.showProgressView = false
                 }
@@ -64,7 +61,7 @@ extension EmailAddressView {
                         // Setting email as valid
                         self.emailValidity.setValid()
                         //Storing the users email
-                        self.storedEmail = self.email
+                        Storage.forgotPasswordEmail = self.email
                         // Navigating to Update Password View
                         self.navigateToUpdatePasswordView = true
                     }

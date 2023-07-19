@@ -57,7 +57,7 @@ struct ScannerView: View {
         dashboardViewModel.toggleShowScanner()
         
         switch result {
-        case .success(let result):
+        case .success(_):
             print("YAY Scanned correctly")
             dashboardViewModel.toggleShowStartRide()
         case .failure(let error):

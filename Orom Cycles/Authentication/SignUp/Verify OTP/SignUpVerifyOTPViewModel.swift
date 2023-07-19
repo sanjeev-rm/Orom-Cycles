@@ -26,7 +26,7 @@ extension SignUpVerifyOTPView {
         
         @Published var alert: OromAlert = OromAlert()
         
-        @AppStorage(StorageKey.signUpEmail.rawValue) var email: String?
+//        @AppStorage(Storage.Key.signUpEmail.rawValue) var email: String?
         
         enum ErrorMessage: String {
             case emptyOtp = "OTP can't be empty"
@@ -51,16 +51,17 @@ extension SignUpVerifyOTPView {
             
             isVerifying = true
             
-            guard let email = email else { return }
+            guard let email = Storage.signUpEmail else { return }
             
-            APIService().signUpVerifyOtp(email: email, otp: otp) { [unowned self] result in
+            AuthenticationAPIService().signUpVerifyOtp(email: email, otp: otp) { [unowned self] result in
                 DispatchQueue.main.async {
                     self.isVerifying = false
                 }
                 switch result {
-                case .success(let jwt):
-                    // Prints the JSON Web Token
-                    print(jwt)
+                case .success(let token):
+                    // Save jwt to the storage
+                    print(token)
+                    Storage.jsonWebToken = token
                     completion(true)
                 case .failure(let failure):
                     switch failure {

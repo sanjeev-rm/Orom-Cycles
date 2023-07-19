@@ -41,6 +41,7 @@ struct UpdatePasswordView: View {
             Spacer()
         }
         .padding(32)
+        .navigationBarBackButtonHidden(updatePasswordViewModel.isPasswordUpdating)
         .toast(isPresenting: $updatePasswordViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {
             return OromAlert.getAlertToast(with: updatePasswordViewModel.alert.message, updatePasswordViewModel.alert.alertType)
         }
@@ -154,6 +155,7 @@ extension UpdatePasswordView {
                     .foregroundColor(updatePasswordViewModel.passwordConfirmPasswordValidity.isValid ? .clear : Color(.systemRed))
             )
             .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .password || focusField == .confirmPassword) ? 3 : 0)
+            .disabled(updatePasswordViewModel.isPasswordUpdating)
             
             if !updatePasswordViewModel.passwordConfirmPasswordValidity.isValid {
                 Text(updatePasswordViewModel.passwordConfirmPasswordValidity.error.rawValue)

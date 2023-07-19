@@ -25,7 +25,7 @@ extension SignUpView {
         @Published var navigateToVerification: Bool = false
         
         /// The stored email
-        @AppStorage(StorageKey.signUpEmail.rawValue) var savedEmail: String?
+//        @AppStorage(Storage.Key.signUpEmail.rawValue) var savedEmail: String?
         
         // MARK: - Sign Up Error Model
         
@@ -104,7 +104,7 @@ extension SignUpView {
             guard nameEmailValidity.isValid && passwordConfirmPasswordErrorValidity.isValid else { return }
             
             showProgressView = true
-            APIService().signUp(name: name, email: email, password: password, passwordConfirm: confirmPassword) { [unowned self] result in
+            AuthenticationAPIService().signUp(name: name, email: email, password: password, passwordConfirm: confirmPassword) { [unowned self] result in
                 DispatchQueue.main.async {
                     self.showProgressView = false
                 }
@@ -113,7 +113,7 @@ extension SignUpView {
                     self.showSignUpAlert(message: message, alertType: .success)
                     DispatchQueue.main.async {
                         // Saving email to storage
-                        self.savedEmail = self.email
+                        Storage.signUpEmail = self.email
                         // Navigating to Verification
                         self.navigateToVerification = true
                     }

@@ -156,6 +156,7 @@ extension SignUpView {
                     .foregroundColor(signupViewModel.nameEmailValidity.isValid ? Color.clear : Color(UIColor.systemRed))
             )
             .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .name || focusField == .email) ? 3 : 0)
+            .disabled(signupViewModel.showProgressView)
             
             if !signupViewModel.nameEmailValidity.isValid {
                 Text(signupViewModel.nameEmailValidity.error.message)
@@ -205,6 +206,7 @@ extension SignUpView {
                     .foregroundColor(signupViewModel.passwordConfirmPasswordErrorValidity.isValid ? Color.clear : Color(UIColor.systemRed))
             )
             .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .password || focusField == .confirmPassword) ? 3 : 0)
+            .disabled(signupViewModel.showProgressView)
             
             if !signupViewModel.passwordConfirmPasswordErrorValidity.isValid {
                 Text(signupViewModel.passwordConfirmPasswordErrorValidity.error.message)

@@ -132,6 +132,7 @@ extension LoginView {
                     .foregroundColor(loginViewModel.emailPasswordValidity.isValid ? Color.clear : Color(UIColor.systemRed))
             )
             .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == nil) ? 0 : 3)
+            .disabled(loginViewModel.showProgressView)
             
             // If the user is invalid then invalid message is shown.
             if !loginViewModel.emailPasswordValidity.isValid {

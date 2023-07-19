@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension APIService {
+extension AuthenticationAPIService {
     /// Login Errors
     enum LoginError: Error {
         case noInternetConnection

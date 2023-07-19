@@ -33,6 +33,7 @@ struct SignUpVerifyOTPView: View {
         }
         .padding(32)
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(signUpVerifyOtpViewModel.isVerifying)
         .toast(isPresenting: $signUpVerifyOtpViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {
             return OromAlert.getAlertToast(with: signUpVerifyOtpViewModel.alert.message, signUpVerifyOtpViewModel.alert.alertType)
         }
@@ -76,11 +77,12 @@ extension SignUpVerifyOTPView {
                 .focused($focusField, equals: .otp)
                 .onSubmit {
                     signUpVerifyOtpViewModel.verifyOtp { success in
-                        authenticationViewModel.isLoggedIn = success
+                        authenticationViewModel.updateLoggedInStatus(success)
                     }
                     focusField = nil
                 }
                 .shadow(color: Color(oromColor: .shadowColor), radius: (focusField == .otp) ? 3 : 0)
+                .disabled(signUpVerifyOtpViewModel.isVerifying)
             
             if !signUpVerifyOtpViewModel.otpValidity.isValid {
                 HStack(alignment: .center) {

@@ -21,7 +21,7 @@ extension UpdatePasswordView {
         
         @Published var alert: OromAlert = OromAlert()
         
-        @AppStorage(StorageKey.forgotPasswordEmail.rawValue) var email: String?
+//        @AppStorage(Storage.Key.forgotPasswordEmail.rawValue) var email: String?
         
         enum ErrorMessage: String {
             case error = "Error"
@@ -72,9 +72,9 @@ extension UpdatePasswordView {
         func updatePassword(completion: @escaping(Bool) -> Void) {
             isPasswordUpdating = true
             
-            guard let email = email else { return }
+            guard let email = Storage.forgotPasswordEmail else { return }
             
-            APIService().resetPassword(email: email, password: password, passwordConfirm: confirmPassword, otp: otp) { [unowned self] result in
+            AuthenticationAPIService().resetPassword(email: email, password: password, passwordConfirm: confirmPassword, otp: otp) { [unowned self] result in
                 DispatchQueue.main.async {
                     self.isPasswordUpdating = false
                     

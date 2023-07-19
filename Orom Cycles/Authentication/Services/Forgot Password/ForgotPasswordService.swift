@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension APIService {
+extension AuthenticationAPIService {
     
     /// Forgot Password Error type.
     /// Contains errors related to Forgot Password

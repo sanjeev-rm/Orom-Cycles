@@ -15,7 +15,7 @@ struct Orom_CyclesApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if authenticationViewModel.isLoggedIn {
+            if authenticationViewModel.isLoggedIn ?? false {
                 DashboardView()
                     .environmentObject(dashboardViewModel)
             }

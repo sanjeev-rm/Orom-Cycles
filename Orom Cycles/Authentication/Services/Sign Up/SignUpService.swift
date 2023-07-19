@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension APIService {
+extension AuthenticationAPIService {
     
     /// SignUp Error type.
     /// Contains errors related to SignUp

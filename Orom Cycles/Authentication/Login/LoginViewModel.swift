@@ -11,6 +11,7 @@ import SwiftUI
 extension LoginView {
     
     @MainActor class ViewModel: ObservableObject {
+        
         @Published var email: String = ""
         @Published var password: String = ""
         
@@ -69,14 +70,15 @@ extension LoginView {
             guard emailPasswordValidity.isValid else { return }
             
             showProgressView = true
-            APIService().login(email: email, password: password) { [unowned self] result in
+            AuthenticationAPIService().login(email: email, password: password) { [unowned self] result in
                 DispatchQueue.main.async {
                     self.showProgressView = false
                 }
                 switch result {
                 case .success(let token):
-                    print(token)
                     // Save the token in user defaults.
+                    print(token)
+                    Storage.jsonWebToken = token
                     completion(true)
                 case .failure(let loginError):
                     switch loginError {
