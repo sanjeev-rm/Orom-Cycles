@@ -10,12 +10,10 @@ import SwiftUI
 
 class AuthenticationViewModel: ObservableObject {
     
+    /// Variable responsible to decide whether the user is logged in or not
     @AppStorage(Storage.Key.isLoggedIn.rawValue) var isLoggedIn: Bool?
     
     // MARK: Properties
-    
-    /// Variable responsible to decide whether the user is logged in or not
-//    @Published var isLoggedIn: Bool = false
     
     /// Variable responsible for showing the Onboarding Screen
     @Published var showOnboardingView: Bool = true
@@ -37,7 +35,7 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     func updateLoggedInStatus(_ status: Bool) {
-        withAnimation {
+        withAnimation(.easeInOut) {
             DispatchQueue.main.async {
                 self.isLoggedIn = status
             }

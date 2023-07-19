@@ -18,6 +18,7 @@ struct Orom_CyclesApp: App {
             if authenticationViewModel.isLoggedIn ?? false {
                 DashboardView()
                     .environmentObject(dashboardViewModel)
+                    .environmentObject(authenticationViewModel)
             }
             else {
                 AuthenticationView()
