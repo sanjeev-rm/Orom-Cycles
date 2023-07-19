@@ -71,13 +71,10 @@ extension DashboardAPIService {
         DispatchQueue.global(qos: .background).async {
             URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 
-                print("\n\n***********ONE***********\n\n")
                 guard let data = data, error == nil else {
                     completion(.failure(.noInternetConnection))
                     return
                 }
-                
-                print("\n\n***********TWO***********\n\n")
                 
                 guard let httpUrlResponse = response as? HTTPURLResponse,
                       httpUrlResponse.statusCode == 200 else {
@@ -85,14 +82,10 @@ extension DashboardAPIService {
                     return
                 }
                 
-                print("\n\n***********THREE***********\n\n")
-                
                 guard let mapResponse = try? JSONDecoder().decode(MapResponseBody.self, from: data) else {
                     completion(.failure(.custom(errorMessage: "Unable to decode Map Response")))
                     return
                 }
-                
-                print("\n\n***********FOUR***********\n\n")
                 
                 completion(.success(mapResponse.cycles))
             }.resume()
