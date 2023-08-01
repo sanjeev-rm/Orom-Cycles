@@ -14,6 +14,7 @@ struct WalletView: View {
     var body: some View {
         VStack {
             HStack {
+                Spacer()
                 Button {
                     // Dissmiss view
                     dashboardViewModel.toggleShowWallet()
@@ -21,7 +22,7 @@ struct WalletView: View {
                     Image(systemName: "xmark")
                 }
                 .padding()
-                Spacer()
+                .padding(.top, 16)
             }
             
             Spacer()

@@ -14,6 +14,7 @@ struct SettingsView: View {
     var body: some View {
         VStack {
             HStack {
+                Spacer()
                 Button {
                     // Dissmiss view
                     dashboardViewModel.toggleShowSettings()
@@ -21,7 +22,7 @@ struct SettingsView: View {
                     Image(systemName: "xmark")
                 }
                 .padding()
-                Spacer()
+                .padding(.top, 16)
             }
             
             Spacer()

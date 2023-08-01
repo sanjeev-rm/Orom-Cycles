@@ -34,6 +34,7 @@ extension ProfileView {
     
     private var closeButton: some View {
         HStack {
+            Spacer()
             Button {
                 // Dissmiss view
                 dashboardViewModel.toggleShowProfile()
@@ -41,7 +42,7 @@ extension ProfileView {
                 Image(systemName: "xmark")
             }
             .padding()
-            Spacer()
+            .padding(.top, 16)
         }
     }
     

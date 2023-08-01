@@ -400,10 +400,10 @@
 		C7ED52552A36692A00F88DC3 /* Orom Cycles */ = {
 			isa = PBXGroup;
 			children = (
-				C7C7C2222A59054A00DE2185 /* Launch Screen */,
 				C738E6242A5511AA00351206 /* Orom-Cycles-Info.plist */,
 				C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */,
 				C7ED52582A36692A00F88DC3 /* ContentView.swift */,
+				C7C7C2222A59054A00DE2185 /* Launch Screen */,
 				C7C7C2252A591C3100DE2185 /* Utilities */,
 				C72A26EC2A52B9620013DB02 /* Models */,
 				C78567642A67AC2800A2B355 /* View Models */,

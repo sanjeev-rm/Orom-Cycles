@@ -23,7 +23,8 @@ struct ScannerView: View {
                     Image(systemName: "xmark")
                 }
                 .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.top, 16)
+                .frame(maxWidth: .infinity, alignment: .trailing)
                 
                 VStack(spacing: 8) {
                     Text("Find a cycle and scan the QR")
