@@ -6,53 +6,37 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct DashboardView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     
+    @StateObject var tripViewModel: TripViewModel = TripViewModel()
+    
     var body: some View {
-        MapView()
-            .fullScreenCover(isPresented: $dashboardViewModel.showScanner) {
-                ScannerView()
+        DashboardBaseView()
+            .disabled(dashboardViewModel.showDashboardProgress)
+            .toast(isPresenting: $dashboardViewModel.showDashboardProgress, duration: 16, tapToDismiss: false) {
+                OromAlert.getAlertToast(.loading, displayMode: .alert)
             }
-            .fullScreenCover(isPresented: $dashboardViewModel.showProfile) {
-                ProfileView()
-            }
-            .fullScreenCover(isPresented: $dashboardViewModel.showWallet) {
-                WalletView()
-            }
-            .fullScreenCover(isPresented: $dashboardViewModel.showSettings) {
-                SettingsView()
-            }
-            .sheet(isPresented: $dashboardViewModel.showStartRide) {
-                if #available(iOS 16.0, *) {
-                    StartRideView()
-                        .presentationDetents([.medium, .large])
-                        .interactiveDismissDisabled()
-                } else {
-                    StartRideView()
-                        .interactiveDismissDisabled()
-                }
-            }
-            .sheet(isPresented: $dashboardViewModel.showRiding) {
-                if #available(iOS 16.0, *) {
-                    RidingView()
-                        .presentationDetents([.medium, .large])
-                        .interactiveDismissDisabled()
-                } else {
-                    RidingView()
-                        .interactiveDismissDisabled()
-                }
-            }
-            .sheet(isPresented: $dashboardViewModel.showRideCompleted) {
-                if #available(iOS 16.0, *) {
-                    CompletedRideView()
-                        .presentationDetents([.medium, .large])
-                        .interactiveDismissDisabled()
-                } else {
-                    CompletedRideView()
-                        .interactiveDismissDisabled()
+            .onAppear {
+                dashboardViewModel.showDashboardProgress = true
+                DashboardAPIService().getActiveBooking { result in
+                    DispatchQueue.main.async {
+                        dashboardViewModel.showDashboardProgress = false
+                    }
+                    switch result {
+                    case .success(_):
+                        dashboardViewModel.toggleShowRiding()
+                    case .failure(let error):
+                        switch error {
+                        case .noInternetConnection:
+                            print(error.localizedDescription)
+                        case .custom(let message):
+                            print(message)
+                        }
+                    }
                 }
             }
     }
