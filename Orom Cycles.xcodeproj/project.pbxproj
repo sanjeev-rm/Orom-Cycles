@@ -50,6 +50,10 @@
 		C7E76B4C2A79F65100FE6CA2 /* TripViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E76B4B2A79F65100FE6CA2 /* TripViewModel.swift */; };
 		C7E76B7E2A7A4AAF00FE6CA2 /* TripService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E76B7D2A7A4AAF00FE6CA2 /* TripService.swift */; };
 		C7E76B802A7B221000FE6CA2 /* DashboardBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E76B7F2A7B221000FE6CA2 /* DashboardBaseView.swift */; };
+		C7E76B852A7BF51500FE6CA2 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E76B842A7BF51500FE6CA2 /* ProfileService.swift */; };
+		C7E76B872A7BF8DA00FE6CA2 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E76B862A7BF8DA00FE6CA2 /* ProfileViewModel.swift */; };
+		C7E76B892A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E76B882A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift */; };
+		C7E76B8B2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E76B8A2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift */; };
 		C7EA523F2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EA523E2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift */; };
 		C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */; };
 		C7ED52592A36692A00F88DC3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7ED52582A36692A00F88DC3 /* ContentView.swift */; };
@@ -103,6 +107,10 @@
 		C7E76B4B2A79F65100FE6CA2 /* TripViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripViewModel.swift; sourceTree = "<group>"; };
 		C7E76B7D2A7A4AAF00FE6CA2 /* TripService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripService.swift; sourceTree = "<group>"; };
 		C7E76B7F2A7B221000FE6CA2 /* DashboardBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardBaseView.swift; sourceTree = "<group>"; };
+		C7E76B842A7BF51500FE6CA2 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		C7E76B862A7BF8DA00FE6CA2 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		C7E76B882A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdateNameView.swift; sourceTree = "<group>"; };
+		C7E76B8A2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdatePasswordView.swift; sourceTree = "<group>"; };
 		C7EA523E2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVerifyOTPViewModel.swift; sourceTree = "<group>"; };
 		C7ED52532A36692A00F88DC3 /* Orom Cycles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Orom Cycles.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orom_CyclesApp.swift; sourceTree = "<group>"; };
@@ -236,6 +244,7 @@
 				C785675F2A66F94100A2B355 /* Dashboard API Service.swift */,
 				C78567612A66FBC400A2B355 /* Map */,
 				C7E76B7C2A7A4A9800FE6CA2 /* Trip */,
+				C7E76B832A7BF4F900FE6CA2 /* Profile */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -342,6 +351,9 @@
 			isa = PBXGroup;
 			children = (
 				C7D39C022A6180C700903F57 /* ProfileView.swift */,
+				C7E76B882A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift */,
+				C7E76B8A2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift */,
+				C7E76B862A7BF8DA00FE6CA2 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -387,6 +399,14 @@
 				C7E76B7D2A7A4AAF00FE6CA2 /* TripService.swift */,
 			);
 			path = Trip;
+			sourceTree = "<group>";
+		};
+		C7E76B832A7BF4F900FE6CA2 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C7E76B842A7BF51500FE6CA2 /* ProfileService.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		C7EA52402A3F29B0000870DD /* Verify OTP */ = {
@@ -542,6 +562,7 @@
 				C7EA523F2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift in Sources */,
 				C79B75292A5BBD890047473A /* OromAlert.swift in Sources */,
 				C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */,
+				C7E76B892A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift in Sources */,
 				C7C7C2272A591C4A00DE2185 /* OromColor.swift in Sources */,
 				C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */,
 				C739FC212A5611D300290236 /* SignUpVerifyService.swift in Sources */,
@@ -557,6 +578,8 @@
 				C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */,
 				C770D4442A38C701002406CB /* SignUpView.swift in Sources */,
 				C7DEFD8F2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift in Sources */,
+				C7E76B872A7BF8DA00FE6CA2 /* ProfileViewModel.swift in Sources */,
+				C7E76B8B2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift in Sources */,
 				C739FC1F2A56115500290236 /* SignUpService.swift in Sources */,
 				C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */,
 				C7A2A5642A3CDD2C00756EFA /* LoginViewModel.swift in Sources */,
@@ -564,6 +587,7 @@
 				C7D39C032A6180C700903F57 /* ProfileView.swift in Sources */,
 				C76990462A573A4D00DF8116 /* ResetPasswordService.swift in Sources */,
 				C7344CF02A3FA4A100E9B08E /* AuthenticationAPIService.swift in Sources */,
+				C7E76B852A7BF51500FE6CA2 /* ProfileService.swift in Sources */,
 				C7A2A5692A3D9C3600756EFA /* AuthenticationView.swift in Sources */,
 				C7ED52662A36746E00F88DC3 /* OnboardingStep.swift in Sources */,
 				C7D39C052A6180F500903F57 /* WalletView.swift in Sources */,

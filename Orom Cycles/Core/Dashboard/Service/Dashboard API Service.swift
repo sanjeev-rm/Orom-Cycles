@@ -34,4 +34,7 @@ class DashboardAPIService {
     static func get_END_RIDE_URL(bookingId: String) -> String {
         return END_RIDE_URL + bookingId
     }
+    
+    /// The API URL to get the user info
+    static var USER_INFO_URL = "https://geoapi-orom-cycles.onrender.com/api/v1/users/me"
 }

@@ -12,18 +12,43 @@ struct ProfileView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    @StateObject var profileViewModel = ProfileViewModel()
+    
     var body: some View {
-        VStack {
-            closeButton
+        VStack(alignment: .leading, spacing: 32) {
             
-            Text("Profile")
-                .font(.system(size: 32, weight: .ultraLight, design: .monospaced))
-                .foregroundColor(.accentColor)
+            VStack(alignment: .leading) {
+                closeButton
+                
+                title
+                    .listRowSeparator(.hidden)
+            }
+            
+            VStack(alignment: .leading, spacing: 16) {
+                name
+                
+                Divider()
+                
+                email
+            }
+            .padding()
+            .background(Color(uiColor: .secondarySystemBackground))
+            .cornerRadius(16)
+            
+            updatePasswordButton
             
             logoutButton
-                .padding(.top, 16)
             
             Spacer()
+        }
+        .padding(24)
+        .sheet(isPresented: $profileViewModel.showUpdateNameSheet) {
+            ProfileUpdateNameView()
+                .environmentObject(profileViewModel)
+        }
+        .sheet(isPresented: $profileViewModel.showUpdatePasswordSheet) {
+            ProfileUpdatePasswordView()
+                .environmentObject(profileViewModel)
         }
     }
 }
@@ -41,29 +66,77 @@ extension ProfileView {
             } label: {
                 Image(systemName: "xmark")
             }
+        }
+    }
+    
+    private var title: some View {
+        Text("Profile")
+            .font(.largeTitle)
+            .fontWeight(.bold)
+    }
+    
+    private var name: some View {
+        HStack {
+            Text("Name")
+                .font(.headline)
+            Spacer()
+            Text(profileViewModel.name)
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .foregroundColor(.secondary)
+                .onTapGesture {
+                    profileViewModel.showUpdateNameSheet = true
+                }
+        }
+    }
+    
+    private var email: some View {
+        HStack {
+            Text("Email")
+                .font(.headline)
+            Spacer()
+            Text(profileViewModel.email)
+                .font(.subheadline)
+                .fontWeight(.medium)
+                .foregroundColor(.secondary)
+        }
+    }
+    
+    private var updatePasswordButton: some View {
+        Button {
+            // Show Update Password Sheet
+            profileViewModel.showUpdatePasswordSheet = true
+        } label: {
+            HStack {
+                Image(systemName: "lock")
+                Text("Update Password")
+                    .fontWeight(.semibold)
+                
+                Spacer()
+            }
             .padding()
-            .padding(.top, 16)
+            .background(Color(uiColor: .secondarySystemBackground))
+            .cornerRadius(16)
         }
     }
     
     private var logoutButton: some View {
-        HStack {
-            Spacer()
-            
-            Button {
-                // Log out
-                dashboardViewModel.toggleShowProfile()
-                authenticationViewModel.updateLoggedInStatus(false)
-            } label: {
+        Button {
+            // Log out
+            dashboardViewModel.toggleShowProfile()
+            authenticationViewModel.updateLoggedInStatus(false)
+        } label: {
+            HStack {
+                Image(systemName: "rectangle.portrait.and.arrow.right")
+                    .foregroundColor(Color(uiColor: .systemRed))
                 Text("Log Out")
-                    .font(.system(size: 17, weight: .bold, design: .default))
-                    .foregroundColor(Color.white)
-                    .padding(8)
-                    .background(Color(.systemRed))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .fontWeight(.semibold)
+                
+                Spacer()
             }
-            
-            Spacer()
+            .padding()
+            .background(Color(uiColor: .secondarySystemBackground))
+            .cornerRadius(16)
         }
     }
 }
