@@ -40,12 +40,6 @@ struct SignUpVerifyOTPView: View {
     }
 }
 
-struct VerifyOTPView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpVerifyOTPView()
-    }
-}
-
 
 
 // MARK: - View Components
@@ -139,5 +133,15 @@ extension SignUpVerifyOTPView {
             }
             Spacer()
         }
+    }
+}
+
+
+
+// MARK: - Preview
+struct VerifyOTPView_Previews: PreviewProvider {
+    static var previews: some View {
+        SignUpVerifyOTPView()
+            .environmentObject(AuthenticationViewModel())
     }
 }

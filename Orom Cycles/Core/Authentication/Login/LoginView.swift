@@ -68,12 +68,6 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
-
 
 
 // MARK: - View Components
@@ -206,5 +200,15 @@ extension LoginView {
             Spacer()
         }
         .disabled(loginViewModel.showProgressView)
+    }
+}
+
+
+
+// MARK: - Preview
+struct LoginView_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginView()
+            .environmentObject(AuthenticationViewModel())
     }
 }

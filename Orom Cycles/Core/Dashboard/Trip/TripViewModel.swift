@@ -10,7 +10,7 @@ import SwiftUI
 
 final class TripViewModel:ObservableObject {
     
-    @Published var cycleName: String = ""
+    @Published var cycleName: String = "Cycle Default"
     @Published var cycleId: String = ""
     @Published var distance: Double = 0.0
     @Published var time: Double = 0.0

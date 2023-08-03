@@ -25,8 +25,6 @@ struct WalletView: View {
                 .padding(.top, 16)
             }
             
-            Spacer()
-            
             Text("Wallet")
                 .font(.system(size: 32, weight: .ultraLight, design: .monospaced))
                 .foregroundColor(.accentColor)

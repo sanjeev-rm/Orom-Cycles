@@ -77,5 +77,7 @@ struct ScannerView: View {
 struct ScannerView_Previews: PreviewProvider {
     static var previews: some View {
         ScannerView()
+            .environmentObject(DashboardViewModel())
+            .environmentObject(TripViewModel())
     }
 }

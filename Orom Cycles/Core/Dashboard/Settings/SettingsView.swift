@@ -25,8 +25,6 @@ struct SettingsView: View {
                 .padding(.top, 16)
             }
             
-            Spacer()
-            
             Text("Settings")
                 .font(.system(size: 32, weight: .ultraLight, design: .monospaced))
                 .foregroundColor(.accentColor)

@@ -46,12 +46,6 @@ struct EmailAddressView: View {
     }
 }
 
-struct EmailAddressView_Previews: PreviewProvider {
-    static var previews: some View {
-        EmailAddressView()
-    }
-}
-
 
 
 // MARK: - View Components
@@ -174,5 +168,15 @@ extension EmailAddressView {
             }
             .disabled(emailAddressViewModel.showProgressView)
         }
+    }
+}
+
+
+
+// MARK: - Preview
+struct EmailAddressView_Previews: PreviewProvider {
+    static var previews: some View {
+        EmailAddressView()
+            .environmentObject(AuthenticationViewModel())
     }
 }

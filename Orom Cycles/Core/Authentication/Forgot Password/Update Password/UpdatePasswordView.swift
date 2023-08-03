@@ -48,12 +48,6 @@ struct UpdatePasswordView: View {
     }
 }
 
-struct UpdatePasswordView_Previews: PreviewProvider {
-    static var previews: some View {
-        UpdatePasswordView()
-    }
-}
-
 
 
 // MARK: - View Components
@@ -186,5 +180,15 @@ extension UpdatePasswordView {
         }
         .buttonStyle(.borderedProminent)
         .disabled(updatePasswordViewModel.isUpdateButtonDisabled() || updatePasswordViewModel.isPasswordUpdating)
+    }
+}
+
+
+
+// MARK: - Preview
+struct UpdatePasswordView_Previews: PreviewProvider {
+    static var previews: some View {
+        UpdatePasswordView()
+            .environmentObject(AuthenticationViewModel())
     }
 }

@@ -55,5 +55,7 @@ struct CompletedRideView: View {
 struct CompletedRideView_Previews: PreviewProvider {
     static var previews: some View {
         CompletedRideView()
+            .environmentObject(DashboardViewModel())
+            .environmentObject(TripViewModel())
     }
 }

@@ -73,13 +73,6 @@ struct SignUpView: View {
         }
     }
 }
-    
-
-struct SignUpView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignUpView()
-    }
-}
 
 
 
@@ -267,5 +260,15 @@ extension SignUpView {
             Spacer()
         }
         .font(.system(size: 14))
+    }
+}
+
+
+
+// MARK: - Previews
+struct SignUpView_Previews: PreviewProvider {
+    static var previews: some View {
+        SignUpView()
+            .environmentObject(AuthenticationViewModel())
     }
 }

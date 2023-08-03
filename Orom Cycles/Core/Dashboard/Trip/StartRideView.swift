@@ -77,5 +77,7 @@ struct StartRideView: View {
 struct StartRideView_Previews: PreviewProvider {
     static var previews: some View {
         StartRideView()
+            .environmentObject(DashboardViewModel())
+            .environmentObject(TripViewModel())
     }
 }
