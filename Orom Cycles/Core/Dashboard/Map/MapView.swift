@@ -26,7 +26,7 @@ struct MapView: View {
                 menu
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toast(isPresenting: $viewModel.alert.showAlert, duration: 8) {
+            .toast(isPresenting: $viewModel.alert.showAlert, duration: 32) {
                 OromAlert.getAlertToast(with: viewModel.alert.message, viewModel.alert.alertType, displayMode: .hud)
             }
         }
@@ -55,7 +55,7 @@ extension MapView {
                 .font(.system(size: 44))
                 .padding()
                 .background(.ultraThickMaterial)
-                .cornerRadius(32)
+                .cornerRadius(24)
                 .padding(16)
                 .shadow(radius: 16)
         }

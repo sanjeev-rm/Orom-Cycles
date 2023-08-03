@@ -19,6 +19,8 @@ final class DashboardViewModel: ObservableObject {
     @Published var showRiding: Bool = false
     @Published var showRideCompleted: Bool = false
     
+    @Published var showDashboardProgress: Bool = true
+    
     func toggleShowScanner() {
         withAnimation(.easeInOut) {
             showScanner = !showScanner
@@ -45,7 +47,7 @@ final class DashboardViewModel: ObservableObject {
     
     func toggleShowStartRide() {
         withAnimation(.easeInOut) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.showStartRide = !self.showStartRide
             }
         }
@@ -53,7 +55,7 @@ final class DashboardViewModel: ObservableObject {
     
     func toggleShowRiding() {
         withAnimation(.easeInOut) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.showRiding = !self.showRiding
             }
         }
@@ -61,7 +63,7 @@ final class DashboardViewModel: ObservableObject {
     
     func toggleShowRideCompleted() {
         withAnimation(.easeInOut) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.showRideCompleted = !self.showRideCompleted
             }
         }

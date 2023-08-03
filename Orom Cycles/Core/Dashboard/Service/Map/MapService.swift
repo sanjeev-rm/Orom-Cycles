@@ -38,13 +38,23 @@ extension DashboardAPIService {
     }
     
     struct Cycle: Codable {
-        let _id: String
+        let cycleNumber: String
         let location: Location
         let createdAt: String//
         let available: Bool
         let name: String
         let slug: String
         let __v: Int
+        
+        enum CodingKeys: String, CodingKey {
+            case cycleNumber = "_id"
+            case location
+            case createdAt
+            case available
+            case name
+            case slug
+            case __v
+        }
     }
     
     struct Location: Codable {
@@ -56,7 +66,7 @@ extension DashboardAPIService {
     
     func getCycles(radius: Int, latitude: Double, longitude: Double, completion: @escaping (Result<Cycles, MapError>) -> Void) {
         
-        let urlString = CYCLES_NEAR_ME_URL + "\(radius)/center/\(latitude),\(longitude)"
+        let urlString = DashboardAPIService.get_CYCLES_NEAR_ME_URL(radius: radius, latitude: latitude, longitude: longitude)
         
         guard let url = URL(string: urlString) else {
             completion(.failure(.custom(errorMessage: "Invalid Cycles URL")))

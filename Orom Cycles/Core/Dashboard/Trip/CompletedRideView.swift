@@ -10,29 +10,45 @@ import SwiftUI
 struct CompletedRideView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
+    @EnvironmentObject var tripViewModel: TripViewModel
     
     var body: some View {
-        VStack(spacing: 32) {
-            Text("Completed Ride!")
-                .font(.system(size: 32, weight: .bold, design: .rounded))
-                .foregroundColor(.primary.opacity(0.7))
+        VStack(alignment: .leading, spacing: 32) {
+            
+            Text("Ride Complete!")
+                .foregroundColor(.primary.opacity(0.8))
+                .font(.system(size: 44, weight: .bold))
             
             HStack(spacing: 32) {
-                Text("₹ 17")
+                Text("₹ " + "\(tripViewModel.price)")
+                    .foregroundColor(.primary.opacity(0.7))
                     .font(.system(size: 44, weight: .bold))
+                Spacer()
                 Image(systemName: "checkmark.circle")
                     .foregroundColor(Color(.systemGreen))
                     .font(.system(size: 44))
             }
+            
+            Text("Amount has been deducted from your wallet")
+                .font(.system(size: 16, weight: .light))
+                .foregroundColor(.secondary)
+            
+            Spacer()
             
             Button {
                 // Dismiss Completed Ride
                 dashboardViewModel.toggleShowRideCompleted()
             } label: {
                 Text("Done")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.accentColor)
+                    .cornerRadius(16)
             }
-            .buttonStyle(.borderedProminent)
         }
+        .padding(.top, 44)
+        .padding()
     }
 }
 

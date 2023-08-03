@@ -52,6 +52,7 @@ extension ProfileView {
             
             Button {
                 // Log out
+                dashboardViewModel.toggleShowProfile()
                 authenticationViewModel.updateLoggedInStatus(false)
             } label: {
                 Text("Log Out")

@@ -10,45 +10,68 @@ import SwiftUI
 struct RidingView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
+    @EnvironmentObject var tripViewModel: TripViewModel
     
     var body: some View {
-        VStack(spacing: 32) {
-            VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 32) {
+            
+            Text("Trip Details")
+                .foregroundColor(.primary.opacity(0.8))
+                .font(.system(size: 44, weight: .bold))
+            
+            List {
                 HStack {
-                    Text("Dist : ")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
-                    Text("0.5 km")
+                    Text("Dist (Km)")
+                        .foregroundColor(.primary.opacity(0.7))
+                        .font(.system(size: 22, weight: .semibold))
+                    Spacer()
+                    Text("\(tripViewModel.distance)")
                         .font(.system(size: 16, weight: .bold, design: .monospaced))
-                        .foregroundColor(.primary.opacity(0.6))
+                        .foregroundColor(.secondary)
                 }
                 HStack {
-                    Text("Time : ")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
-                    Text("\(2) min \(15) sec")
+                    Text("Time (min)")
+                        .foregroundColor(.primary.opacity(0.7))
+                        .font(.system(size: 22, weight: .semibold))
+                    Spacer()
+                    Text("\(tripViewModel.time)")
                         .font(.system(size: 16, weight: .bold, design: .monospaced))
-                        .foregroundColor(.primary.opacity(0.6))
+                        .foregroundColor(.secondary)
                 }
                 HStack {
-                    Text("Price : ")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
-                    Text("₹ 7")
+                    Text("Price (₹)")
+                        .foregroundColor(.primary.opacity(0.7))
+                        .font(.system(size: 22, weight: .semibold))
+                    Spacer()
+                    Text("\(tripViewModel.price)")
                         .font(.system(size: 16, weight: .bold, design: .monospaced))
-                        .foregroundColor(.primary.opacity(0.6))
+                        .foregroundColor(.secondary)
                 }
             }
+            .listStyle(.plain)
             
             Button {
                 // End Ride
-                
-                // Dismiss Riding View
-                dashboardViewModel.toggleShowRiding()
-                // Show Ride Completed View
-                dashboardViewModel.toggleShowRideCompleted()
+                tripViewModel.endRide { success in
+                    if success {
+                        // Dismiss Riding View
+                        dashboardViewModel.toggleShowRiding()
+                        // Show Ride Completed View
+                        dashboardViewModel.toggleShowRideCompleted()
+                    }
+                }
             } label: {
-                Text("End Ride")
+                Text(tripViewModel.ridingViewShowProgress ? "Final calculations..." : "End Ride")
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(Color.accentColor)
+                    .cornerRadius(16)
             }
-            .buttonStyle(.borderedProminent)
+            .disabled(tripViewModel.ridingViewShowProgress)
         }
+        .padding(.top, 44)
+        .padding()
     }
 }
 
