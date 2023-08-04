@@ -163,7 +163,7 @@ extension SignUpView {
     private var passwordAndConfirmPasswordFields: some View {
         VStack {
             VStack(spacing: 0) {
-                SecureField("Password", text: $signupViewModel.password)
+                TapToSeeSecureField(previewText: "Password", text: $signupViewModel.password)
                     .textContentType(.password)
                     .textInputAutocapitalization(.never)
                     .padding(16)

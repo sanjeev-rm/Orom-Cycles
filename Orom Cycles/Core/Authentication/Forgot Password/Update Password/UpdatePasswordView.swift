@@ -113,7 +113,7 @@ extension UpdatePasswordView {
     private var passwordConfirmPasswordFields: some View {
         VStack(spacing: 3) {
             VStack(spacing: 0) {
-                SecureField("Password", text: $updatePasswordViewModel.password)
+                TapToSeeSecureField(previewText: "Password", text: $updatePasswordViewModel.password)
                     .textContentType(.password)
                     .textInputAutocapitalization(.never)
                     .padding(16)

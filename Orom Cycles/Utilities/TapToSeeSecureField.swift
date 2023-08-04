@@ -32,7 +32,7 @@ struct TapToSeeSecureField: View {
     }
 }
 
-struct TapToSeePasswordTextField_Previews: PreviewProvider {
+struct TapToSeeSecureField_Previews: PreviewProvider {
     static var previews: some View {
         TapToSeeSecureField(previewText: "Current Password", text: .constant("Password"))
     }

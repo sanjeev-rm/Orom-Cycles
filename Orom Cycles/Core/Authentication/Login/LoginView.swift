@@ -105,7 +105,7 @@ extension LoginView {
                 
                 Divider().padding([.leading, .trailing], 8)
                 
-                SecureField("Password", text: $loginViewModel.password)
+                TapToSeeSecureField(previewText: "Password", text: $loginViewModel.password)
                     .textContentType(.password)
                     .textInputAutocapitalization(.never)
                     .privacySensitive()

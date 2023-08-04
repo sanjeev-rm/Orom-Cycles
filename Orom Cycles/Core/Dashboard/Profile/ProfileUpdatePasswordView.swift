@@ -91,7 +91,7 @@ extension ProfileUpdatePasswordView {
     }
     
     private var currentPasswordTextField: some View {
-        SecureField("Current Password", text: $profileUpdatePasswordViewModel.currentPassword)
+        TapToSeeSecureField(previewText: "Current Password", text: $profileUpdatePasswordViewModel.currentPassword)
             .textContentType(.password)
             .focused($focusField, equals: .currentPassword)
             .submitLabel(.next)
@@ -122,7 +122,7 @@ extension ProfileUpdatePasswordView {
     
     private var newAndConfirmPasswordTextFields: some View {
         VStack(spacing: 8) {
-            SecureField("New Password", text: $profileUpdatePasswordViewModel.newPassword)
+            TapToSeeSecureField(previewText: "New Password", text: $profileUpdatePasswordViewModel.newPassword)
                 .textContentType(.newPassword)
                 .focused($focusField, equals: .newPassword)
                 .submitLabel(.next)
