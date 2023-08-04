@@ -11,6 +11,7 @@
 		C70163582A37ACD5001C119C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C70163572A37ACD5001C119C /* LoginView.swift */; };
 		C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A26ED2A52B9800013DB02 /* ValidityAndError.swift */; };
 		C7344CF02A3FA4A100E9B08E /* AuthenticationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344CEF2A3FA4A100E9B08E /* AuthenticationAPIService.swift */; };
+		C73802002A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73801FF2A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift */; };
 		C739FC1D2A5610A700290236 /* LogInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739FC1C2A5610A700290236 /* LogInService.swift */; };
 		C739FC1F2A56115500290236 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739FC1E2A56115500290236 /* SignUpService.swift */; };
 		C739FC212A5611D300290236 /* SignUpVerifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739FC202A5611D300290236 /* SignUpVerifyService.swift */; };
@@ -69,6 +70,7 @@
 		C70163572A37ACD5001C119C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		C72A26ED2A52B9800013DB02 /* ValidityAndError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidityAndError.swift; sourceTree = "<group>"; };
 		C7344CEF2A3FA4A100E9B08E /* AuthenticationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAPIService.swift; sourceTree = "<group>"; };
+		C73801FF2A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		C738E6242A5511AA00351206 /* Orom-Cycles-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Orom-Cycles-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C739FC1C2A5610A700290236 /* LogInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInService.swift; sourceTree = "<group>"; };
 		C739FC1E2A56115500290236 /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				C7E76B882A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift */,
 				C7E76B8A2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift */,
 				C7E76B862A7BF8DA00FE6CA2 /* ProfileViewModel.swift */,
+				C73801FF2A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 				C7E76B802A7B221000FE6CA2 /* DashboardBaseView.swift in Sources */,
 				C76990442A57399F00DF8116 /* ForgotPasswordService.swift in Sources */,
 				C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */,
+				C73802002A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift in Sources */,
 				C770D4442A38C701002406CB /* SignUpView.swift in Sources */,
 				C7DEFD8F2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift in Sources */,
 				C7E76B872A7BF8DA00FE6CA2 /* ProfileViewModel.swift in Sources */,

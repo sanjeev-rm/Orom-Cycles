@@ -37,4 +37,10 @@ class DashboardAPIService {
     
     /// The API URL to get the user info
     static var USER_INFO_URL = "https://geoapi-orom-cycles.onrender.com/api/v1/users/me"
+    
+    /// The API URL to update name
+    static var UPDATE_NAME_URL = "https://geoapi-orom-cycles.onrender.com/api/v1/users/updateMe"
+    
+    /// The API URL to update password
+    static var UPDATE_PASSWORD_URL = "https://geoapi-orom-cycles.onrender.com/api/v1/users/updateMyPassword"
 }

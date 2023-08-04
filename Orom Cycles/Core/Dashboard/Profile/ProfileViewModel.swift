@@ -14,12 +14,13 @@ final class ProfileViewModel: ObservableObject {
     @Published var name: String = "John Doe"
     @Published var email: String = "johndoe@appleseed.com"
     
-    @Published var showProgress: Bool = true
+    @Published var showProgress: Bool = false
     
     @Published var profileError: ValidityAndError<ProfileError> = ValidityAndError(isValid: true, error: .noInternetConnection)
     
     @Published var showUpdateNameSheet: Bool = false
     @Published var showUpdatePasswordSheet: Bool = false
+    @Published var showConfirmationForLogOut: Bool = false
     
     enum ProfileError: Error {
         case noInternetConnection
@@ -45,27 +46,55 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
+    func toggleShowConfirmationForLogOut() {
+        withAnimation(.easeInOut) {
+            showConfirmationForLogOut = !showConfirmationForLogOut
+        }
+    }
+    
     func getUserInfo() {
         showProgress = true
         
         DashboardAPIService().getUserInfo { [unowned self] result in
             DispatchQueue.main.async {
                 self.showProgress = false
-            }
-            
-            switch result {
-            case .success(let response):
-                DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
                     self.name = response.userData.info.name
                     self.email = response.userData.info.email
+                case .failure(let error):
+                    switch error {
+                    case .noInternetConnection:
+                        self.profileError.setInvalid(withError: .noInternetConnection)
+                        print(error.localizedDescription)
+                    case .custom(let message):
+                        self.profileError.setInvalid(withError: .unableToFetchUserInfo)
+                        print(message)
+                    }
                 }
-            case .failure(let error):
-                switch error {
-                case .noInternetConnection:
-                    profileError.setInvalid(withError: .noInternetConnection)
-                case .custom(let message):
-                    profileError.setInvalid(withError: .unableToFetchUserInfo)
-                    print(message)
+            }
+        }
+    }
+    
+    func updateName() {
+        showProgress = true
+        
+        DashboardAPIService().updateName(name: name) { result in
+            DispatchQueue.main.async {
+                self.showProgress = false
+                switch result {
+                case .success(let response):
+                    self.name = response.userData.info.name
+                    self.email = response.userData.info.email
+                case .failure(let error):
+                    switch error {
+                    case .noInternetConnection:
+                        self.profileError.setInvalid(withError: .noInternetConnection)
+                        print(error.localizedDescription)
+                    case .custom(let message):
+                        self.profileError.setInvalid(withError: .unableToUpdateUserInfo)
+                        print(message)
+                    }
                 }
             }
         }

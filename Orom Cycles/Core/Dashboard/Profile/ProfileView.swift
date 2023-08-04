@@ -17,23 +17,9 @@ struct ProfileView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
             
-            VStack(alignment: .leading) {
-                closeButton
-                
-                title
-                    .listRowSeparator(.hidden)
-            }
+            closeButtonAndTitle
             
-            VStack(alignment: .leading, spacing: 16) {
-                name
-                
-                Divider()
-                
-                email
-            }
-            .padding()
-            .background(Color(uiColor: .secondarySystemBackground))
-            .cornerRadius(16)
+            nameAndEmail
             
             updatePasswordButton
             
@@ -41,14 +27,42 @@ struct ProfileView: View {
             
             Spacer()
         }
+        .onAppear {
+            profileViewModel.getUserInfo()
+        }
         .padding(24)
         .sheet(isPresented: $profileViewModel.showUpdateNameSheet) {
-            ProfileUpdateNameView()
-                .environmentObject(profileViewModel)
+            if #available(iOS 16.0, *) {
+                ProfileUpdateNameView()
+                    .presentationDetents([.fraction(0.3)])
+                    .interactiveDismissDisabled()
+                    .environmentObject(profileViewModel)
+            } else {
+                ProfileUpdateNameView()
+                    .environmentObject(profileViewModel)
+                    .interactiveDismissDisabled()
+            }
         }
         .sheet(isPresented: $profileViewModel.showUpdatePasswordSheet) {
-            ProfileUpdatePasswordView()
-                .environmentObject(profileViewModel)
+            if #available(iOS 16.0, *) {
+                ProfileUpdatePasswordView()
+                    .presentationDetents([.medium])
+                    .interactiveDismissDisabled()
+                    .environmentObject(profileViewModel)
+            } else {
+                ProfileUpdatePasswordView()
+                    .environmentObject(profileViewModel)
+                    .interactiveDismissDisabled()
+            }
+        }
+        .confirmationDialog("", isPresented: $profileViewModel.showConfirmationForLogOut) {
+            Button("Log Out", role: .destructive) {
+                // Log out
+                dashboardViewModel.toggleShowProfile()
+                authenticationViewModel.updateLoggedInStatus(false)
+            }
+        } message: {
+            Text("Are you sure want to log out?")
         }
     }
 }
@@ -56,6 +70,13 @@ struct ProfileView: View {
 
 
 extension ProfileView {
+    
+    private var closeButtonAndTitle: some View {
+        VStack(alignment: .leading) {
+            closeButton
+            title
+        }
+    }
     
     private var closeButton: some View {
         HStack {
@@ -66,6 +87,7 @@ extension ProfileView {
             } label: {
                 Image(systemName: "xmark")
             }
+            .foregroundColor(.primary)
         }
     }
     
@@ -75,18 +97,33 @@ extension ProfileView {
             .fontWeight(.bold)
     }
     
+    private var nameAndEmail: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            name
+            Divider()
+            email
+        }
+        .padding()
+        .background(Color(uiColor: .secondarySystemBackground))
+        .cornerRadius(16)
+    }
+    
     private var name: some View {
         HStack {
             Text("Name")
                 .font(.headline)
             Spacer()
-            Text(profileViewModel.name)
-                .font(.subheadline)
-                .fontWeight(.medium)
-                .foregroundColor(.secondary)
-                .onTapGesture {
-                    profileViewModel.showUpdateNameSheet = true
-                }
+            if profileViewModel.showProgress {
+                ProgressView()
+            } else {
+                Text(profileViewModel.name)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(.secondary)
+                    .onTapGesture {
+                        profileViewModel.toggleShowUpdateNameSheet()
+                    }
+            }
         }
     }
     
@@ -95,20 +132,26 @@ extension ProfileView {
             Text("Email")
                 .font(.headline)
             Spacer()
-            Text(profileViewModel.email)
-                .font(.subheadline)
-                .fontWeight(.medium)
-                .foregroundColor(.secondary)
+            if profileViewModel.showProgress {
+                ProgressView()
+            } else {
+                Text(profileViewModel.email)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(.secondary)
+            }
         }
     }
     
     private var updatePasswordButton: some View {
         Button {
             // Show Update Password Sheet
-            profileViewModel.showUpdatePasswordSheet = true
+            profileViewModel.toggleShowUpdatePasswordSheet()
         } label: {
             HStack {
                 Image(systemName: "lock")
+                    .foregroundColor(.secondary)
+                    .font(.title3)
                 Text("Update Password")
                     .fontWeight(.semibold)
                 
@@ -122,9 +165,8 @@ extension ProfileView {
     
     private var logoutButton: some View {
         Button {
-            // Log out
-            dashboardViewModel.toggleShowProfile()
-            authenticationViewModel.updateLoggedInStatus(false)
+            // Show Confirmation Dialogue
+            profileViewModel.toggleShowConfirmationForLogOut()
         } label: {
             HStack {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
