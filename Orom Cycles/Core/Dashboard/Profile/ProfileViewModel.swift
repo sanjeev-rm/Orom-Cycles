@@ -22,6 +22,8 @@ final class ProfileViewModel: ObservableObject {
     @Published var showUpdatePasswordSheet: Bool = false
     @Published var showConfirmationForLogOut: Bool = false
     
+    @Published var showPasswordUpdated: Bool = false
+    
     enum ProfileError: Error {
         case noInternetConnection
         case unableToFetchUserInfo
@@ -49,6 +51,15 @@ final class ProfileViewModel: ObservableObject {
     func toggleShowConfirmationForLogOut() {
         withAnimation(.easeInOut) {
             showConfirmationForLogOut = !showConfirmationForLogOut
+        }
+    }
+    
+    func alertUserPasswordHasBeenUpdated() {
+        withAnimation(.easeInOut) {
+            showPasswordUpdated = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.showPasswordUpdated = false
+            }
         }
     }
     

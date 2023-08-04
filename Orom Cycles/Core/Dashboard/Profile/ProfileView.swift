@@ -156,6 +156,11 @@ extension ProfileView {
                     .fontWeight(.semibold)
                 
                 Spacer()
+                
+                if profileViewModel.showPasswordUpdated {
+                    Image(systemName: "checkmark")
+                        .foregroundColor(Color(.systemGreen))
+                }
             }
             .padding()
             .background(Color(uiColor: .secondarySystemBackground))

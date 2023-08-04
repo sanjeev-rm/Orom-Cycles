@@ -55,7 +55,7 @@ extension ProfileUpdateNameView {
         TextField("New Name", text: $profileViewModel.name)
             .padding()
             .frame(height: 50)
-            .background(Color(oromColor: .textFieldBackground))
+            .background(Color.secondary.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }

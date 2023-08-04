@@ -12,6 +12,7 @@
 		C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72A26ED2A52B9800013DB02 /* ValidityAndError.swift */; };
 		C7344CF02A3FA4A100E9B08E /* AuthenticationAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344CEF2A3FA4A100E9B08E /* AuthenticationAPIService.swift */; };
 		C73802002A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73801FF2A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift */; };
+		C73802022A7D46F800FC25A5 /* TapToSeePasswordTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73802012A7D46F800FC25A5 /* TapToSeePasswordTextField.swift */; };
 		C739FC1D2A5610A700290236 /* LogInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739FC1C2A5610A700290236 /* LogInService.swift */; };
 		C739FC1F2A56115500290236 /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739FC1E2A56115500290236 /* SignUpService.swift */; };
 		C739FC212A5611D300290236 /* SignUpVerifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C739FC202A5611D300290236 /* SignUpVerifyService.swift */; };
@@ -71,6 +72,7 @@
 		C72A26ED2A52B9800013DB02 /* ValidityAndError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidityAndError.swift; sourceTree = "<group>"; };
 		C7344CEF2A3FA4A100E9B08E /* AuthenticationAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAPIService.swift; sourceTree = "<group>"; };
 		C73801FF2A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUpdatePasswordViewModel.swift; sourceTree = "<group>"; };
+		C73802012A7D46F800FC25A5 /* TapToSeePasswordTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToSeePasswordTextField.swift; sourceTree = "<group>"; };
 		C738E6242A5511AA00351206 /* Orom-Cycles-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Orom-Cycles-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C739FC1C2A5610A700290236 /* LogInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInService.swift; sourceTree = "<group>"; };
 		C739FC1E2A56115500290236 /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
@@ -336,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				C7C7C2262A591C4A00DE2185 /* OromColor.swift */,
+				C73802012A7D46F800FC25A5 /* TapToSeePasswordTextField.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				C7E76B892A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift in Sources */,
 				C7C7C2272A591C4A00DE2185 /* OromColor.swift in Sources */,
 				C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */,
+				C73802022A7D46F800FC25A5 /* TapToSeePasswordTextField.swift in Sources */,
 				C739FC212A5611D300290236 /* SignUpVerifyService.swift in Sources */,
 				C7ED526C2A367A7100F88DC3 /* OnboardingProgressView.swift in Sources */,
 				C7E76B7E2A7A4AAF00FE6CA2 /* TripService.swift in Sources */,

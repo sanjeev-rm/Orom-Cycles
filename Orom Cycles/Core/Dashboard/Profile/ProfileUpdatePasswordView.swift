@@ -55,6 +55,7 @@ extension ProfileUpdatePasswordView {
                     profileUpdatePasswordViewModel.updatePassword { success in
                         if success {
                             profileViewModel.toggleShowUpdatePasswordSheet()
+                            profileViewModel.alertUserPasswordHasBeenUpdated()
                         }
                     }
                 }
@@ -99,7 +100,7 @@ extension ProfileUpdatePasswordView {
             }
             .padding()
             .frame(height: 50)
-            .background(Color(oromColor: .textFieldBackground))
+            .background(Color.secondary.opacity(0.1))
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .background(
                 RoundedRectangle(cornerRadius: 16)
@@ -147,7 +148,7 @@ extension ProfileUpdatePasswordView {
                 })
                 .padding([.horizontal, .bottom])
         }
-        .background(Color(oromColor: .textFieldBackground))
+        .background(Color.secondary.opacity(0.1))
         .cornerRadius(16)
         .background(
             RoundedRectangle(cornerRadius: 16)
