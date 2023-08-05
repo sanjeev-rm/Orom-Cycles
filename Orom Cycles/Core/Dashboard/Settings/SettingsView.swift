@@ -43,7 +43,7 @@ extension SettingsView {
             Spacer()
             Button {
                 // Dissmiss view
-                dashboardViewModel.toggleShowWallet()
+                dashboardViewModel.toggleShowSettings()
             } label: {
                 Image(systemName: "xmark")
             }
