@@ -13,6 +13,7 @@ enum OromColor: String {
     case labelPrimary = "label.primary"
     case labelSecondary = "label.secondary"
     case shadowColor = "shadow.color"
+    case brownColor = "brown.color"
 }
 
 extension Color {
