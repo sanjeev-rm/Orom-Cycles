@@ -40,6 +40,6 @@ struct WalletCardColorView: View {
 
 struct WalletCardColorView_Previews: PreviewProvider {
     static var previews: some View {
-        WalletCardColorView(walletCardGradientColor: .indigo, selected: .constant(.indigo))
+        WalletCardColorView(walletCardGradientColor: .accentColor, selected: .constant(.accentColor))
     }
 }
