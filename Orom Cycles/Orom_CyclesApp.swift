@@ -12,6 +12,7 @@ struct Orom_CyclesApp: App {
     
     @ObservedObject var authenticationViewModel = AuthenticationViewModel()
     @ObservedObject var dashboardViewModel = DashboardViewModel()
+    @ObservedObject var appViewModel = AppViewModel()
     
     var body: some Scene {
         WindowGroup {
@@ -19,10 +20,13 @@ struct Orom_CyclesApp: App {
                 DashboardView()
                     .environmentObject(dashboardViewModel)
                     .environmentObject(authenticationViewModel)
+                    .environmentObject(appViewModel)
+//                    .preferredColorScheme(appViewModel.appColorScheme)
             }
             else {
                 AuthenticationView()
                     .environmentObject(authenticationViewModel)
+//                    .preferredColorScheme(appViewModel.appColorScheme)
             }
         }
     }

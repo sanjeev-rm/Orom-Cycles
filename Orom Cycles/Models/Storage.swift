@@ -17,6 +17,7 @@ class Storage {
         case forgotPasswordEmail = "forgotPasswordEmail"
         case jwt = "jsonWebToken"
         case walletCardGradientColors = "walletCardGradientColor"
+        case appThemeString = "appThemeString"
     }
     
     /// The Email used during the process of signup

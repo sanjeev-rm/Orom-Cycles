@@ -10,20 +10,25 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
     
     var body: some View {
         VStack(spacing: 32) {
             closeButtonAndTitle
             
-            themePicker
+// Commented this out, cause this has issue when system option is selected
+//            themePicker
             
             writeAReviewButton
             
             reportABugButton
             
+            developmentTeamButton
+            
             Spacer()
         }
         .padding(24)
+//        .preferredColorScheme(appViewModel.appColorScheme)
     }
 }
 
@@ -59,20 +64,23 @@ extension SettingsView {
     
     private var themePicker: some View {
         HStack {
-            HStack {
-                Text("Theme")
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Text("Dark <>")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+            Text("Theme")
+                .font(.headline)
+            
+            Spacer()
+            
+            Picker("Pick a Theme", selection: $appViewModel.appThemeString) {
+                let themesStringArray = AppViewModel.AppTheme.allCases.map({ theme in
+                    theme.rawValue
+                })
+                ForEach(themesStringArray, id: \.self) { themeString in
+                    Text(themeString)
+                }
             }
-            .padding()
-            .background(Color(.secondarySystemBackground))
-            .cornerRadius(16)
         }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(16)
     }
     
     private var writeAReviewButton: some View {
@@ -121,10 +129,32 @@ extension SettingsView {
                 .padding(.leading, 16)
         }
     }
+    
+    private var developmentTeamButton: some View {
+        Button {
+            // Show The screen of developers
+        } label: {
+            HStack {
+                Text("Developed By")
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Image(systemName: "hammer.fill")
+                    .foregroundColor(.secondary)
+                    .font(.title3)
+            }
+            .padding()
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(16)
+        }
+    }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
+            .environmentObject(AppViewModel())
+            .environmentObject(DashboardViewModel())
     }
 }
