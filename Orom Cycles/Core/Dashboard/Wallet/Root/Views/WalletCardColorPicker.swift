@@ -22,6 +22,8 @@ struct WalletCardColorPicker: View {
                             walletViewModel.walletCardGradientColor = color
                             // Storing the chosen wallet color
                             Storage.setWalletCardGradientColor(color)
+                            // Dismiss the color picker view
+                            walletViewModel.showPickColorView = false
                         }
                     }
             }
