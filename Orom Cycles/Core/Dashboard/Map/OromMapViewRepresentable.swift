@@ -61,6 +61,20 @@ extension OromMapViewRepresentable {
             addNearbyCyclesAnnotations()
         }
         
+        func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+            print("DEBUG: Selected Annotation at coordinates : \(annotation.coordinate.latitude), \(annotation.coordinate.longitude)")
+            self.parent.mapView.removeOverlays(self.parent.mapView.overlays)
+            configurePolyline(withDestinationCoordinate: annotation.coordinate)
+        }
+        
+        func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+            let polyline = MKPolylineRenderer(overlay: overlay)
+            polyline.strokeColor = .systemBlue
+            polyline.lineWidth = 6
+            return polyline
+        }
+        
+        
         // MARK: Helpers
         
         func addNearbyCyclesAnnotations() {
@@ -95,6 +109,36 @@ extension OromMapViewRepresentable {
             DispatchQueue.main.async {
                 self.parent.mapView.addAnnotation(annotation)
                 self.parent.mapView.showAnnotations(self.parent.mapView.annotations, animated: true)
+            }
+        }
+        
+        func configurePolyline(withDestinationCoordinate coordinate: CLLocationCoordinate2D) {
+            guard let userLocationCoordinate = self.userLocationCoordinate else { return }
+            getDestinationRoute(from: userLocationCoordinate, to: coordinate) { route in
+                self.parent.mapView.addOverlay(route.polyline)
+            }
+        }
+        
+        func getDestinationRoute(from userLocation: CLLocationCoordinate2D,
+                                 to destination: CLLocationCoordinate2D,
+                                 completion: @escaping(MKRoute) -> Void) {
+            
+            let sourcePlacemark = MKPlacemark(coordinate: userLocation)
+            let destinationPlacemark = MKPlacemark(coordinate: destination)
+            
+            let request = MKDirections.Request()
+            request.source = MKMapItem(placemark: sourcePlacemark)
+            request.destination = MKMapItem(placemark: destinationPlacemark)
+            
+            let directions = MKDirections(request: request)
+            directions.calculate { response, error in
+                if let error = error {
+                    print("DEBUG: Failed to calculate directions with error - \(error.localizedDescription)")
+                    return
+                }
+                
+                guard let route = response?.routes.first else { return }
+                completion(route)
             }
         }
     }
