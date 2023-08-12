@@ -105,5 +105,6 @@ extension MapView {
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
+            .environmentObject(DashboardViewModel())
     }
 }

@@ -54,6 +54,9 @@
 		C7D39C152A61D20A00903F57 /* StartRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C142A61D20A00903F57 /* StartRideView.swift */; };
 		C7D39C172A61D64900903F57 /* RidingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C162A61D64900903F57 /* RidingView.swift */; };
 		C7D39C192A61DE3C00903F57 /* CompletedRideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D39C182A61DE3C00903F57 /* CompletedRideView.swift */; };
+		C7DAD76E2A806DC9007D891D /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DAD76D2A806DC9007D891D /* Bundle+Extension.swift */; };
+		C7DAD7702A806F83007D891D /* SupportEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DAD76F2A806F83007D891D /* SupportEmail.swift */; };
+		C7DAD7722A8072F9007D891D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DAD7712A8072F9007D891D /* SettingsViewModel.swift */; };
 		C7DEFD8F2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD8E2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift */; };
 		C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */; };
 		C7DEFD952A3B7740005F3BBE /* UpdatePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */; };
@@ -121,6 +124,9 @@
 		C7D39C142A61D20A00903F57 /* StartRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRideView.swift; sourceTree = "<group>"; };
 		C7D39C162A61D64900903F57 /* RidingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RidingView.swift; sourceTree = "<group>"; };
 		C7D39C182A61DE3C00903F57 /* CompletedRideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRideView.swift; sourceTree = "<group>"; };
+		C7DAD76D2A806DC9007D891D /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		C7DAD76F2A806F83007D891D /* SupportEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportEmail.swift; sourceTree = "<group>"; };
+		C7DAD7712A8072F9007D891D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		C7DEFD8E2A3A4CF3005F3BBE /* SignUpVerifyOTPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVerifyOTPView.swift; sourceTree = "<group>"; };
 		C7DEFD902A3B38DB005F3BBE /* EmailAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressView.swift; sourceTree = "<group>"; };
 		C7DEFD942A3B7740005F3BBE /* UpdatePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordView.swift; sourceTree = "<group>"; };
@@ -419,6 +425,7 @@
 				C77BF8842A872223002D89E6 /* OromMapViewRepresentable.swift */,
 				C77BF8862A87262A002D89E6 /* LocationManager.swift */,
 				C7D39BFD2A616F8600903F57 /* MapViewModel.swift */,
+				C77BF84A2A836865002D89E6 /* CycleAnnotationView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -456,6 +463,10 @@
 			isa = PBXGroup;
 			children = (
 				C7D39C0C2A61853000903F57 /* SettingsView.swift */,
+				C7DAD7712A8072F9007D891D /* SettingsViewModel.swift */,
+				C7DAD76A2A806D42007D891D /* Review */,
+				C7DAD76B2A806D51007D891D /* Email */,
+				C7DAD76C2A806D5C007D891D /* Developed By */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -469,6 +480,29 @@
 				C7E76B4B2A79F65100FE6CA2 /* TripViewModel.swift */,
 			);
 			path = Trip;
+			sourceTree = "<group>";
+		};
+		C7DAD76A2A806D42007D891D /* Review */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Review;
+			sourceTree = "<group>";
+		};
+		C7DAD76B2A806D51007D891D /* Email */ = {
+			isa = PBXGroup;
+			children = (
+				C7DAD76F2A806F83007D891D /* SupportEmail.swift */,
+				C7DAD76D2A806DC9007D891D /* Bundle+Extension.swift */,
+			);
+			path = Email;
+			sourceTree = "<group>";
+		};
+		C7DAD76C2A806D5C007D891D /* Developed By */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Developed By";
 			sourceTree = "<group>";
 		};
 		C7E76B7C2A7A4A9800FE6CA2 /* Trip */ = {
@@ -638,10 +672,12 @@
 				C70163582A37ACD5001C119C /* LoginView.swift in Sources */,
 				C7E76B4C2A79F65100FE6CA2 /* TripViewModel.swift in Sources */,
 				C7DEFD952A3B7740005F3BBE /* UpdatePasswordView.swift in Sources */,
+				C7DAD7702A806F83007D891D /* SupportEmail.swift in Sources */,
 				C79383C02A3E515800341CAB /* UpdatePasswordViewModel.swift in Sources */,
 				C7EA523F2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift in Sources */,
 				C738020A2A7EB6AD00FC25A5 /* WalletViewModel.swift in Sources */,
 				C79B75292A5BBD890047473A /* OromAlert.swift in Sources */,
+				C77BF84B2A836865002D89E6 /* CycleAnnotationView.swift in Sources */,
 				C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */,
 				C7E76B892A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift in Sources */,
 				C7C7C2272A591C4A00DE2185 /* OromColor.swift in Sources */,
@@ -657,6 +693,7 @@
 				C7D39BFE2A616F8600903F57 /* MapViewModel.swift in Sources */,
 				C7E76B802A7B221000FE6CA2 /* DashboardBaseView.swift in Sources */,
 				C76990442A57399F00DF8116 /* ForgotPasswordService.swift in Sources */,
+				C7DAD76E2A806DC9007D891D /* Bundle+Extension.swift in Sources */,
 				C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */,
 				C73802002A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift in Sources */,
 				C770D4442A38C701002406CB /* SignUpView.swift in Sources */,
@@ -674,6 +711,7 @@
 				C7344CF02A3FA4A100E9B08E /* AuthenticationAPIService.swift in Sources */,
 				C7E76B852A7BF51500FE6CA2 /* ProfileService.swift in Sources */,
 				C77BF8872A87262A002D89E6 /* LocationManager.swift in Sources */,
+				C7DAD7722A8072F9007D891D /* SettingsViewModel.swift in Sources */,
 				C7A2A5692A3D9C3600756EFA /* AuthenticationView.swift in Sources */,
 				C73802102A7EBBCE00FC25A5 /* CommonService.swift in Sources */,
 				C7ED52662A36746E00F88DC3 /* OnboardingStep.swift in Sources */,
