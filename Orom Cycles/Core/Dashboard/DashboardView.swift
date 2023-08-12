@@ -32,9 +32,9 @@ struct DashboardView: View {
                     case .failure(let error):
                         switch error {
                         case .noInternetConnection:
-                            print(error.localizedDescription)
+                            print("DEBUG: " + error.localizedDescription)
                         case .custom(let message):
-                            print(message)
+                            print("DEBUG: " + message)
                         }
                     }
                 }

@@ -10,7 +10,6 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
-    @EnvironmentObject var appViewModel: AppViewModel
     
     @Environment(\.openURL) var openURL
     
@@ -19,9 +18,6 @@ struct SettingsView: View {
     var body: some View {
         VStack(spacing: 32) {
             closeButtonAndTitle
-            
-// Commented this out, cause this has issue when system option is selected
-//            themePicker
             
             writeAReviewButton
             
@@ -32,7 +28,6 @@ struct SettingsView: View {
             Spacer()
         }
         .padding(24)
-//        .preferredColorScheme(appViewModel.appColorScheme)
     }
 }
 
@@ -64,27 +59,6 @@ extension SettingsView {
         Text("Settings")
             .font(.largeTitle)
             .fontWeight(.bold)
-    }
-    
-    private var themePicker: some View {
-        HStack {
-            Text("Theme")
-                .font(.headline)
-            
-            Spacer()
-            
-            Picker("Pick a Theme", selection: $appViewModel.appThemeString) {
-                let themesStringArray = AppViewModel.AppTheme.allCases.map({ theme in
-                    theme.rawValue
-                })
-                ForEach(themesStringArray, id: \.self) { themeString in
-                    Text(themeString)
-                }
-            }
-        }
-        .padding()
-        .background(Color(.secondarySystemBackground))
-        .cornerRadius(16)
     }
     
     private var writeAReviewButton: some View {
@@ -178,7 +152,6 @@ extension SettingsView {
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
-            .environmentObject(AppViewModel())
             .environmentObject(DashboardViewModel())
     }
 }

@@ -90,7 +90,7 @@ extension DashboardAPIService {
                 
                 guard let httpUrlResponse = response as? HTTPURLResponse,
                       httpUrlResponse.statusCode == 200 else {
-                    completion(.failure(.custom(message: "Invalid JWT || Some Error")))
+                    completion(.failure(.custom(message: "Invalid JWT || No Active booking")))
                     return
                 }
                 
