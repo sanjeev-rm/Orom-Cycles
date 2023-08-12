@@ -37,8 +37,12 @@ struct MapView: View {
 
 extension MapView {
     private var map: some View {
-        Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: viewModel.nearByCyclesCoordinates) { coordinate in
-            MapMarker(coordinate: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude))
+        Map(coordinateRegion: $viewModel.region,
+            interactionModes: [.all],
+            showsUserLocation: true,
+            userTrackingMode: .constant(.follow),
+            annotationItems: viewModel.nearByCyclesCoordinates) { coordinate in
+            MapPin(coordinate: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude))
         }
         .ignoresSafeArea()
         .onAppear {
@@ -110,5 +114,6 @@ extension MapView {
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
+            .environmentObject(DashboardViewModel())
     }
 }

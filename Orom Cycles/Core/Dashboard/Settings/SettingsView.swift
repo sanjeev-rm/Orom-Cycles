@@ -12,6 +12,10 @@ struct SettingsView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     
+    @Environment(\.openURL) var openURL
+    
+    @ObservedObject var settingsViewModel = SettingsViewModel()
+    
     var body: some View {
         VStack(spacing: 32) {
             closeButtonAndTitle
@@ -21,7 +25,7 @@ struct SettingsView: View {
             
             writeAReviewButton
             
-            reportABugButton
+            bugAndSuggestionButtons
             
             developmentTeamButton
             
@@ -103,30 +107,50 @@ extension SettingsView {
         }
     }
     
+    private var bugAndSuggestionButtons: some View {
+        VStack {
+            reportABugButton
+            Divider()
+            suggestionButton
+        }
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .cornerRadius(16)
+    }
+    
     private var reportABugButton: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Button {
-                // Show Email to send to support and bug as subject
-            } label: {
-                HStack {
-                    Text("Report a Bug")
-                        .fontWeight(.semibold)
-                    
-                    Spacer()
-                    
-                    Image(systemName: "ant.fill")
-                        .foregroundColor(.secondary)
-                        .font(.title3)
-                }
-                .padding()
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(16)
+        Button {
+            // Show Email to send to support
+            settingsViewModel.supportBugEmail.send(openURL: openURL)
+        } label: {
+            HStack {
+                Text("Report a Bug")
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Image(systemName: "ant.fill")
+                    .foregroundColor(.secondary)
+                    .font(.title3)
             }
-            
-            Text("Or just shake the phone thrice")
-                .font(.caption)
-                .foregroundColor(.secondary)
-                .padding(.leading, 16)
+        }
+    }
+    
+    private var suggestionButton: some View {
+        Button {
+            // Show Email to send to support
+            settingsViewModel.supportSuggestionEmail.send(openURL: openURL)
+        } label: {
+            HStack {
+                Text("Give a suggestion")
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Image(systemName: "bonjour")
+                    .foregroundColor(.secondary)
+                    .font(.title3)
+            }
         }
     }
     
