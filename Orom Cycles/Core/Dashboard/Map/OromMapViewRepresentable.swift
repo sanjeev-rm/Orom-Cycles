@@ -62,7 +62,6 @@ extension OromMapViewRepresentable {
         }
         
         func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-            print("DEBUG: Selected Annotation at coordinates : \(annotation.coordinate.latitude), \(annotation.coordinate.longitude)")
             self.parent.mapView.removeOverlays(self.parent.mapView.overlays)
             configurePolyline(withDestinationCoordinate: annotation.coordinate)
         }
@@ -119,8 +118,7 @@ extension OromMapViewRepresentable {
             }
         }
         
-        func getDestinationRoute(from userLocation: CLLocationCoordinate2D,
-                                 to destination: CLLocationCoordinate2D,
+        func getDestinationRoute(from userLocation: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D,
                                  completion: @escaping(MKRoute) -> Void) {
             
             let sourcePlacemark = MKPlacemark(coordinate: userLocation)
