@@ -37,13 +37,8 @@ struct MapView: View {
 
 extension MapView {
     private var map: some View {
-        Map(coordinateRegion: $viewModel.region, showsUserLocation: true, annotationItems: viewModel.nearByCyclesCoordinates) { coordinate in
-            MapMarker(coordinate: CLLocationCoordinate2D(latitude: coordinate.latitude, longitude: coordinate.longitude))
-        }
-        .ignoresSafeArea()
-        .onAppear {
-            viewModel.checkIfLocationServiceEnabled()
-        }
+        OromMapViewRepresentable()
+            .ignoresSafeArea()
     }
     
     private var scannerButton: some View {
