@@ -11,7 +11,10 @@ import SwiftUI
 struct Orom_CyclesApp: App {
     
     @ObservedObject var authenticationViewModel = AuthenticationViewModel()
+    
     @ObservedObject var dashboardViewModel = DashboardViewModel()
+    @StateObject var profileViewModel = ProfileViewModel()
+    @StateObject var walletViewModel = WalletViewModel()
     
     var body: some Scene {
         WindowGroup {
@@ -19,6 +22,8 @@ struct Orom_CyclesApp: App {
                 DashboardView()
                     .environmentObject(dashboardViewModel)
                     .environmentObject(authenticationViewModel)
+                    .environmentObject(profileViewModel)
+                    .environmentObject(walletViewModel)
             }
             else {
                 AuthenticationView()

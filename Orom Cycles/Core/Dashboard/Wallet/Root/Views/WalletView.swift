@@ -11,7 +11,7 @@ struct WalletView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     
-    @StateObject var walletViewModel: WalletViewModel = WalletViewModel()
+    @EnvironmentObject var walletViewModel: WalletViewModel
     
     var body: some View {
         NavigationView {

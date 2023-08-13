@@ -12,7 +12,7 @@ struct ProfileView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
-    @StateObject var profileViewModel = ProfileViewModel()
+    @EnvironmentObject var profileViewModel: ProfileViewModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 32) {
@@ -36,10 +36,8 @@ struct ProfileView: View {
                 ProfileUpdateNameView()
                     .presentationDetents([.fraction(0.3)])
                     .interactiveDismissDisabled()
-                    .environmentObject(profileViewModel)
             } else {
                 ProfileUpdateNameView()
-                    .environmentObject(profileViewModel)
                     .interactiveDismissDisabled()
             }
         }
@@ -48,10 +46,8 @@ struct ProfileView: View {
                 ProfileUpdatePasswordView()
                     .presentationDetents([.medium])
                     .interactiveDismissDisabled()
-                    .environmentObject(profileViewModel)
             } else {
                 ProfileUpdatePasswordView()
-                    .environmentObject(profileViewModel)
                     .interactiveDismissDisabled()
             }
         }

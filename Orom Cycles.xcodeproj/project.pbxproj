@@ -188,6 +188,25 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		C7071ACC2A88ADF1005D6353 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C7D39C022A6180C700903F57 /* ProfileView.swift */,
+				C7E76B882A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift */,
+				C7E76B8A2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C7071ACD2A88ADF6005D6353 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				C7E76B862A7BF8DA00FE6CA2 /* ProfileViewModel.swift */,
+				C73801FF2A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		C72A26EC2A52B9620013DB02 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,7 +444,6 @@
 				C77BF8842A872223002D89E6 /* OromMapViewRepresentable.swift */,
 				C77BF8862A87262A002D89E6 /* LocationManager.swift */,
 				C7D39BFD2A616F8600903F57 /* MapViewModel.swift */,
-				C77BF84A2A836865002D89E6 /* CycleAnnotationView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -433,11 +451,8 @@
 		C7D39BFF2A61805900903F57 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				C7D39C022A6180C700903F57 /* ProfileView.swift */,
-				C7E76B882A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift */,
-				C7E76B8A2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift */,
-				C7E76B862A7BF8DA00FE6CA2 /* ProfileViewModel.swift */,
-				C73801FF2A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift */,
+				C7071ACC2A88ADF1005D6353 /* Views */,
+				C7071ACD2A88ADF6005D6353 /* View Models */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -677,7 +692,6 @@
 				C7EA523F2A3F2855000870DD /* SignUpVerifyOTPViewModel.swift in Sources */,
 				C738020A2A7EB6AD00FC25A5 /* WalletViewModel.swift in Sources */,
 				C79B75292A5BBD890047473A /* OromAlert.swift in Sources */,
-				C77BF84B2A836865002D89E6 /* CycleAnnotationView.swift in Sources */,
 				C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */,
 				C7E76B892A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift in Sources */,
 				C7C7C2272A591C4A00DE2185 /* OromColor.swift in Sources */,
