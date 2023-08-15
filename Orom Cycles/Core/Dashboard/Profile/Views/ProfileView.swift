@@ -32,24 +32,14 @@ struct ProfileView: View {
         }
         .padding(24)
         .sheet(isPresented: $profileViewModel.showUpdateNameSheet) {
-            if #available(iOS 16.0, *) {
-                ProfileUpdateNameView()
-                    .presentationDetents([.fraction(0.3)])
-                    .interactiveDismissDisabled()
-            } else {
-                ProfileUpdateNameView()
-                    .interactiveDismissDisabled()
-            }
+            ProfileUpdateNameView()
+                .presentationDetents([.fraction(0.3)])
+                .interactiveDismissDisabled()
         }
         .sheet(isPresented: $profileViewModel.showUpdatePasswordSheet) {
-            if #available(iOS 16.0, *) {
-                ProfileUpdatePasswordView()
-                    .presentationDetents([.medium])
-                    .interactiveDismissDisabled()
-            } else {
-                ProfileUpdatePasswordView()
-                    .interactiveDismissDisabled()
-            }
+            ProfileUpdatePasswordView()
+                .presentationDetents([.medium])
+                .interactiveDismissDisabled()
         }
         .confirmationDialog("", isPresented: $profileViewModel.showConfirmationForLogOut) {
             Button("Log Out", role: .destructive) {

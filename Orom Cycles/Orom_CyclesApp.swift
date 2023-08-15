@@ -13,8 +13,8 @@ struct Orom_CyclesApp: App {
     @ObservedObject var authenticationViewModel = AuthenticationViewModel()
     
     @ObservedObject var dashboardViewModel = DashboardViewModel()
-    @StateObject var profileViewModel = ProfileViewModel()
-    @StateObject var walletViewModel = WalletViewModel()
+    @ObservedObject var profileViewModel = ProfileViewModel()
+    @ObservedObject var walletViewModel = WalletViewModel()
     
     var body: some Scene {
         WindowGroup {

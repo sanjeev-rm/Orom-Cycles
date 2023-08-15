@@ -28,43 +28,19 @@ struct SignUpView: View {
     
     var body: some View {
         VStack {
-            // .scrollIndicators(), .scrollDisabled(), etc is only onwoards iOS 16.0.
-            if #available(iOS 16.0, *) {
-                NavigationStack {
-                    VStack(alignment: .leading, spacing: 32) {
-                        titleAndSubtitle
-                        ScrollView(showsIndicators: false) {
-                            scrollableBaseView
-                        }
-                        .scrollIndicators(.hidden)
-                        .scrollDisabled(focusField == nil)
-                        .scrollDismissesKeyboard(.interactively)
+            NavigationStack {
+                VStack(alignment: .leading, spacing: 32) {
+                    titleAndSubtitle
+                    ScrollView(showsIndicators: false) {
+                        scrollableBaseView
                     }
-                    .padding(24)
-                    .navigationDestination(isPresented: $signupViewModel.navigateToVerification) {
-                        SignUpVerifyOTPView()
-                    }
+                    .scrollIndicators(.hidden)
+                    .scrollDisabled(focusField == nil)
+                    .scrollDismissesKeyboard(.interactively)
                 }
-            } else {
-                // Fallback on earlier versions
-                NavigationView {
-                    VStack(alignment: .leading, spacing: 16) {
-                        titleAndSubtitle
-                        
-                        ScrollView(focusField == nil ? [] : .vertical, showsIndicators: false) {
-                            scrollableBaseView
-                        }
-                    }
-                    .padding(24)
-                    .navigationBarHidden(true)
-                    .background(
-                        Group {
-                            NavigationLink(destination: SignUpVerifyOTPView(),
-                                           isActive: $signupViewModel.navigateToVerification) {
-                                EmptyView()
-                            }
-                        }
-                    )
+                .padding(24)
+                .navigationDestination(isPresented: $signupViewModel.navigateToVerification) {
+                    SignUpVerifyOTPView()
                 }
             }
         }

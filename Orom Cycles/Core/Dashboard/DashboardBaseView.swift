@@ -28,40 +28,22 @@ struct DashboardBaseView: View {
                 SettingsView()
             }
             .sheet(isPresented: $dashboardViewModel.showStartRide) {
-                if #available(iOS 16.0, *) {
-                    StartRideView()
-                        .environmentObject(tripViewModel)
-                        .presentationDetents([.medium, .large])
-                        .interactiveDismissDisabled()
-                } else {
-                    StartRideView()
-                        .environmentObject(tripViewModel)
-                        .interactiveDismissDisabled()
-                }
+                StartRideView()
+                    .environmentObject(tripViewModel)
+                    .presentationDetents([.medium, .large])
+                    .interactiveDismissDisabled()
             }
             .sheet(isPresented: $dashboardViewModel.showRiding) {
-                if #available(iOS 16.0, *) {
-                    RidingView()
-                        .environmentObject(tripViewModel)
-                        .presentationDetents([.medium, .large])
-                        .interactiveDismissDisabled()
-                } else {
-                    RidingView()
-                        .environmentObject(tripViewModel)
-                        .interactiveDismissDisabled()
-                }
+                RidingView()
+                    .environmentObject(tripViewModel)
+                    .presentationDetents([.medium, .large])
+                    .interactiveDismissDisabled()
             }
             .sheet(isPresented: $dashboardViewModel.showRideCompleted) {
-                if #available(iOS 16.0, *) {
-                    CompletedRideView()
-                        .environmentObject(tripViewModel)
-                        .presentationDetents([.medium, .large])
-                        .interactiveDismissDisabled()
-                } else {
-                    CompletedRideView()
-                        .environmentObject(tripViewModel)
-                        .interactiveDismissDisabled()
-                }
+                CompletedRideView()
+                    .environmentObject(tripViewModel)
+                    .presentationDetents([.medium, .large])
+                    .interactiveDismissDisabled()
             }
     }
 }

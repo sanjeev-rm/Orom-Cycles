@@ -40,14 +40,9 @@ extension WalletView {
             walletViewModel.updateWallet()
         }
         .sheet(isPresented: $walletViewModel.showPickColorView) {
-            if #available(iOS 16.0, *) {
-                WalletCardColorPicker()
-                    .environmentObject(walletViewModel)
-                    .presentationDetents([.medium])
-            } else {
-                WalletCardColorPicker()
-                    .environmentObject(walletViewModel)
-            }
+            WalletCardColorPicker()
+                .environmentObject(walletViewModel)
+                .presentationDetents([.medium])
         }
     }
     

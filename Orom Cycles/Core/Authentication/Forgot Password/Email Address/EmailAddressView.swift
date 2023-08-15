@@ -20,24 +20,11 @@ struct EmailAddressView: View {
     
     var body: some View {
         VStack {
-            if #available(iOS 16.0, *) {
-                NavigationStack {
-                    baseView
-                        .navigationDestination(isPresented: $emailAddressViewModel.navigateToUpdatePasswordView) {
-                            UpdatePasswordView()
-                        }
-                }
-            } else {
-                NavigationView {
-                    baseView
-                        .background(
-                            Group {
-                                NavigationLink(destination: UpdatePasswordView(), isActive: $emailAddressViewModel.navigateToUpdatePasswordView) {
-                                    EmptyView()
-                                }
-                            }
-                        )
-                }
+            NavigationStack {
+                baseView
+                    .navigationDestination(isPresented: $emailAddressViewModel.navigateToUpdatePasswordView) {
+                        UpdatePasswordView()
+                    }
             }
         }
         .toast(isPresenting: $emailAddressViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {

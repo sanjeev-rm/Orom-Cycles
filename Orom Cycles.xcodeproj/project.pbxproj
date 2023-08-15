@@ -33,7 +33,6 @@
 		C77BF8872A87262A002D89E6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77BF8862A87262A002D89E6 /* LocationManager.swift */; };
 		C78567602A66F94100A2B355 /* Dashboard API Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785675F2A66F94100A2B355 /* Dashboard API Service.swift */; };
 		C78567632A66FBE300A2B355 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78567622A66FBE300A2B355 /* MapService.swift */; };
-		C79383BA2A3E430800341CAB /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */; };
 		C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */; };
 		C79383C02A3E515800341CAB /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383BF2A3E515800341CAB /* UpdatePasswordViewModel.swift */; };
 		C79B75292A5BBD890047473A /* OromAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79B75282A5BBD890047473A /* OromAlert.swift */; };
@@ -104,7 +103,6 @@
 		C77BF8862A87262A002D89E6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C785675F2A66F94100A2B355 /* Dashboard API Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard API Service.swift"; sourceTree = "<group>"; };
 		C78567622A66FBE300A2B355 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
-		C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressViewModel.swift; sourceTree = "<group>"; };
 		C79383BF2A3E515800341CAB /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		C79B75282A5BBD890047473A /* OromAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OromAlert.swift; sourceTree = "<group>"; };
@@ -328,7 +326,6 @@
 			isa = PBXGroup;
 			children = (
 				C770D4462A38C842002406CB /* ForgotPasswordView.swift */,
-				C79383B92A3E430800341CAB /* ForgotPasswordViewModel.swift */,
 				C79383C12A3E530700341CAB /* Email Address */,
 				C79383C32A3E53C500341CAB /* Update Password */,
 			);
@@ -731,7 +728,6 @@
 				C7ED52662A36746E00F88DC3 /* OnboardingStep.swift in Sources */,
 				C7D39C052A6180F500903F57 /* WalletView.swift in Sources */,
 				C770D4472A38C842002406CB /* ForgotPasswordView.swift in Sources */,
-				C79383BA2A3E430800341CAB /* ForgotPasswordViewModel.swift in Sources */,
 				C78567602A66F94100A2B355 /* Dashboard API Service.swift in Sources */,
 				C73802062A7E5C1000FC25A5 /* WalletCardColorPicker.swift in Sources */,
 				C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */,
@@ -877,7 +873,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -914,7 +910,7 @@
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
