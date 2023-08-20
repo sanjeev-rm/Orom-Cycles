@@ -16,6 +16,8 @@ struct Orom_CyclesApp: App {
     @ObservedObject var profileViewModel = ProfileViewModel()
     @ObservedObject var walletViewModel = WalletViewModel()
     
+    @StateObject var networkMonitor = NetworkMonitor()
+    
     var body: some Scene {
         WindowGroup {
             if authenticationViewModel.isLoggedIn ?? false {
@@ -24,6 +26,7 @@ struct Orom_CyclesApp: App {
                     .environmentObject(authenticationViewModel)
                     .environmentObject(profileViewModel)
                     .environmentObject(walletViewModel)
+                    .environmentObject(networkMonitor)
             }
             else {
                 AuthenticationView()

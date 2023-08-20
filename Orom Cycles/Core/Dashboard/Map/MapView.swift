@@ -12,6 +12,7 @@ import AlertToast
 struct MapView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     
     @StateObject var viewModel: MapViewModel = MapViewModel()
     
@@ -106,5 +107,6 @@ struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
             .environmentObject(DashboardViewModel())
+            .environmentObject(NetworkMonitor())
     }
 }

@@ -29,4 +29,6 @@ extension LocationManager: CLLocationManagerDelegate {
         guard !locations.isEmpty else { return }
         locationManager.stopUpdatingLocation()
     }
+    
+    location
 }

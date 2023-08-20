@@ -11,15 +11,13 @@ import AlertToast
 struct DashboardView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     
     @StateObject var tripViewModel: TripViewModel = TripViewModel()
     
     var body: some View {
         DashboardBaseView()
             .disabled(dashboardViewModel.showDashboardProgress)
-            .toast(isPresenting: $dashboardViewModel.showDashboardProgress, duration: 16, tapToDismiss: false) {
-                OromAlert.getAlertToast(.loading, displayMode: .alert)
-            }
             .onAppear {
                 dashboardViewModel.showDashboardProgress = true
                 DashboardAPIService().getActiveBooking { result in
@@ -39,6 +37,16 @@ struct DashboardView: View {
                     }
                 }
             }
+            .sheet(isPresented: $dashboardViewModel.showDashboardProgress) {
+                SheetAlertView(.progress)
+                    .presentationDetents([.height(175)])
+                    .interactiveDismissDisabled()
+            }
+            .sheet(isPresented: $networkMonitor.isNotConnected) {
+                SheetAlertView(.networkIssue)
+                    .presentationDetents([.height(175)])
+                    .interactiveDismissDisabled()
+            }
     }
 }
 
@@ -46,5 +54,6 @@ struct DashboardView_Previews: PreviewProvider {
     static var previews: some View {
         DashboardView()
             .environmentObject(DashboardViewModel())
+            .environmentObject(NetworkMonitor())
     }
 }

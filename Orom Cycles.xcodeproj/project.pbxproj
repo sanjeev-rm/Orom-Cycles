@@ -33,6 +33,8 @@
 		C77BF8872A87262A002D89E6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77BF8862A87262A002D89E6 /* LocationManager.swift */; };
 		C78567602A66F94100A2B355 /* Dashboard API Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785675F2A66F94100A2B355 /* Dashboard API Service.swift */; };
 		C78567632A66FBE300A2B355 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78567622A66FBE300A2B355 /* MapService.swift */; };
+		C791FD872A929B2300E32ACE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C791FD862A929B2300E32ACE /* NetworkMonitor.swift */; };
+		C791FD8B2A92A4AE00E32ACE /* SheetAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C791FD8A2A92A4AE00E32ACE /* SheetAlertView.swift */; };
 		C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */; };
 		C79383C02A3E515800341CAB /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79383BF2A3E515800341CAB /* UpdatePasswordViewModel.swift */; };
 		C79B75292A5BBD890047473A /* OromAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79B75282A5BBD890047473A /* OromAlert.swift */; };
@@ -103,6 +105,8 @@
 		C77BF8862A87262A002D89E6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		C785675F2A66F94100A2B355 /* Dashboard API Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard API Service.swift"; sourceTree = "<group>"; };
 		C78567622A66FBE300A2B355 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
+		C791FD862A929B2300E32ACE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		C791FD8A2A92A4AE00E32ACE /* SheetAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetAlertView.swift; sourceTree = "<group>"; };
 		C79383BB2A3E504D00341CAB /* EmailAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddressViewModel.swift; sourceTree = "<group>"; };
 		C79383BF2A3E515800341CAB /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		C79B75282A5BBD890047473A /* OromAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OromAlert.swift; sourceTree = "<group>"; };
@@ -357,6 +361,7 @@
 			children = (
 				C7A2A56A2A3D9D3E00756EFA /* AuthenticationViewModel.swift */,
 				C7D39C062A6181CF00903F57 /* DashboardViewModel.swift */,
+				C791FD862A929B2300E32ACE /* NetworkMonitor.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 			children = (
 				C7C7C2262A591C4A00DE2185 /* OromColor.swift */,
 				C73802012A7D46F800FC25A5 /* TapToSeeSecureField.swift */,
+				C791FD8A2A92A4AE00E32ACE /* SheetAlertView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -692,6 +698,7 @@
 				C7DEFD912A3B38DB005F3BBE /* EmailAddressView.swift in Sources */,
 				C7E76B892A7C3A7D00FE6CA2 /* ProfileUpdateNameView.swift in Sources */,
 				C7C7C2272A591C4A00DE2185 /* OromColor.swift in Sources */,
+				C791FD8B2A92A4AE00E32ACE /* SheetAlertView.swift in Sources */,
 				C72A26EE2A52B9800013DB02 /* ValidityAndError.swift in Sources */,
 				C73802022A7D46F800FC25A5 /* TapToSeeSecureField.swift in Sources */,
 				C739FC212A5611D300290236 /* SignUpVerifyService.swift in Sources */,
@@ -705,6 +712,7 @@
 				C7E76B802A7B221000FE6CA2 /* DashboardBaseView.swift in Sources */,
 				C76990442A57399F00DF8116 /* ForgotPasswordService.swift in Sources */,
 				C7DAD76E2A806DC9007D891D /* Bundle+Extension.swift in Sources */,
+				C791FD872A929B2300E32ACE /* NetworkMonitor.swift in Sources */,
 				C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */,
 				C73802002A7C95C500FC25A5 /* ProfileUpdatePasswordViewModel.swift in Sources */,
 				C770D4442A38C701002406CB /* SignUpView.swift in Sources */,
