@@ -13,6 +13,8 @@ struct ScannerView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var tripViewModel: TripViewModel
     
+    @State var isTorchOn: Bool = false
+    
     var body: some View {
         ZStack() {
             
@@ -38,10 +40,19 @@ struct ScannerView: View {
                 }
                 
                 Spacer()
+                
+                Button {
+                    // Toggle the flash light
+                    isTorchOn.toggle()
+                } label: {
+                    Image(systemName: isTorchOn ? "flashlight.on.fill" : "flashlight.off.fill")
+                        .font(.system(size: 44))
+                }
+                .padding(.bottom, 100)
             }
             
             if dashboardViewModel.showScanner {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "64885b58d383a32d308f5c9c\nCycle 7", completion: handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "64885b58d383a32d308f5c9c\nCycle 7", isTorchOn: isTorchOn, completion: handleScan)
                     .cornerRadius(2)
                     .background(
                         RoundedRectangle(cornerRadius: 2, style: .circular)
