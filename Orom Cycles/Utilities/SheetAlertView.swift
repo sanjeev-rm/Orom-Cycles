@@ -33,7 +33,7 @@ struct SheetAlertView: View {
         
         var text: String? {
             switch self {
-            case .progress: return "Setting it up all for you"
+            case .progress: return "Setting it all up for you"
             case .networkIssue: return "Make sure you're connected to Wi-Fi or your cellular network"
             case .locationIssue: return "Make sure you're location services are enabled"
             default: return nil
