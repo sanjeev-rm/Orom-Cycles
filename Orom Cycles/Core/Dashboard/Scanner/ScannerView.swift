@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CodeScanner
+import AVFoundation
 
 struct ScannerView: View {
     
@@ -21,6 +22,7 @@ struct ScannerView: View {
             VStack {
                 Button {
                     // Dissmiss view
+                    isTorchOn = false
                     dashboardViewModel.toggleShowScanner()
                 } label: {
                     Image(systemName: "xmark")
@@ -51,7 +53,7 @@ struct ScannerView: View {
                 .padding(.bottom, 100)
             }
             
-            if dashboardViewModel.showScanner {
+            if checkCameraAccess(), dashboardViewModel.showScanner {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "64885b58d383a32d308f5c9c\nCycle 7", isTorchOn: isTorchOn, completion: handleScan)
                     .cornerRadius(2)
                     .background(
@@ -60,6 +62,8 @@ struct ScannerView: View {
                     )
                     .padding(.horizontal, 45)
                     .frame(height: UIScreen.main.bounds.width - 90)
+            } else {
+                SheetAlertView(.other, imageSystemName: "camera", text: "Camera access has been denied, enable camera access from settings")
             }
         }
     }
@@ -67,18 +71,41 @@ struct ScannerView: View {
     /// - This function handles the result after scanning
     /// - It's the completion handler for CodeScannerView
     func handleScan(result: Result<ScanResult, ScanError>) {
+        isTorchOn = false
         dashboardViewModel.toggleShowScanner()
         
         switch result {
         case .success(let scanResult):
-            print("YAY Scanned correctly")
             // Scanning the QR code returns two lines of string the 1st line contains the cycle number, the second line contains the cycle name
             let cycleIdAndName = scanResult.string.split(separator: "\n")
             tripViewModel.cycleId = String(cycleIdAndName[0])
             tripViewModel.cycleName = String(cycleIdAndName[1])
             dashboardViewModel.toggleShowStartRide()
         case .failure(let error):
-            print("Scanning failed : \(error.localizedDescription)")
+            print("DEBUG: Scanning failed with error \(error.localizedDescription)")
+        }
+    }
+}
+
+
+
+extension ScannerView {
+    
+    func checkCameraAccess() -> Bool {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized:
+            return true
+        case .restricted:
+            print("DEBUG: Device Owner must approve")
+            return false
+        case .denied:
+            print("DEBUG: Enable camera access from settings")
+            return false
+        case .notDetermined:
+            return false
+        default:
+            print("DEBUG: unknown camera access error before scanning")
+            return false
         }
     }
 }
