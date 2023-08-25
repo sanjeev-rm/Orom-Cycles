@@ -23,6 +23,7 @@ struct OromMapViewRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
+        context.coordinator.addNearbyCyclesAnnotations()
     }
     
     func makeCoordinator() -> MapCoordinator {
@@ -56,9 +57,10 @@ extension OromMapViewRepresentable {
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
             self.userLocationCoordinate = userLocation.coordinate
-            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-            parent.mapView.setRegion(region, animated: true)
-            addNearbyCyclesAnnotations()
+//            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+//            parent.mapView.setCenter(userLocation.coordinate, animated: true)
+//            parent.mapView.setRegion(region, animated: true)
+//            addNearbyCyclesAnnotations()
         }
         
         func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
@@ -82,7 +84,7 @@ extension OromMapViewRepresentable {
                 return
             }
             
-            DashboardAPIService().getCycles(radius: 700,
+            DashboardAPIService().getCycles(radius: 2000,
                                             latitude: userLocationCoordinate.latitude,
                                             longitude: userLocationCoordinate.longitude) { result in
                 switch result {

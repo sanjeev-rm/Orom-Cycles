@@ -93,7 +93,7 @@ extension MapView {
         .padding(16)
         .background(.ultraThickMaterial)
         .cornerRadius(16)
-        .shadow(radius: 016)
+        .shadow(radius: 16)
         .padding()
     }
     

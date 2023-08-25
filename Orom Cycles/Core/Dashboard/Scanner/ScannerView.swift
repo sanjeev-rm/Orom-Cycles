@@ -43,28 +43,33 @@ struct ScannerView: View {
                 
                 Spacer()
                 
-                Button {
-                    // Toggle the flash light
-                    isTorchOn.toggle()
-                } label: {
-                    Image(systemName: isTorchOn ? "flashlight.on.fill" : "flashlight.off.fill")
-                        .font(.system(size: 44))
+                if checkCameraAccess() {
+                    Button {
+                        // Toggle the flash light
+                        isTorchOn.toggle()
+                    } label: {
+                        Image(systemName: isTorchOn ? "flashlight.on.fill" : "flashlight.off.fill")
+                            .font(.system(size: 44))
+                    }
+                    .padding(.bottom, 100)
                 }
-                .padding(.bottom, 100)
             }
             
-            if checkCameraAccess(), dashboardViewModel.showScanner {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "64885b58d383a32d308f5c9c\nCycle 7", isTorchOn: isTorchOn, completion: handleScan)
-                    .cornerRadius(2)
-                    .background(
-                        RoundedRectangle(cornerRadius: 2, style: .circular)
-                            .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round))
-                    )
-                    .padding(.horizontal, 45)
-                    .frame(height: UIScreen.main.bounds.width - 90)
-            } else {
-                SheetAlertView(.other, imageSystemName: "camera", text: "Camera access has been denied, enable camera access from settings")
+            ZStack {
+                if checkCameraAccess(), dashboardViewModel.showScanner {
+                    CodeScannerView(codeTypes: [.qr], simulatedData: "64885b58d383a32d308f5c9c\nCycle 7", isTorchOn: isTorchOn, completion: handleScan)
+                } else {
+                    SheetAlertView(.other, imageSystemName: "camera", text: "Camera access has been denied, enable camera access from settings")
+                        .frame(height: UIScreen.main.bounds.width - 90)
+                }
             }
+            .cornerRadius(2)
+            .background(
+                RoundedRectangle(cornerRadius: 2, style: .circular)
+                    .stroke(Color.accentColor, style: StrokeStyle(lineWidth: 8, lineCap: .round, lineJoin: .round))
+            )
+            .padding(.horizontal, 45)
+            .frame(height: UIScreen.main.bounds.width - 90)
         }
     }
     

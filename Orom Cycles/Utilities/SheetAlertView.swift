@@ -70,8 +70,8 @@ struct SheetAlertView: View {
             }
             
             Text(text != nil ? text! : "Setting it all up for you")
-                .font(.title3)
-                .fontWeight(.thin)
+                .font(.callout)
+                .foregroundColor(.gray)
                 .multilineTextAlignment(.center)
         }
         .padding()
