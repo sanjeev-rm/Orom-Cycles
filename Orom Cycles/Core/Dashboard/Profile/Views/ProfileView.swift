@@ -11,6 +11,7 @@ struct ProfileView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     
     @EnvironmentObject var profileViewModel: ProfileViewModel
     
@@ -31,6 +32,11 @@ struct ProfileView: View {
             profileViewModel.getUserInfo()
         }
         .padding(24)
+        .sheet(isPresented: $networkMonitor.isNotConnected) {
+            SheetAlertView(.networkIssue)
+                .presentationDetents([.height(175)])
+                .interactiveDismissDisabled()
+        }
         .sheet(isPresented: $profileViewModel.showUpdateNameSheet) {
             ProfileUpdateNameView()
                 .presentationDetents([.fraction(0.3)])

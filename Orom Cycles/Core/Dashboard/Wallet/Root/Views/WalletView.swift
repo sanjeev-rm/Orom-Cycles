@@ -10,7 +10,7 @@ import SwiftUI
 struct WalletView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
-    
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     @EnvironmentObject var walletViewModel: WalletViewModel
     
     var body: some View {
@@ -43,6 +43,11 @@ extension WalletView {
             WalletCardColorPicker()
                 .environmentObject(walletViewModel)
                 .presentationDetents([.medium])
+        }
+        .sheet(isPresented: $networkMonitor.isNotConnected) {
+            SheetAlertView(.networkIssue)
+                .presentationDetents([.height(175)])
+                .interactiveDismissDisabled()
         }
     }
     

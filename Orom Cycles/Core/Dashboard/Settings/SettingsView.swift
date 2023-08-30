@@ -10,6 +10,7 @@ import SwiftUI
 struct SettingsView: View {
     
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
+    @EnvironmentObject var networkMonitor: NetworkMonitor
     
     @Environment(\.openURL) var openURL
     
@@ -28,6 +29,11 @@ struct SettingsView: View {
             Spacer()
         }
         .padding(24)
+        .sheet(isPresented: $networkMonitor.isNotConnected) {
+            SheetAlertView(.networkIssue)
+                .presentationDetents([.height(175)])
+                .interactiveDismissDisabled()
+        }
     }
 }
 
