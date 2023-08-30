@@ -99,7 +99,7 @@ struct ScannerView: View {
                 tripViewModel.cycleName = String(cycleIdAndName[2])
                 dashboardViewModel.toggleShowStartRide()
             } else {
-                print("DEBUG: Wrong QR CODE")
+                // Invalid QR code
                 dashboardViewModel.toggleShowInvalidQRCodeMessage()
             }
         case .failure(let error):
