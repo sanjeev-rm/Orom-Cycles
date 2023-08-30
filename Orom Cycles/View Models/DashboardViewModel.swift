@@ -15,6 +15,8 @@ final class DashboardViewModel: ObservableObject {
     @Published var showWallet: Bool = false
     @Published var showSettings: Bool = false
     
+    @Published var showInvalidQRCodeMessage: Bool = false
+    
     @Published var showStartRide: Bool = false
     @Published var showRiding: Bool = false
     @Published var showRideCompleted: Bool = false
@@ -65,6 +67,14 @@ final class DashboardViewModel: ObservableObject {
         withAnimation(.easeInOut) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 self.showRideCompleted = !self.showRideCompleted
+            }
+        }
+    }
+    
+    func toggleShowInvalidQRCodeMessage() {
+        withAnimation(.easeInOut) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.showInvalidQRCodeMessage = !self.showInvalidQRCodeMessage
             }
         }
     }

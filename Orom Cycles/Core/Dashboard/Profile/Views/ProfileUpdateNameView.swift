@@ -11,6 +11,8 @@ struct ProfileUpdateNameView: View {
     
     @EnvironmentObject var profileViewModel: ProfileViewModel
     
+    @State var newName: String = ""
+    
     var body: some View {
         VStack(spacing: 16) {
             doneButton
@@ -21,6 +23,9 @@ struct ProfileUpdateNameView: View {
             Spacer()
         }
         .padding()
+        .onAppear {
+            newName = profileViewModel.name
+        }
     }
 }
 
@@ -37,6 +42,7 @@ extension ProfileUpdateNameView {
             Spacer()
             Button("Done") {
                 // Update Name
+                profileViewModel.name = newName
                 profileViewModel.updateName()
                 profileViewModel.toggleShowUpdateNameSheet()
             }
@@ -52,7 +58,7 @@ extension ProfileUpdateNameView {
     }
     
     private var textField: some View {
-        TextField("New Name", text: $profileViewModel.name)
+        TextField("New Name", text: $newName)
             .padding()
             .frame(height: 50)
             .background(Color.secondary.opacity(0.1))

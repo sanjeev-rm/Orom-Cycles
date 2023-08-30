@@ -47,6 +47,10 @@ struct DashboardView: View {
                     .presentationDetents([.height(175)])
                     .interactiveDismissDisabled()
             }
+            .sheet(isPresented: $dashboardViewModel.showInvalidQRCodeMessage) {
+                SheetAlertView(.other, imageSystemName: "qrcode.viewfinder", text: "Invalid QR code")
+                    .presentationDetents([.height(175)])
+            }
     }
 }
 

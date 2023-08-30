@@ -14,7 +14,7 @@ struct ScannerView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var tripViewModel: TripViewModel
     
-    @State var isTorchOn: Bool = false
+    @State var isFlashlightOn: Bool = false
     
     var body: some View {
         ZStack() {
@@ -22,7 +22,7 @@ struct ScannerView: View {
             VStack {
                 Button {
                     // Dissmiss view
-                    isTorchOn = false
+                    isFlashlightOn = false
                     dashboardViewModel.toggleShowScanner()
                 } label: {
                     Image(systemName: "xmark")
@@ -46,18 +46,22 @@ struct ScannerView: View {
                 if checkCameraAccess() {
                     Button {
                         // Toggle the flash light
-                        isTorchOn.toggle()
+                        withAnimation { isFlashlightOn.toggle() }
                     } label: {
-                        Image(systemName: isTorchOn ? "flashlight.on.fill" : "flashlight.off.fill")
-                            .font(.system(size: 44))
+                        if isFlashlightOn {
+                            flashlightOnSymbol
+                        } else {
+                            flashlightOffSymbol
+                        }
                     }
                     .padding(.bottom, 100)
+                    .foregroundColor(.primary)
                 }
             }
             
             ZStack {
                 if checkCameraAccess(), dashboardViewModel.showScanner {
-                    CodeScannerView(codeTypes: [.qr], simulatedData: "64885b58d383a32d308f5c9c\nCycle 7", isTorchOn: isTorchOn, completion: handleScan)
+                    CodeScannerView(codeTypes: [.qr], showViewfinder: false, simulatedData: "orom-cycle\n64e73cc46f9398677838051f\nCycle 16", isTorchOn: isFlashlightOn, completion: handleScan)
                 } else {
                     SheetAlertView(.other, imageSystemName: "camera", text: "Camera access has been denied, enable camera access from settings")
                         .frame(height: UIScreen.main.bounds.width - 90)
@@ -76,16 +80,28 @@ struct ScannerView: View {
     /// - This function handles the result after scanning
     /// - It's the completion handler for CodeScannerView
     func handleScan(result: Result<ScanResult, ScanError>) {
-        isTorchOn = false
+        isFlashlightOn = false
         dashboardViewModel.toggleShowScanner()
         
         switch result {
         case .success(let scanResult):
-            // Scanning the QR code returns two lines of string the 1st line contains the cycle number, the second line contains the cycle name
+            // Scanning the QR code returns three lines of string the 1st line contains the string 'orom-cycle', the second line contains the cycle Id, and the third line contains the cycle name
+            /*
+             orom-cycle
+             64e73cc46f9398677838051f
+             Cycle 16
+             */
             let cycleIdAndName = scanResult.string.split(separator: "\n")
-            tripViewModel.cycleId = String(cycleIdAndName[0])
-            tripViewModel.cycleName = String(cycleIdAndName[1])
-            dashboardViewModel.toggleShowStartRide()
+            // High level of verification
+            if cycleIdAndName.count == 3,
+               String(cycleIdAndName[0]) == "orom-cycle" {
+                tripViewModel.cycleId = String(cycleIdAndName[1])
+                tripViewModel.cycleName = String(cycleIdAndName[2])
+                dashboardViewModel.toggleShowStartRide()
+            } else {
+                print("DEBUG: Wrong QR CODE")
+                dashboardViewModel.toggleShowInvalidQRCodeMessage()
+            }
         case .failure(let error):
             print("DEBUG: Scanning failed with error \(error.localizedDescription)")
         }
@@ -111,6 +127,31 @@ extension ScannerView {
         default:
             print("DEBUG: unknown camera access error before scanning")
             return false
+        }
+    }
+}
+
+
+
+extension ScannerView {
+    
+    private var flashlightOnSymbol: some View {
+        ZStack {
+            Circle()
+                .frame(width: 80)
+                .foregroundColor(.gray.opacity(0.3))
+            Image(systemName: "flashlight.on.fill")
+                .font(.system(size: 40))
+        }
+    }
+    
+    private var flashlightOffSymbol: some View {
+        ZStack {
+            Circle()
+                .frame(width: 80)
+                .foregroundColor(.clear)
+            Image(systemName: "flashlight.off.fill")
+                .font(.system(size: 40))
         }
     }
 }
