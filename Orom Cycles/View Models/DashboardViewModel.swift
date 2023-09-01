@@ -78,4 +78,29 @@ final class DashboardViewModel: ObservableObject {
             }
         }
     }
+    
+    func checkForActiveBooking() {
+//        withAnimation(.easeInOut) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                self.showDashboardProgress = true
+//            }
+//        }
+        self.showDashboardProgress = true
+        DashboardAPIService().getActiveBooking { result in
+            DispatchQueue.main.async {
+                self.showDashboardProgress = false
+            }
+            switch result {
+            case .success(_):
+                self.toggleShowRiding()
+            case .failure(let error):
+                switch error {
+                case .noInternetConnection:
+                    print("DEBUG: " + error.localizedDescription)
+                case .custom(let message):
+                    print("DEBUG: " + message)
+                }
+            }
+        }
+    }
 }

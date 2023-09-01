@@ -11,6 +11,8 @@ import MapKit
 
 struct OromMapViewRepresentable: UIViewRepresentable {
     
+    @EnvironmentObject var mapViewModel: MapViewModel
+    
     let mapView = MKMapView()
     let locationManager = LocationManager()
     
@@ -73,6 +75,10 @@ extension OromMapViewRepresentable {
             polyline.strokeColor = .systemBlue
             polyline.lineWidth = 6
             return polyline
+        }
+        
+        func mapViewWillStartLocatingUser(_ mapView: MKMapView) {
+            addNearbyCyclesAnnotations()
         }
         
         

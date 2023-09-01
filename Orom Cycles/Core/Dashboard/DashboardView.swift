@@ -19,23 +19,7 @@ struct DashboardView: View {
         DashboardBaseView()
             .disabled(dashboardViewModel.showDashboardProgress)
             .onAppear {
-                dashboardViewModel.showDashboardProgress = true
-                DashboardAPIService().getActiveBooking { result in
-                    DispatchQueue.main.async {
-                        dashboardViewModel.showDashboardProgress = false
-                    }
-                    switch result {
-                    case .success(_):
-                        dashboardViewModel.toggleShowRiding()
-                    case .failure(let error):
-                        switch error {
-                        case .noInternetConnection:
-                            print("DEBUG: " + error.localizedDescription)
-                        case .custom(let message):
-                            print("DEBUG: " + message)
-                        }
-                    }
-                }
+                dashboardViewModel.checkForActiveBooking()
             }
             .sheet(isPresented: $dashboardViewModel.showDashboardProgress) {
                 SheetAlertView(.progress)
@@ -46,11 +30,15 @@ struct DashboardView: View {
                 SheetAlertView(.networkIssue)
                     .presentationDetents([.height(175)])
                     .interactiveDismissDisabled()
+                    .onDisappear {
+                        dashboardViewModel.checkForActiveBooking()
+                    }
             }
             .sheet(isPresented: $dashboardViewModel.showInvalidQRCodeMessage) {
                 SheetAlertView(.other, imageSystemName: "qrcode.viewfinder", text: "Invalid QR code")
                     .presentationDetents([.height(175)])
             }
+
     }
 }
 

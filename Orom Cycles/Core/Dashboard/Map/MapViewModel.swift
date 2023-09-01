@@ -8,12 +8,25 @@
 import Foundation
 import MapKit
 import SwiftUI
+import CoreLocation
 
 class MapViewModel: ObservableObject {
     
     @Published var showMenu: Bool = false
     
-    @Published var alert: OromAlert = OromAlert()
+    @Published var userLocationDisabled: Bool = false
+    
+    @Published var showUserLocationIssue: Bool = false
+    
+    let locationManager = CLLocationManager()
+    
+//    @Published var alert: OromAlert = OromAlert()
+    
+    init(showMenu: Bool = false, showUserLocationIssue: Bool = false) {
+        self.showMenu = showMenu
+        self.showUserLocationIssue = showUserLocationIssue
+        self.checkUserLocation()
+    }
     
     func toggleShowMenu() {
         withAnimation(.easeInOut) {
@@ -21,11 +34,20 @@ class MapViewModel: ObservableObject {
         }
     }
     
-    func showMapAlert(alertType: OromAlert.AlertType, message: String) {
-        DispatchQueue.main.async {
-            self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)
+    func checkUserLocation() {
+        switch locationManager.authorizationStatus {
+        case .notDetermined, .restricted, .denied:
+            userLocationDisabled = true
+        default:
+            userLocationDisabled = false
         }
     }
+    
+//    func showMapAlert(alertType: OromAlert.AlertType, message: String) {
+//        DispatchQueue.main.async {
+//            self.alert = OromAlert(showAlert: true, alertType: alertType, message: message)
+//        }
+//    }
 
 //    /// Function to check if the user has enabled Location services
 //    func checkIfLocationServiceEnabled() {

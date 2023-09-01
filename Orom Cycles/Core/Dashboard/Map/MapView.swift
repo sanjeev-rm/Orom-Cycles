@@ -11,24 +11,33 @@ import AlertToast
 
 struct MapView: View {
     
+    @Environment(\.scenePhase) var scenePhase
+    
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var networkMonitor: NetworkMonitor
     
-    @StateObject var viewModel: MapViewModel = MapViewModel()
+    @StateObject var mapViewModel: MapViewModel = MapViewModel()
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack(alignment: .topTrailing) {
                 
                 map.safeAreaInset(edge: .bottom) {
                         scannerButton
                     }
                 
-                menu
+                topBar
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toast(isPresenting: $viewModel.alert.showAlert, duration: 32) {
-                OromAlert.getAlertToast(with: viewModel.alert.message, viewModel.alert.alertType, displayMode: .hud)
+            .sheet(isPresented: $mapViewModel.showUserLocationIssue) {
+                SheetAlertView(.locationIssue)
+                    .presentationDetents([.height(175)])
+            }
+            .onAppear {
+                mapViewModel.checkUserLocation()
+            }
+            .onChange(of: scenePhase) { _ in
+                mapViewModel.checkUserLocation()
             }
         }
     }
@@ -39,6 +48,7 @@ struct MapView: View {
 extension MapView {
     private var map: some View {
         OromMapViewRepresentable()
+            .environmentObject(mapViewModel)
             .ignoresSafeArea()
     }
     
@@ -50,23 +60,45 @@ extension MapView {
             Image(systemName: "qrcode.viewfinder")
                 .font(.system(size: 44))
                 .padding()
-                .background(.ultraThickMaterial)
+                .background(.thickMaterial)
                 .cornerRadius(24)
                 .padding(16)
                 .shadow(radius: 16)
         }
     }
     
+    private var topBar: some View {
+        VStack(spacing: 16) {
+            menu
+            noUserLocationLocationButton
+        }
+        .padding()
+    }
+    
+    private var noUserLocationLocationButton: some View {
+        Button {
+            // Show no location message
+            mapViewModel.showUserLocationIssue = true
+        } label: {
+            menuButtonLabel(systemName: "location.slash")
+        }
+        .padding(.vertical, 11)
+        .padding(.horizontal, 16)
+        .background(.thickMaterial)
+        .cornerRadius(16)
+        .shadow(radius: 16)
+    }
+    
     private var menu: some View {
         VStack(spacing: 32) {
             Button {
                 // Open menu
-                viewModel.toggleShowMenu()
+                mapViewModel.toggleShowMenu()
             } label: {
                 menuButtonLabel(systemName: "line.3.horizontal")
             }
             
-            if viewModel.showMenu {
+            if mapViewModel.showMenu {
                 
                 Button {
                     // Profile
@@ -91,10 +123,9 @@ extension MapView {
             }
         }
         .padding(16)
-        .background(.ultraThickMaterial)
+        .background(.thickMaterial)
         .cornerRadius(16)
         .shadow(radius: 16)
-        .padding()
     }
     
     private func menuButtonLabel(systemName: String) -> some View {
