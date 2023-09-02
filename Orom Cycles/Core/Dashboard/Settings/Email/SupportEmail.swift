@@ -19,7 +19,7 @@ struct SupportEmail {
     Application Version: \(Bundle.main.appVersion)
     Application Build: \(Bundle.main.appBuild)
     \(messageHeader)
-    ------------------------------------------------
+    -----------------------------------------------
     """
     }
     

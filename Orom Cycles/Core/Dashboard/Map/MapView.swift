@@ -7,7 +7,6 @@
 
 import SwiftUI
 import MapKit
-import AlertToast
 
 struct MapView: View {
     
@@ -70,12 +69,15 @@ extension MapView {
     private var topBar: some View {
         VStack(spacing: 16) {
             menu
-            noUserLocationLocationButton
+            
+            if mapViewModel.userLocationDisabled {
+                userLocationDisabledButton
+            }
         }
         .padding()
     }
     
-    private var noUserLocationLocationButton: some View {
+    private var userLocationDisabledButton: some View {
         Button {
             // Show no location message
             mapViewModel.showUserLocationIssue = true

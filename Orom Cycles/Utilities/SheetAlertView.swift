@@ -37,7 +37,7 @@ struct SheetAlertView: View {
             switch self {
             case .progress: return "Setting it all up for you"
             case .networkIssue: return "Make sure you're connected to Wi-Fi or your cellular network"
-            case .locationIssue: return "Make sure you're location services are enabled"
+            case .locationIssue: return "Make sure your location services are enabled"
             case .other: return "Something's gone wrong, we're working on it"
             }
         }
