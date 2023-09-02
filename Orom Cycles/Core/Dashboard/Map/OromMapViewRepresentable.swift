@@ -26,6 +26,7 @@ struct OromMapViewRepresentable: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         context.coordinator.addNearbyCyclesAnnotations()
+        print("DEBUG: Updated map view, added cycles")
     }
     
     func makeCoordinator() -> MapCoordinator {
@@ -59,10 +60,6 @@ extension OromMapViewRepresentable {
         
         func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
             self.userLocationCoordinate = userLocation.coordinate
-//            let region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-//            parent.mapView.setCenter(userLocation.coordinate, animated: true)
-//            parent.mapView.setRegion(region, animated: true)
-//            addNearbyCyclesAnnotations()
         }
         
         func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
@@ -79,14 +76,22 @@ extension OromMapViewRepresentable {
         
         func mapViewWillStartLocatingUser(_ mapView: MKMapView) {
             addNearbyCyclesAnnotations()
+            print("DEBUG: Will start locating user")
         }
         
+        func mapView(_ mapView: MKMapView, didFailToLocateUserWithError error: Error) {
+            print("DEBUG: Failed to locate user")
+            self.userLocationCoordinate = nil
+            self.parent.mapView.removeAnnotations(self.parent.mapView.annotations)
+            self.parent.mapView.removeOverlays(self.parent.mapView.overlays)
+        }
         
         // MARK: Helpers
         
         func addNearbyCyclesAnnotations() {
             guard let userLocationCoordinate = self.userLocationCoordinate else {
                 print("DEBUG: Couldn't determine user location for fetching nearby cycles coordinates")
+                self.parent.mapView.removeAnnotations(self.parent.mapView.annotations)
                 return
             }
             
