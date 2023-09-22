@@ -14,6 +14,8 @@ struct ScannerView: View {
     @EnvironmentObject var dashboardViewModel: DashboardViewModel
     @EnvironmentObject var tripViewModel: TripViewModel
     
+    @StateObject var cameraManager: CameraManager = CameraManager()
+    
     @State var isFlashlightOn: Bool = false
     
     var body: some View {
@@ -43,7 +45,7 @@ struct ScannerView: View {
                 
                 Spacer()
                 
-                if checkCameraAccess() {
+                if cameraManager.permissionGranted {
                     Button {
                         // Toggle the flash light
                         withAnimation { isFlashlightOn.toggle() }
@@ -60,7 +62,7 @@ struct ScannerView: View {
             }
             
             ZStack {
-                if checkCameraAccess(), dashboardViewModel.showScanner {
+                if cameraManager.permissionGranted {
                     CodeScannerView(codeTypes: [.qr], showViewfinder: false, simulatedData: "orom-cycle\n64e73cc46f9398677838051f\nCycle 16", isTorchOn: isFlashlightOn, completion: handleScan)
                 } else {
                     SheetAlertView(.other, imageSystemName: "camera", text: "Camera access has been denied, enable camera access from settings")
@@ -104,29 +106,6 @@ struct ScannerView: View {
             }
         case .failure(let error):
             print("DEBUG: Scanning failed with error \(error.localizedDescription)")
-        }
-    }
-}
-
-
-
-extension ScannerView {
-    
-    func checkCameraAccess() -> Bool {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .authorized:
-            return true
-        case .restricted:
-            print("DEBUG: Device Owner must approve")
-            return false
-        case .denied:
-            print("DEBUG: Enable camera access from settings")
-            return false
-        case .notDetermined:
-            return false
-        default:
-            print("DEBUG: unknown camera access error before scanning")
-            return false
         }
     }
 }

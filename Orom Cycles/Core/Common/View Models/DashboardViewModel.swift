@@ -10,6 +10,7 @@ import SwiftUI
 
 final class DashboardViewModel: ObservableObject {
     
+    /// Variable to show the scannerView
     @Published var showScanner: Bool = false
     @Published var showProfile: Bool = false
     @Published var showWallet: Bool = false

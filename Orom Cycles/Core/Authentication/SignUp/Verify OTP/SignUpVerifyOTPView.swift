@@ -31,7 +31,7 @@ struct SignUpVerifyOTPView: View {
             
             Spacer()
         }
-        .padding(32)
+        .padding(24)
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(signUpVerifyOtpViewModel.isVerifying)
         .toast(isPresenting: $signUpVerifyOtpViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {

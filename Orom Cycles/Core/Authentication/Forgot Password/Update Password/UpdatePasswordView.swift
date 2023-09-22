@@ -40,7 +40,7 @@ struct UpdatePasswordView: View {
             
             Spacer()
         }
-        .padding(32)
+        .padding(24)
         .navigationBarBackButtonHidden(updatePasswordViewModel.isPasswordUpdating)
         .toast(isPresenting: $updatePasswordViewModel.alert.showAlert, duration: 8.0, tapToDismiss: true) {
             return OromAlert.getAlertToast(with: updatePasswordViewModel.alert.message, updatePasswordViewModel.alert.alertType)

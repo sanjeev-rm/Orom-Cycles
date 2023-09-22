@@ -43,7 +43,7 @@ struct LoginView: View {
             Spacer()
             Spacer()
         }
-        .padding(32)
+        .padding(24)
         .fullScreenCover(isPresented: $authenticationViewModel.showOnboardingView, onDismiss: {
             loginViewModel.onDismissFullScreenCover()
             focusField = nil

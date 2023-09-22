@@ -55,7 +55,7 @@ extension EmailAddressView {
             
             Spacer()
         }
-        .padding(32)
+        .padding(24)
         .navigationBarTitleDisplayMode(.inline)
     }
     
