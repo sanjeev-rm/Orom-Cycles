@@ -219,7 +219,7 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		C7344CEE2A3FA48900E9B08E /* Services */ = {
+		C7344CEE2A3FA48900E9B08E /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				C7344CEF2A3FA4A100E9B08E /* AuthenticationAPIService.swift */,
@@ -227,7 +227,7 @@
 				C739FC232A5613A200290236 /* Sign Up */,
 				C76990402A5738FA00DF8116 /* Forgot Password */,
 			);
-			path = Services;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		C738020B2A7EBA9500FC25A5 /* Views */ = {
@@ -408,7 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				C7A2A5682A3D9C3600756EFA /* AuthenticationView.swift */,
-				C7344CEE2A3FA48900E9B08E /* Services */,
+				C7344CEE2A3FA48900E9B08E /* Service */,
 				C7ED52642A36741900F88DC3 /* Onboarding */,
 				C70163562A37ACBD001C119C /* Login */,
 				C770D4422A38C6DB002406CB /* SignUp */,
