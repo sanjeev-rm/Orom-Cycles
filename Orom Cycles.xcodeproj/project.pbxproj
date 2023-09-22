@@ -336,6 +336,16 @@
 			path = "Forgot Password";
 			sourceTree = "<group>";
 		};
+		C7748F142ABD515600FBCD67 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C7C7C2252A591C3100DE2185 /* Utilities */,
+				C72A26EC2A52B9620013DB02 /* Models */,
+				C78567642A67AC2800A2B355 /* View Models */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		C785675E2A66F91500A2B355 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +379,7 @@
 		C78567652A67ACFA00A2B355 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				C7748F142ABD515600FBCD67 /* Common */,
 				C7A2A5672A3D9B3200756EFA /* Authentication */,
 				C7A2A56C2A3DC5E600756EFA /* Dashboard */,
 			);
@@ -571,9 +582,6 @@
 				C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */,
 				C7ED52582A36692A00F88DC3 /* ContentView.swift */,
 				C7C7C2222A59054A00DE2185 /* Launch Screen */,
-				C7C7C2252A591C3100DE2185 /* Utilities */,
-				C72A26EC2A52B9620013DB02 /* Models */,
-				C78567642A67AC2800A2B355 /* View Models */,
 				C78567652A67ACFA00A2B355 /* Core */,
 				C7ED525A2A36692B00F88DC3 /* Assets.xcassets */,
 				C7ED525C2A36692B00F88DC3 /* Preview Content */,
