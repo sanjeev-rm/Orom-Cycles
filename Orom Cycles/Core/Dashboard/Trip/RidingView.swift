@@ -16,7 +16,7 @@ struct RidingView: View {
     let timer = Timer.publish(every: 1.0, on: .main, in: .common).autoconnect()
     
     /// Initial price is 10
-    @State var price: Int = 10
+    @State var price: Double = 10
     /// The duration of the ride
     @State var rideTimeString: String = "00:00:00"
     /// The eact date at which this ride began
@@ -29,12 +29,12 @@ struct RidingView: View {
         let second = rideTime.second ?? 0
         rideTimeString = "\(hour):\(minute):\(second)"
         
-        if hour == 0 && minute <= 15 {
+        if hour == 0 && minute <= 10 {
             print("DEBUG: price will be 10 only")
         } else {
             let totalMinutes = hour * 60 + minute
-            let extraChargeableMinutes = totalMinutes - 15
-            price = 10 + (extraChargeableMinutes * 2)
+            let extraChargeableMinutes = totalMinutes - 10
+            price = 10 + (Double(extraChargeableMinutes) * 0.5)
         }
     }
     
