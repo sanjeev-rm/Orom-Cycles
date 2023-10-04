@@ -32,6 +32,8 @@ extension WalletView {
             
             addMoneyButton
             
+            ourChargingMethodButton
+            
             Spacer()
         }
         .padding(24)
@@ -155,10 +157,33 @@ extension WalletView {
             }
         }
     }
+    
+    private var ourChargingMethodButton: some View {
+        NavigationLink {
+            ChargesInfoView()
+        } label: {
+            HStack {
+                Text("Charges")
+                    .fontWeight(.semibold)
+                
+                Spacer()
+                
+                Image(systemName: "info.circle")
+                    .foregroundColor(.secondary)
+                    .font(.title3)
+            }
+            .padding()
+            .background(Color(.secondarySystemBackground))
+            .cornerRadius(16)
+        }
+    }
 }
 
 struct WalletView_Previews: PreviewProvider {
     static var previews: some View {
         WalletView()
+            .environmentObject(DashboardViewModel())
+            .environmentObject(NetworkMonitor())
+            .environmentObject(WalletViewModel())
     }
 }

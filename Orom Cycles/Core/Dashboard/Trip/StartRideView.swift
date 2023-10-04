@@ -27,11 +27,22 @@ struct StartRideView: View {
             
             if tripViewModel.startRideViewShowProgress {
                 ProgressView()
+            } else if tripViewModel.showInsufficientFundsError || tripViewModel.showUnableToStartRideError {
+                VStack(alignment:.leading, spacing: 3) {
+                    Text(tripViewModel.showInsufficientFundsError ? "Insufficient funds." : "Unable to start ride.")
+                    Text(tripViewModel.showInsufficientFundsError ? "To start ride you need a minimum balance of ₹10." : "Try again later.")
+                }
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Color(.systemRed))
             }
             
             Spacer()
             
             VStack {
+                
+                Text("An minimum amount of ₹10 will be charged for the ride")
+                    .foregroundStyle(.secondary)
+                    .font(.caption2.weight(.light))
                 
                 Button {
                     // Start Ride
@@ -71,6 +82,9 @@ struct StartRideView: View {
         }
         .padding(.top, 44)
         .padding()
+        .onAppear(perform: {
+            tripViewModel.setToDefault()
+        })
     }
 }
 

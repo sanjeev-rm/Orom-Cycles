@@ -18,7 +18,16 @@ final class TripViewModel:ObservableObject {
     
     @Published var startRideViewShowProgress: Bool = false
     
+    // Start Ride view errors
+    @Published var showInsufficientFundsError: Bool = false
+    @Published var showUnableToStartRideError: Bool = false
+    
     @Published var ridingViewShowProgress: Bool = false
+    
+    func setToDefault() {
+        self.showInsufficientFundsError = false
+        self.showUnableToStartRideError = false
+    }
     
     // MARK: - StartRideView function
     
@@ -35,10 +44,21 @@ final class TripViewModel:ObservableObject {
                 completion(true)
             case .failure(let error):
                 switch error {
+                case .insufficientFunds:
+                    print("DEBUG: " + error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self.showInsufficientFundsError = true
+                    }
                 case .noInternetConnection:
-                    print(error.localizedDescription)
+                    print("DEBUG: " + error.localizedDescription)
+                    DispatchQueue.main.async {
+                        self.showUnableToStartRideError = true
+                    }
                 case .custom(let message):
                     print(message)
+                    DispatchQueue.main.async {
+                        self.showUnableToStartRideError = true
+                    }
                 }
                 completion(false)
             }
@@ -70,6 +90,8 @@ final class TripViewModel:ObservableObject {
                             print(error.localizedDescription)
                         case .custom(let message):
                             print("END TRIP : " + message)
+                        default:
+                            print("DEBUG: End Trip(1) - " + error.localizedDescription)
                         }
                         completion(false)
                     }
@@ -80,6 +102,8 @@ final class TripViewModel:ObservableObject {
                     print(error.localizedDescription)
                 case .custom(let message):
                     print("ACTIVE BOOKING : " + message)
+                default:
+                    print("DEBUG: End Trip(2) - " + error.localizedDescription)
                 }
                 completion(false)
             }

@@ -100,6 +100,8 @@ final class DashboardViewModel: ObservableObject {
                     print("DEBUG: " + error.localizedDescription)
                 case .custom(let message):
                     print("DEBUG: " + message)
+                default:
+                    print("DEBUG: " + error.localizedDescription)
                 }
             }
         }

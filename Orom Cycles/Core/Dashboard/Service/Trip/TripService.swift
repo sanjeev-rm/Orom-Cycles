@@ -12,6 +12,7 @@ extension DashboardAPIService {
     enum TripError: Error {
         case custom(message: String)
         case noInternetConnection
+        case insufficientFunds
     }
     
     // MARK: - Start Ride
