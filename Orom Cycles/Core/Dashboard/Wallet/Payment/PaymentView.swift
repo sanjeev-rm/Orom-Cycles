@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Razorpay
 
 struct PaymentView: View {
     
@@ -13,7 +14,28 @@ struct PaymentView: View {
     @State var amount: String = ""
     @State var isAmountValid: Bool = true
     
+    @State var showRazorpayView: Bool = false
+    
     var body: some View {
+//        if showRazorpayView {
+//            RazorpayView(razorKey: "rzp_test_aPE8A8hXxdSdZl", amount: amount)
+//        } else {
+//            paymentView
+//        }
+        paymentView
+        .sheet(isPresented: $showRazorpayView) {
+            // On Dismiss Reload the whole screen
+        } content: {
+            RazorpayView(razorKey: "rzp_test_aPE8A8hXxdSdZl", amount: amount)
+        }
+    }
+}
+
+
+
+extension PaymentView {
+    
+    private var paymentView: some View {
         VStack(alignment: .leading, spacing: 32) {
             heading
             
@@ -41,11 +63,6 @@ struct PaymentView: View {
             validateAmount()
         }
     }
-}
-
-
-
-extension PaymentView {
     
     private var heading: some View {
         VStack(alignment: .leading) {
@@ -91,32 +108,25 @@ extension PaymentView {
     }
     
     private var applePayButton: some View {
-        Button {
-            // Configure Apple pay
-        } label: {
-            HStack {
-                Image(systemName: "apple.logo")
-                Text("Pay")
-            }
-            .frame(maxWidth: .infinity)
-            .font(.title3)
-            .foregroundColor(Color(.systemBackground))
-            .padding()
-            .background(Color(.label))
-            .cornerRadius(8)
+        ApplePayButton {
+            // Implement Apple payment process
         }
+        .cornerRadius(8)
 
     }
     
     private var otherMethodsButton: some View {
         Button {
             // Implement razor pay
+            showRazorpayView = true
         } label: {
             Text("Others")
                 .frame(maxWidth: .infinity)
-                .font(.title3)
+                .font(.title3.weight(.medium))
                 .foregroundColor(.white)
-                .padding()
+                .frame(minWidth: 100, maxWidth: 400)
+                .frame(height: 45)
+                .frame(maxWidth: .infinity)
                 .background(Color(.accent))
                 .cornerRadius(8)
         }

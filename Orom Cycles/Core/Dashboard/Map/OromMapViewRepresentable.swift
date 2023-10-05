@@ -26,7 +26,7 @@ struct OromMapViewRepresentable: UIViewRepresentable {
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
         context.coordinator.addNearbyCyclesAnnotations()
-        print("DEBUG: Updated map view, added cycles")
+        print("DEBUG: Called AddNearbyCyclesFunction")
     }
     
     func makeCoordinator() -> MapCoordinator {
@@ -94,6 +94,9 @@ extension OromMapViewRepresentable {
                 self.parent.mapView.removeAnnotations(self.parent.mapView.annotations)
                 return
             }
+            
+            self.parent.mapView.removeAnnotations(self.parent.mapView.annotations)
+            self.parent.mapView.removeOverlays(self.parent.mapView.overlays)
             
             DashboardAPIService().getCycles(radius: 2000,
                                             latitude: userLocationCoordinate.latitude,

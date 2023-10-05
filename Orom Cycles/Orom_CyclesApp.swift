@@ -32,6 +32,7 @@ struct Orom_CyclesApp: App {
                 AuthenticationView()
                     .environmentObject(authenticationViewModel)
             }
+//            RazorpayView(razorKey: "rzp_test_aPE8A8hXxdSdZl", amount: "10")
         }
     }
 }

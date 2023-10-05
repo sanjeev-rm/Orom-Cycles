@@ -32,6 +32,10 @@
 		C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C770D44B2A38D1F1002406CB /* DashboardView.swift */; };
 		C77BF8852A872223002D89E6 /* OromMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77BF8842A872223002D89E6 /* OromMapViewRepresentable.swift */; };
 		C77BF8872A87262A002D89E6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77BF8862A87262A002D89E6 /* LocationManager.swift */; };
+		C77E1D2B2ACEB132006078D7 /* Razorpay.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C77E1D292ACEB12B006078D7 /* Razorpay.xcframework */; };
+		C77E1D2C2ACEB132006078D7 /* Razorpay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C77E1D292ACEB12B006078D7 /* Razorpay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C77E1D2F2ACEB25F006078D7 /* RazorpayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E1D2E2ACEB25F006078D7 /* RazorpayView.swift */; };
+		C77E1D332ACED973006078D7 /* ApplePayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E1D322ACED973006078D7 /* ApplePayButton.swift */; };
 		C78567602A66F94100A2B355 /* Dashboard API Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785675F2A66F94100A2B355 /* Dashboard API Service.swift */; };
 		C78567632A66FBE300A2B355 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78567622A66FBE300A2B355 /* MapService.swift */; };
 		C791FD872A929B2300E32ACE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C791FD862A929B2300E32ACE /* NetworkMonitor.swift */; };
@@ -80,6 +84,20 @@
 		C7F688E32ACC76C8007B8657 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F688E22ACC76C8007B8657 /* CameraManager.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C77E1D2D2ACEB132006078D7 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C77E1D2C2ACEB132006078D7 /* Razorpay.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C70163522A377A7C001C119C /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		C70163572A37ACD5001C119C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -106,6 +124,9 @@
 		C770D44B2A38D1F1002406CB /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		C77BF8842A872223002D89E6 /* OromMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OromMapViewRepresentable.swift; sourceTree = "<group>"; };
 		C77BF8862A87262A002D89E6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		C77E1D292ACEB12B006078D7 /* Razorpay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Razorpay.xcframework; path = ../../../../../Downloads/Razorpay.xcframework; sourceTree = "<group>"; };
+		C77E1D2E2ACEB25F006078D7 /* RazorpayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorpayView.swift; sourceTree = "<group>"; };
+		C77E1D322ACED973006078D7 /* ApplePayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayButton.swift; sourceTree = "<group>"; };
 		C785675F2A66F94100A2B355 /* Dashboard API Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard API Service.swift"; sourceTree = "<group>"; };
 		C78567622A66FBE300A2B355 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
 		C791FD862A929B2300E32ACE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -160,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7D39C102A61980500903F57 /* CodeScanner in Frameworks */,
+				C77E1D2B2ACEB132006078D7 /* Razorpay.xcframework in Frameworks */,
 				C76432B02A4166EC00750976 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +312,8 @@
 			isa = PBXGroup;
 			children = (
 				C73802132A7ECFC700FC25A5 /* PaymentView.swift */,
+				C77E1D2E2ACEB25F006078D7 /* RazorpayView.swift */,
+				C77E1D322ACED973006078D7 /* ApplePayButton.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -576,6 +600,7 @@
 		C7ED524A2A36692A00F88DC3 = {
 			isa = PBXGroup;
 			children = (
+				C77E1D292ACEB12B006078D7 /* Razorpay.xcframework */,
 				C7ED52552A36692A00F88DC3 /* Orom Cycles */,
 				C7ED52542A36692A00F88DC3 /* Products */,
 			);
@@ -630,6 +655,7 @@
 				C7ED524F2A36692A00F88DC3 /* Sources */,
 				C7ED52502A36692A00F88DC3 /* Frameworks */,
 				C7ED52512A36692A00F88DC3 /* Resources */,
+				C77E1D2D2ACEB132006078D7 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -735,6 +761,7 @@
 				C7D39BFE2A616F8600903F57 /* MapViewModel.swift in Sources */,
 				C7E76B802A7B221000FE6CA2 /* DashboardBaseView.swift in Sources */,
 				C76990442A57399F00DF8116 /* ForgotPasswordService.swift in Sources */,
+				C77E1D2F2ACEB25F006078D7 /* RazorpayView.swift in Sources */,
 				C7DAD76E2A806DC9007D891D /* Bundle+Extension.swift in Sources */,
 				C791FD872A929B2300E32ACE /* NetworkMonitor.swift in Sources */,
 				C79383BC2A3E504D00341CAB /* EmailAddressViewModel.swift in Sources */,
@@ -745,6 +772,7 @@
 				C7E76B8B2A7C3B0800FE6CA2 /* ProfileUpdatePasswordView.swift in Sources */,
 				C73802042A7E205A00FC25A5 /* WalletCardGradientColor.swift in Sources */,
 				C739FC1F2A56115500290236 /* SignUpService.swift in Sources */,
+				C77E1D332ACED973006078D7 /* ApplePayButton.swift in Sources */,
 				C73802082A7E5D2B00FC25A5 /* WalletCardColorView.swift in Sources */,
 				C770D44C2A38D1F1002406CB /* DashboardView.swift in Sources */,
 				C7A2A5642A3CDD2C00756EFA /* LoginViewModel.swift in Sources */,
