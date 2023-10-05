@@ -36,6 +36,9 @@
 		C77E1D2C2ACEB132006078D7 /* Razorpay.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C77E1D292ACEB12B006078D7 /* Razorpay.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C77E1D2F2ACEB25F006078D7 /* RazorpayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E1D2E2ACEB25F006078D7 /* RazorpayView.swift */; };
 		C77E1D332ACED973006078D7 /* ApplePayButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E1D322ACED973006078D7 /* ApplePayButton.swift */; };
+		C77E1D362ACF37CC006078D7 /* PaymentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E1D352ACF37CC006078D7 /* PaymentHandler.swift */; };
+		C77E1D382ACF45C6006078D7 /* ApplePaySuccessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E1D372ACF45C6006078D7 /* ApplePaySuccessView.swift */; };
+		C77E1D3C2ACF5F75006078D7 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77E1D3B2ACF5F75006078D7 /* PaymentViewModel.swift */; };
 		C78567602A66F94100A2B355 /* Dashboard API Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C785675F2A66F94100A2B355 /* Dashboard API Service.swift */; };
 		C78567632A66FBE300A2B355 /* MapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78567622A66FBE300A2B355 /* MapService.swift */; };
 		C791FD872A929B2300E32ACE /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C791FD862A929B2300E32ACE /* NetworkMonitor.swift */; };
@@ -127,6 +130,10 @@
 		C77E1D292ACEB12B006078D7 /* Razorpay.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Razorpay.xcframework; path = ../../../../../Downloads/Razorpay.xcframework; sourceTree = "<group>"; };
 		C77E1D2E2ACEB25F006078D7 /* RazorpayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorpayView.swift; sourceTree = "<group>"; };
 		C77E1D322ACED973006078D7 /* ApplePayButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayButton.swift; sourceTree = "<group>"; };
+		C77E1D342ACF3775006078D7 /* Orom Cycles.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Orom Cycles.entitlements"; sourceTree = "<group>"; };
+		C77E1D352ACF37CC006078D7 /* PaymentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHandler.swift; sourceTree = "<group>"; };
+		C77E1D372ACF45C6006078D7 /* ApplePaySuccessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePaySuccessView.swift; sourceTree = "<group>"; };
+		C77E1D3B2ACF5F75006078D7 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		C785675F2A66F94100A2B355 /* Dashboard API Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dashboard API Service.swift"; sourceTree = "<group>"; };
 		C78567622A66FBE300A2B355 /* MapService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapService.swift; sourceTree = "<group>"; };
 		C791FD862A929B2300E32ACE /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
@@ -312,8 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				C73802132A7ECFC700FC25A5 /* PaymentView.swift */,
-				C77E1D2E2ACEB25F006078D7 /* RazorpayView.swift */,
-				C77E1D322ACED973006078D7 /* ApplePayButton.swift */,
+				C77E1D3B2ACF5F75006078D7 /* PaymentViewModel.swift */,
+				C77E1D3A2ACF5F07006078D7 /* Apple Pay */,
+				C77E1D392ACF5EFF006078D7 /* Razor Pay */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -380,6 +388,24 @@
 				C78567642A67AC2800A2B355 /* View Models */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		C77E1D392ACF5EFF006078D7 /* Razor Pay */ = {
+			isa = PBXGroup;
+			children = (
+				C77E1D2E2ACEB25F006078D7 /* RazorpayView.swift */,
+			);
+			path = "Razor Pay";
+			sourceTree = "<group>";
+		};
+		C77E1D3A2ACF5F07006078D7 /* Apple Pay */ = {
+			isa = PBXGroup;
+			children = (
+				C77E1D322ACED973006078D7 /* ApplePayButton.swift */,
+				C77E1D352ACF37CC006078D7 /* PaymentHandler.swift */,
+				C77E1D372ACF45C6006078D7 /* ApplePaySuccessView.swift */,
+			);
+			path = "Apple Pay";
 			sourceTree = "<group>";
 		};
 		C785675E2A66F91500A2B355 /* Service */ = {
@@ -617,6 +643,7 @@
 		C7ED52552A36692A00F88DC3 /* Orom Cycles */ = {
 			isa = PBXGroup;
 			children = (
+				C77E1D342ACF3775006078D7 /* Orom Cycles.entitlements */,
 				C738E6242A5511AA00351206 /* Orom-Cycles-Info.plist */,
 				C7ED52562A36692A00F88DC3 /* Orom_CyclesApp.swift */,
 				C7ED52582A36692A00F88DC3 /* ContentView.swift */,
@@ -725,6 +752,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C77E1D382ACF45C6006078D7 /* ApplePaySuccessView.swift in Sources */,
 				C7D39C192A61DE3C00903F57 /* CompletedRideView.swift in Sources */,
 				C7ED52592A36692A00F88DC3 /* ContentView.swift in Sources */,
 				C73802142A7ECFC700FC25A5 /* PaymentView.swift in Sources */,
@@ -782,6 +810,7 @@
 				C7344CF02A3FA4A100E9B08E /* AuthenticationAPIService.swift in Sources */,
 				C7E76B852A7BF51500FE6CA2 /* ProfileService.swift in Sources */,
 				C77BF8872A87262A002D89E6 /* LocationManager.swift in Sources */,
+				C77E1D362ACF37CC006078D7 /* PaymentHandler.swift in Sources */,
 				C7DAD7722A8072F9007D891D /* SettingsViewModel.swift in Sources */,
 				C7A2A5692A3D9C3600756EFA /* AuthenticationView.swift in Sources */,
 				C73802102A7EBBCE00FC25A5 /* CommonService.swift in Sources */,
@@ -792,6 +821,7 @@
 				C73802062A7E5C1000FC25A5 /* WalletCardColorPicker.swift in Sources */,
 				C7ED52572A36692A00F88DC3 /* Orom_CyclesApp.swift in Sources */,
 				C7D39C0D2A61853000903F57 /* SettingsView.swift in Sources */,
+				C77E1D3C2ACF5F75006078D7 /* PaymentViewModel.swift in Sources */,
 				C78567632A66FBE300A2B355 /* MapService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -920,8 +950,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Orom Cycles/Orom Cycles.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Orom Cycles/Preview Content\"";
 				DEVELOPMENT_TEAM = FW56F82T86;
 				ENABLE_PREVIEWS = YES;
@@ -957,8 +988,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Orom Cycles/Orom Cycles.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Orom Cycles/Preview Content\"";
 				DEVELOPMENT_TEAM = FW56F82T86;
 				ENABLE_PREVIEWS = YES;

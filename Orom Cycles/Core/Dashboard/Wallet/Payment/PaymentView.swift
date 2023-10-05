@@ -10,23 +10,27 @@ import Razorpay
 
 struct PaymentView: View {
     
-    @State var isFirstTime: Bool = false
-    @State var amount: String = ""
-    @State var isAmountValid: Bool = true
+    @Environment(\.dismiss) var dismissView
     
-    @State var showRazorpayView: Bool = false
+    @StateObject var paymentViewModel = PaymentViewModel()
     
     var body: some View {
-//        if showRazorpayView {
-//            RazorpayView(razorKey: "rzp_test_aPE8A8hXxdSdZl", amount: amount)
-//        } else {
-//            paymentView
-//        }
+        
         paymentView
-        .sheet(isPresented: $showRazorpayView) {
+            .fullScreenCover(isPresented: $paymentViewModel.showRazorpayView) {
             // On Dismiss Reload the whole screen
         } content: {
-            RazorpayView(razorKey: "rzp_test_aPE8A8hXxdSdZl", amount: amount)
+            RazorpayView(razorKey: "rzp_test_aPE8A8hXxdSdZl", amount: paymentViewModel.amount)
+                .onAppear {
+                    // This is done to presvent the navigation issue when presenting RazorPayView
+                    paymentViewModel.showRazorpayView = false
+                }
+        }
+        .fullScreenCover(isPresented: $paymentViewModel.isPaymentSuccess) {
+            // Dismiss this payment view too
+            dismissView.callAsFunction()
+        } content: {
+            ApplePaySuccessView(amount: paymentViewModel.amount)
         }
     }
 }
@@ -51,16 +55,16 @@ extension PaymentView {
                 
                 otherMethodsButton
             }
-            .disabled(!isAmountValid)
+            .disabled(!paymentViewModel.isAmountValid)
         }
         .padding()
         .navigationTitle("Payment")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            amount = isFirstTime ? "50" : "10"
+            paymentViewModel.amount = paymentViewModel.isFirstTime ? "50" : "10"
         }
-        .onChange(of: amount) { _ in
-            validateAmount()
+        .onChange(of: paymentViewModel.amount) { _ in
+            paymentViewModel.validateAmount()
         }
     }
     
@@ -70,7 +74,7 @@ extension PaymentView {
                 .font(.title.bold())
             
             Group {
-                if isFirstTime {
+                if paymentViewModel.isFirstTime {
                     Text("This is the first time you're adding funds, so a minimum amount of ₹50 must be added")
                 } else {
                     Text("You can add a minimum of ₹10")
@@ -84,10 +88,14 @@ extension PaymentView {
     private var textField: some View {
         HStack {
             Text("₹")
-            TextField("0", text: $amount)
+            TextField("0", text: $paymentViewModel.amount)
                 .keyboardType(.numberPad)
-                .submitLabel(.return)
                 .padding()
+                .background(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(lineWidth: 3)
+                        .foregroundColor(paymentViewModel.isAmountValid ? .clear : Color(.systemRed).opacity(0.6))
+                )
                 .background(Color(oromColor: .textFieldBackground))
                 .cornerRadius(16)
         }
@@ -110,6 +118,7 @@ extension PaymentView {
     private var applePayButton: some View {
         ApplePayButton {
             // Implement Apple payment process
+            paymentViewModel.makePaymentUsingApplePay()
         }
         .cornerRadius(8)
 
@@ -118,7 +127,7 @@ extension PaymentView {
     private var otherMethodsButton: some View {
         Button {
             // Implement razor pay
-            showRazorpayView = true
+            paymentViewModel.showRazorpayView = true
         } label: {
             Text("Others")
                 .frame(maxWidth: .infinity)
@@ -131,24 +140,6 @@ extension PaymentView {
                 .cornerRadius(8)
         }
 
-    }
-}
-
-extension PaymentView {
-    
-    func validateAmount() {
-        guard let amountInt = Int(amount) else {
-            isAmountValid = false
-            return
-        }
-        
-        if isFirstTime, amountInt < 50 {
-            isAmountValid = false
-        } else if amountInt < 10 {
-            isAmountValid = false
-        } else {
-            isAmountValid = true
-        }
     }
 }
 
