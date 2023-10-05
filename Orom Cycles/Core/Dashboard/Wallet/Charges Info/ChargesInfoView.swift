@@ -24,7 +24,7 @@ struct ChargesInfoView: View {
                 
                 Section("Wallet Charges") {
                     Group {
-                        Text("Minimum of ₹50 must be added to the wallet during the fist time.")
+                        Text("Minimum of ₹50 must be added to the wallet during the first time.")
                         Text("Minimum of ₹10 must be present in your wallet to start a ride.")
                     }
                     .padding(3)
