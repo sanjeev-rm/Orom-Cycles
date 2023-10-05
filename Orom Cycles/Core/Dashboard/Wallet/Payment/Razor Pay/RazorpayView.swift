@@ -22,7 +22,6 @@ struct RazorpayView: UIViewControllerRepresentable {
     }
         
     func updateUIViewController(_ uiViewController: RazorViewController, context: UIViewControllerRepresentableContext<RazorpayView>) {
-        
     }
 }
 
@@ -41,14 +40,12 @@ class RazorViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-        
-//        openRazorpayCheckout(amount: amount)
+//        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
         
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     override func viewDidAppear(_ animated: Bool) {
