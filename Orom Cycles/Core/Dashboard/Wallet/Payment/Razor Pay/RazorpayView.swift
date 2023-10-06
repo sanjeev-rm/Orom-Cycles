@@ -89,13 +89,13 @@ extension RazorViewController: RazorpayPaymentCompletionProtocolWithData {
         let alert = UIAlertController(title: "Paid", message: "Payment Success!", preferredStyle: .alert)
         let action = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
         alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
+        self.view.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     func onPaymentError(_ code: Int32, description str: String, andData response: [AnyHashable : Any]?) {
         let alert = UIAlertController(title: "Error", message: str, preferredStyle: .alert)
         let action = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
         alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
+        self.view.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
 }

@@ -141,19 +141,8 @@ extension WalletView {
             NavigationLink {
                 PaymentView()
             } label: {
-                HStack {
-                    Text("Add Money")
-                        .fontWeight(.semibold)
-                    
-                    Spacer()
-                    
-                    Image(systemName: "plus")
-                        .foregroundColor(.secondary)
-                        .font(.title3)
-                }
-                .padding()
-                .background(Color(.secondarySystemBackground))
-                .cornerRadius(16)
+                
+                OromListButtonLabel(title: "Add Money", titleWeight: .regular, imageSystemName: "plus", imageFont: .title3)
             }
         }
     }
@@ -162,19 +151,7 @@ extension WalletView {
         NavigationLink {
             ChargesInfoView()
         } label: {
-            HStack {
-                Text("Charges")
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Image(systemName: "info.circle")
-                    .foregroundColor(.secondary)
-                    .font(.title3)
-            }
-            .padding()
-            .background(Color(.secondarySystemBackground))
-            .cornerRadius(16)
+            OromListButtonLabel(title: "Charges", titleWeight: .regular, imageSystemName: "info.circle", imageFont: .title3)
         }
     }
 }

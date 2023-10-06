@@ -140,12 +140,12 @@ extension ProfileView {
             // Show Update Password Sheet
             profileViewModel.toggleShowUpdatePasswordSheet()
         } label: {
-            HStack {
+            HStack(spacing: 16) {
                 Image(systemName: "lock")
                     .foregroundColor(.secondary)
                     .font(.title3)
                 Text("Update Password")
-                    .fontWeight(.semibold)
+                    .fontWeight(.regular)
                 
                 Spacer()
                 
@@ -161,21 +161,15 @@ extension ProfileView {
     }
     
     private var logoutButton: some View {
+        
         Button {
             // Show Confirmation Dialogue
             profileViewModel.toggleShowConfirmationForLogOut()
         } label: {
-            HStack {
-                Image(systemName: "rectangle.portrait.and.arrow.right")
-                    .foregroundColor(Color(uiColor: .systemRed))
-                Text("Log Out")
-                    .fontWeight(.semibold)
-                
-                Spacer()
-            }
-            .padding()
-            .background(Color(uiColor: .secondarySystemBackground))
-            .cornerRadius(16)
+            OromListButtonLabel(title: "Log Out",
+                                titleWeight: .regular,
+                                imageSystemName: "rectangle.portrait.and.arrow.right",
+                                imageColor: Color(.systemRed))
         }
     }
 }
@@ -183,5 +177,9 @@ extension ProfileView {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environmentObject(DashboardViewModel())
+            .environmentObject(AuthenticationViewModel())
+            .environmentObject(NetworkMonitor())
+            .environmentObject(ProfileViewModel())
     }
 }

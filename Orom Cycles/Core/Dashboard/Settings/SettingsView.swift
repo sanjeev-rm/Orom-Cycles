@@ -19,20 +19,32 @@ struct SettingsView: View {
     var body: some View {
         VStack(spacing: 32) {
             closeButtonAndTitle
-            
-            writeAReviewButton
-            
-            bugAndSuggestionButtons
-            
-            developmentTeamButton
-            
-            Spacer()
+            ScrollView {
+                VStack(spacing: 32) {
+                    
+                    helpButton
+                    
+                    bugAndSuggestionButtons
+                    
+                    writeAReviewButton
+                    
+                    developmentTeamButton
+                    
+                    Spacer()
+                }
+                .padding(.top, 8)
+            }
         }
         .padding(24)
         .sheet(isPresented: $networkMonitor.isNotConnected) {
             SheetAlertView(.networkIssue)
                 .presentationDetents([.height(175)])
                 .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $settingsViewModel.showHelpView) {
+            HelpView()
+                .environmentObject(settingsViewModel)
+                .presentationDetents([.medium])
         }
     }
 }
@@ -71,24 +83,21 @@ extension SettingsView {
         Button {
             // Show Review page in App Store
         } label: {
-            HStack {
-                Text("Write a Review")
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Image(systemName: "pencil.line")
-                    .foregroundColor(.secondary)
-                    .font(.title3)
-            }
-            .padding()
-            .background(Color(.secondarySystemBackground))
-            .cornerRadius(16)
+            OromListButtonLabel(title: "Write a Review", titleWeight: .regular, imageSystemName: "pencil.line", imageFont: .body)
+        }
+    }
+    
+    private var helpButton: some View {
+        Button {
+            // Show help view
+            settingsViewModel.showHelpView = true
+        } label: {
+            OromListButtonLabel(title: "Help", titleWeight: .regular, imageSystemName: "person.fill.questionmark", imageFont: .body, padding: 16)
         }
     }
     
     private var bugAndSuggestionButtons: some View {
-        VStack {
+        VStack(spacing: 16) {
             reportABugButton
             Divider()
             suggestionButton
@@ -103,16 +112,7 @@ extension SettingsView {
             // Show Email to send to support
             settingsViewModel.supportBugEmail.send(openURL: openURL)
         } label: {
-            HStack {
-                Text("Report a Bug")
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Image(systemName: "ant.fill")
-                    .foregroundColor(.secondary)
-                    .font(.title3)
-            }
+            OromListButtonLabel(title: "Report a Bug", titleWeight: .regular, imageSystemName: "ladybug.fill", imageFont: .body, padding: 0)
         }
     }
     
@@ -121,16 +121,7 @@ extension SettingsView {
             // Show Email to send to support
             settingsViewModel.supportSuggestionEmail.send(openURL: openURL)
         } label: {
-            HStack {
-                Text("Give a suggestion")
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Image(systemName: "bonjour")
-                    .foregroundColor(.secondary)
-                    .font(.title3)
-            }
+            OromListButtonLabel(title: "Give a suggestion", titleWeight: .regular, imageSystemName: "bonjour", imageFont: .body, padding: 0)
         }
     }
     
@@ -138,19 +129,7 @@ extension SettingsView {
         Button {
             // Show The screen of developers
         } label: {
-            HStack {
-                Text("Developed By")
-                    .fontWeight(.semibold)
-                
-                Spacer()
-                
-                Image(systemName: "hammer.fill")
-                    .foregroundColor(.secondary)
-                    .font(.title3)
-            }
-            .padding()
-            .background(Color(.secondarySystemBackground))
-            .cornerRadius(16)
+            OromListButtonLabel(title: "Developed by", titleWeight: .regular, imageSystemName: "hammer.fill", imageFont: .body)
         }
     }
 }
@@ -159,5 +138,6 @@ struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView()
             .environmentObject(DashboardViewModel())
+            .environmentObject(NetworkMonitor())
     }
 }

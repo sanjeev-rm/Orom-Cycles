@@ -18,20 +18,20 @@ struct PaymentView: View {
         
         paymentView
             .fullScreenCover(isPresented: $paymentViewModel.showRazorpayView) {
-            // On Dismiss Reload the whole screen
-        } content: {
-            RazorpayView(razorKey: "rzp_test_aPE8A8hXxdSdZl", amount: paymentViewModel.amount)
-                .onAppear {
-                    // This is done to presvent the navigation issue when presenting RazorPayView
-                    paymentViewModel.showRazorpayView = false
-                }
-        }
-        .fullScreenCover(isPresented: $paymentViewModel.isPaymentSuccess) {
-            // Dismiss this payment view too
-            dismissView.callAsFunction()
-        } content: {
-            ApplePaySuccessView(amount: paymentViewModel.amount)
-        }
+                // On Dismiss Reload the whole screen
+            } content: {
+                RazorpayView(razorKey: "rzp_test_aPE8A8hXxdSdZl", amount: paymentViewModel.amount)
+                    .onAppear {
+                        // This is done to presvent the navigation issue when presenting RazorPayView
+                        paymentViewModel.showRazorpayView = false
+                    }
+            }
+            .fullScreenCover(isPresented: $paymentViewModel.isPaymentSuccess) {
+                // Dismiss this payment view too
+                dismissView.callAsFunction()
+            } content: {
+                ApplePaySuccessView(amount: paymentViewModel.amount)
+            }
     }
 }
 
